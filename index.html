@@ -1,244 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivo Fernandes | Engenharia, IA & Inovação</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #f4f7f9; color: #1a202c; font-family: 'Poppins', sans-serif; }
-        .text-primary { color: #2563eb; } .bg-primary { background-color: #2563eb; } .border-primary { border-color: #2563eb; }
-        .nav-link { position: relative; transition: color 0.3s ease; color: #4a5568; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #2563eb; transition: width 0.3s ease; }
-        .nav-link:hover, .nav-link.active { color: #2563eb; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .modal-backdrop { background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
-        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #2563eb; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        
-        .tool-card {
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .tool-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .tool-card .sketch-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 50 L50 100 L100 50 L50 0 Z' stroke='%23dbeafe' stroke-width='1' fill='none'/%3E%3Cpath d='M0 0 L100 100 M0 100 L100 0' stroke='%23dbeafe' stroke-width='1' fill='none'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E");
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-            pointer-events: none;
-        }
-        .tool-card:hover .sketch-overlay {
-            opacity: 0.1;
-        }
-        .tool-card .card-content {
-            position: relative;
-            z-index: 2;
-        }
-        .tool-card .tool-icon {
-            font-size: 3rem;
-            line-height: 1;
-            color: #2563eb;
-            transition: transform 0.3s ease;
-        }
-        .tool-card:hover .tool-icon {
-            transform: scale(1.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivo Fernandes | Engenharia, IA & Inovação</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f4f7f9;
+      color: #1a202c;
+      font-family: 'Poppins', sans-serif;
+    }
+    .text-primary { color: #2563eb; }
+    .bg-primary { background-color: #2563eb; }
+  </style>
 </head>
-<body class="antialiased">
-    <header class="bg-white/80 backdrop-blur-lg p-4 fixed top-0 left-0 right-0 z-50 border-b border-gray-200">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="#inicio" class="text-3xl font-bold text-primary">IVO</a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#inicio" class="nav-link font-semibold active">Início</a>
-                <a href="#engenharia" class="nav-link font-semibold">Engenharia</a>
-                <a href="#ia" class="nav-link font-semibold">I.A.</a>
-                <a href="#crypto" class="nav-link font-semibold">Crypto</a>
-                <a href="#musica" class="nav-link font-semibold">Música</a>
-                <a href="#sobre" class="nav-link font-semibold">Sobre</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:text-primary focus:outline-none">
-                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden mt-4">
-             <a href="#inicio" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Início</a>
-             <a href="#engenharia" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Engenharia</a>
-             <a href="#ia" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">I.A.</a>
-             <a href="#crypto" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Crypto</a>
-             <a href="#musica" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Música</a>
-             <a href="#sobre" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Sobre</a>
-        </div>
-    </header>
-    <main>
-        <section id="inicio" class="min-h-screen flex items-center justify-center p-4 pt-24 relative">
-            <div class="text-center z-10">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4">Inovação.<br>Criatividade. <span class="text-primary">IA.</span></h1>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-600 leading-relaxed">Um laboratório digital para explorar o futuro da tecnologia e do design.</p>
-                <button id="main-ai-chat-button" class="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">Conversar com o Assistente IA</button>
-            </div>
-        </section>
-        
-        <section id="engenharia" class="py-24 px-4 bg-white">
-            <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de Engenharia & Design</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ferramentas, manuais e tutoriais para os seus projetos.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div>
-                        <div class="card-content">
-                            <div class="tool-icon mb-4">🏗️</div>
-                            <h3 class="text-2xl font-bold mb-2">Assistente Civil 3D</h3>
-                            <p class="text-gray-600 mb-6">Explicações e imagens geradas por IA para qualquer comando.</p>
-                            <a href="autocad.html" class="inline-block bg-primary text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Aceder à Ferramenta</a>
-                        </div>
-                    </div>
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📚</div><h3 class="text-2xl font-bold mb-2">Biblioteca de Manuais</h3><p class="text-gray-600 mb-6">Acesso rápido a manuais oficiais e guias de referência.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
-                    </div>
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📐</div><h3 class="text-2xl font-bold mb-2">Tutoriais Práticos</h3><p class="text-gray-600 mb-6">Guias práticos e visuais para dominar novas técnicas.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<body>
+  <main class="max-w-4xl mx-auto p-6 space-y-6">
+    <h1 class="text-4xl font-bold text-primary">Assistente de Comandos Civil 3D</h1>
+    <p class="text-lg">Converse com a IA para obter explicações, exemplos práticos e ilustrações de comandos.</p>
 
-        <section id="ia" class="py-24 px-4">
-            <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de Inteligência Artificial</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explore o poder da IA com ferramentas e conhecimento.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div>
-                        <div class="card-content">
-                            <div class="tool-icon mb-4">🤖</div>
-                            <h3 class="text-2xl font-bold mb-2">Converse com a Ivo IA</h3>
-                            <p class="text-gray-600 mb-6">Um assistente virtual para responder às suas perguntas.</p>
-                            <button id="ai-chat-card-button" class="inline-block bg-primary text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Iniciar Chat</button>
-                        </div>
-                    </div>
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📖</div><h3 class="text-2xl font-bold mb-2">Livros de IA</h3><p class="text-gray-600 mb-6">Uma seleção curada dos melhores livros sobre IA.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
-                    </div>
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">💡</div><h3 class="text-2xl font-bold mb-2">Ideias & Insights</h3><p class="text-gray-600 mb-6">Artigos e análises sobre as últimas tendências em IA.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div id="chat-window" class="flex flex-col gap-2 p-4 bg-white rounded shadow h-96 overflow-y-auto border border-gray-200"></div>
 
-        <section id="crypto" class="py-24 px-4 bg-white">
-            <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de CryptoMoedas</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Análises e ferramentas para o mercado de ativos digitais.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div>
-                        <div class="card-content">
-                            <div class="tool-icon mb-4">📈</div>
-                            <h3 class="text-2xl font-bold mb-2">Análise de Gráficos</h3>
-                            <p class="text-gray-600 mb-6">Tendências e estratégias para otimizar os seus investimentos.</p>
-                            <button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button>
-                        </div>
-                    </div>
-                     <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📰</div><h3 class="text-2xl font-bold mb-2">Notícias & Mercados</h3><p class="text-gray-600 mb-6">As últimas notícias que movimentam o mercado cripto.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
-                    </div>
-                     <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
-                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">🛡️</div><h3 class="text-2xl font-bold mb-2">Segurança & Wallets</h3><p class="text-gray-600 mb-6">Aprenda a proteger os seus ativos digitais de forma eficaz.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="musica" class="py-24 px-4">
-            <div class="container mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de Música</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explorando a intersecção entre música, tecnologia e IA.</p>
-                <div class="mt-8 text-6xl text-blue-200">🎶</div>
-                <p class="text-gray-500 mt-4">Novos tópicos e ferramentas em breve.</p>
-            </div>
-        </section>
-
-        <section id="sobre" class="py-24 px-4 bg-white">
-            <div class="container mx-auto max-w-3xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Sobre Mim</h2>
-                 <p class="text-lg text-gray-600 leading-relaxed">Sou um entusiasta da tecnologia e um explorador incansável das fronteiras da inteligência artificial. Este espaço é o meu "caderno de bitácora" digital, onde partilho as minhas descobertas, projetos e reflexões sobre como a tecnologia está a redefinir o potencial humano. O meu objetivo é descomplicar o complexo e inspirar outros a construir o futuro.</p>
-            </div>
-        </section>
-    </main>
-    
-    <div id="ai-chat-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-[60] hidden">
-        <div class="bg-white w-full max-w-2xl h-[80vh] rounded-lg shadow-2xl flex flex-col">
-            <div class="p-4 border-b border-gray-200 flex justify-between items-center"><h3 class="text-2xl font-bold text-primary">Assistente IA</h3><button id="ai-chat-modal-close-button" class="text-gray-500 hover:text-black text-3xl leading-none">&times;</button></div>
-            <div id="chat-window" class="flex-1 p-4 overflow-y-auto flex flex-col space-y-4 bg-gray-50"><div class="p-3 rounded-lg bg-blue-100 text-blue-800 self-start max-w-[80%]">Olá! Sou o seu assistente digital. Como posso ajudar?</div></div>
-            <div id="chat-loading-indicator" class="px-4 pb-2 hidden"><div class="flex items-center space-x-2"><div class="spinner"></div><span class="text-sm text-gray-500">A pensar...</span></div></div>
-            <div class="p-4 border-t border-gray-200"><div class="flex space-x-2"><input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-full p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Escreva a sua mensagem..."><button id="chat-send-button" class="bg-primary text-white font-bold px-5 py-2 rounded-full hover:bg-blue-700 transition-colors">Enviar</button></div></div>
-        </div>
+    <div class="flex gap-2 items-center mt-4">
+      <input id="chat-input" class="flex-grow p-3 rounded border" placeholder="Digite um comando ou uma pergunta..." />
+      <button id="chat-send-button" class="bg-primary text-white px-4 py-2 rounded">Enviar</button>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            async function callGemini(prompt) {
-                const apiUrl = `/api/gemini`;
-                try {
-                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: prompt }) });
-                    if (!response.ok) { const errorData = await response.json().catch(() => ({ message: response.statusText })); throw new Error(`API request failed with status ${response.status}: ${errorData.message || response.statusText}`); }
-                    const result = await response.json();
-                    if (result.candidates && result.candidates[0]?.content?.parts[0]?.text) { return result.candidates[0].content.parts[0].text; } 
-                    else if (result.error) { return `Erro da API Gemini: ${result.error.message}`; }
-                    return "Não foi possível obter uma resposta. A resposta da API pode estar vazia ou mal formatada.";
-                } catch (error) { console.error('Erro ao chamar a função de proxy:', error); return `Ocorreu um erro ao comunicar com a IA: ${error.message}`; }
-            }
-            const aiChatModal = document.getElementById('ai-chat-modal'); 
-            const mainAiChatButton = document.getElementById('main-ai-chat-button');
-            const cardAiChatButton = document.getElementById('ai-chat-card-button');
-            const aiChatModalCloseButton = document.getElementById('ai-chat-modal-close-button'); 
-            const chatWindow = document.getElementById('chat-window'); 
-            const chatInput = document.getElementById('chat-input'); 
-            const chatSendButton = document.getElementById('chat-send-button'); 
-            const chatLoadingIndicator = document.getElementById('chat-loading-indicator'); 
-            const mobileMenuButton = document.getElementById('mobile-menu-button'); 
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            function openChatModal() { aiChatModal.classList.remove('hidden'); }
-            function closeChatModal() { aiChatModal.classList.add('hidden'); }
 
-            mainAiChatButton.addEventListener('click', openChatModal);
-            cardAiChatButton.addEventListener('click', openChatModal);
-            aiChatModalCloseButton.addEventListener('click', closeChatModal);
+    <div id="chat-loading-indicator" class="text-sm text-gray-500 hidden">⏳ IA está gerando a resposta...</div>
+  </main>
 
-            function addChatMessage(message, sender) { const bubble = document.createElement('div'); bubble.className = `p-3 rounded-lg max-w-[80%]`; if(sender === 'user'){ bubble.classList.add('bg-primary', 'text-white', 'self-end'); } else { bubble.classList.add('bg-blue-100', 'text-blue-800', 'self-start'); } bubble.textContent = message; chatWindow.appendChild(bubble); chatWindow.scrollTop = chatWindow.scrollHeight; }
-            async function handleChatSend() { const userInput = chatInput.value.trim(); if (!userInput) return; addChatMessage(userInput, 'user'); chatInput.value = ''; chatLoadingIndicator.classList.remove('hidden'); const aiResponse = await callGemini(userInput); chatLoadingIndicator.classList.add('hidden'); addChatMessage(aiResponse, 'ai'); }
-            chatSendButton.addEventListener('click', handleChatSend); 
-            chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSend(); });
-            
-            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden')); 
-            document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
-            
-            const sections = document.querySelectorAll('section'); 
-            const headerNavLinks = document.querySelectorAll('header nav .nav-link');
-            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { headerNavLinks.forEach(link => { link.classList.remove('active'); if (`#${entry.target.id}` === link.getAttribute('href')) { link.classList.add('active'); } }); } }); }, { root: null, rootMargin: '0px', threshold: 0.5 });
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const chatWindow = document.getElementById('chat-window');
+      const chatInput = document.getElementById('chat-input');
+      const chatSendButton = document.getElementById('chat-send-button');
+      const chatLoadingIndicator = document.getElementById('chat-loading-indicator');
+
+      function addChatMessage(message, sender) {
+        const bubble = document.createElement('div');
+        bubble.className = `p-3 rounded-lg max-w-[80%]`;
+        bubble.classList.add(sender === 'user' ? 'bg-primary text-white self-end' : 'bg-blue-100 text-blue-800 self-start');
+        bubble.textContent = message;
+        chatWindow.appendChild(bubble);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
+
+      async function callGemini(prompt) {
+        const apiUrl = `/api/gemini`;
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt })
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ message: response.statusText }));
+            throw new Error(`API request failed: ${errorData.message}`);
+          }
+
+          const result = await response.json();
+          return result.resposta || 'Resposta vazia ou mal formatada pela IA.';
+        } catch (error) {
+          console.error('Erro ao chamar a função de proxy:', error);
+          return `Erro: ${error.message}`;
+        }
+      }
+
+      async function handleChatSend() {
+        const userInput = chatInput.value.trim();
+        if (!userInput) return;
+        addChatMessage(userInput, 'user');
+        chatInput.value = '';
+        chatLoadingIndicator.classList.remove('hidden');
+        const aiResponse = await callGemini(userInput);
+        chatLoadingIndicator.classList.add('hidden');
+        addChatMessage(aiResponse, 'ia');
+      }
+
+      chatSendButton.addEventListener('click', handleChatSend);
+      chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSend(); });
+    });
+  </script>
 </body>
 </html>
