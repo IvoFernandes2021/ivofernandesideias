@@ -98,8 +98,14 @@
                         body: JSON.stringify(payload)
                     });
                     if (!response.ok) {
-                        const errorData = await response.json().catch(() => ({ message: response.statusText }));
-                        throw new Error(`API request failed: ${errorData.message || response.statusText}`);
+                        let errorMsg = `Status: ${response.status}.`;
+                        try {
+                            const errorData = await response.json();
+                            errorMsg += ` Mensagem: ${errorData.message || JSON.stringify(errorData)}`;
+                        } catch (e) {
+                            errorMsg += ` ${response.statusText}`;
+                        }
+                        throw new Error(`Falha na chamada à API: ${errorMsg}`);
                     }
                     return response.json();
                 } catch (error) {
@@ -115,7 +121,6 @@
                 chatWindow.appendChild(messageWrapper);
                 chatWindow.scrollTop = chatWindow.scrollHeight;
                 
-                // Add click listener if it's an image
                 const imageInBubble = messageWrapper.querySelector('img');
                 if (imageInBubble) {
                     imageInBubble.addEventListener('click', () => {
@@ -136,22 +141,21 @@
                 generateButton.disabled = true;
 
                 try {
+                    // Step 1: Generate and display text first
                     const textPrompt = `Aja como um especialista em AutoCAD Civil 3D. Explique o comando "${command}". Primeiro, dê uma descrição clara do que ele faz. Em seguida, crie um exemplo prático com valores aleatórios (ex: coordenadas, comprimentos, raios) e forneça um guia passo a passo de como executar o comando nesse exemplo. Formate a resposta com títulos em negrito e parágrafos curtos, em português.`;
-                    const imagePrompt = `Crie uma imagem infográfica para um manual técnico, ilustrando o exemplo prático do comando "${command}" do AutoCAD Civil 3D, conforme descrito no passo a passo. A imagem deve ser um blueprint técnico, limpo e minimalista, com fundo branco e detalhes em azul, mostrando claramente os objetos antes e depois da execução do comando.`;
-
                     const textPayload = { prompt: textPrompt };
-                    const imagePayload = { prompt: imagePrompt };
-
-                    const [textData, imageData] = await Promise.all([
-                        callApi('/api/gemini', textPayload),
-                        callApi('/api/imagen', imagePayload)
-                    ]);
+                    const textData = await callApi('/api/gemini', textPayload);
                     
                     if (textData.candidates && textData.candidates[0]?.content?.parts[0]?.text) {
                         addMessage(textData.candidates[0].content.parts[0].text.replace(/\n/g, '<br>'), 'ai');
                     } else {
                         addMessage('Não foi possível gerar a explicação textual.', 'ai');
                     }
+
+                    // Step 2: Generate and display image
+                    const imagePrompt = `Crie uma imagem infográfica para um manual técnico, ilustrando o exemplo prático do comando "${command}" do AutoCAD Civil 3D, conforme descrito no passo a passo. A imagem deve ser um blueprint técnico, limpo e minimalista, com fundo branco e detalhes em azul, mostrando claramente os objetos antes e depois da execução do comando.`;
+                    const imagePayload = { prompt: imagePrompt };
+                    const imageData = await callApi('/api/imagen', imagePayload);
 
                     if (imageData.predictions && imageData.predictions[0]?.bytesBase64Encoded) {
                         const imgSrc = `data:image/png;base64,${imageData.predictions[0].bytesBase64Encoded}`;
