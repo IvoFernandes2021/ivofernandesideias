@@ -10,33 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #000;
+            background-color: #111; /* Solid dark background */
             color: #eee;
             font-family: 'Orbitron', sans-serif; /* Futuristic font */
             margin: 0;
             padding: 0;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1603481588270-d9b33ca67a98?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat; /* Replace with your cyberpunk background image URL */
-            opacity: 0.8;
-            z-index: -1;
-        }
-
-        .text-primary { color: #00ffff; } /* Cyan for primary accent */
-        .bg-primary { background-color: #00ffff; }
-        .border-primary { border-color: #00ffff; }
+        .text-primary { color: #64cfff; } /* Softer cyan for primary accent */
+        .bg-primary { background-color: #64cfff; }
+        .border-primary { border-color: #64cfff; }
 
         header {
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid #222;
+            background-color: rgba(0, 0, 0, 0.5); /* Less intense header background */
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid #333;
         }
 
         nav a {
@@ -45,7 +33,7 @@
         }
 
         nav a:hover, nav a.active {
-            color: #00ffff;
+            color: #64cfff;
         }
 
         .nav-link::after {
@@ -55,7 +43,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: #00ffff;
+            background-color: #64cfff;
             transition: width 0.3s ease;
         }
 
@@ -66,22 +54,22 @@
         }
 
         #mobile-menu-button:hover {
-            color: #00ffff;
+            color: #64cfff;
         }
 
         #mobile-menu a {
-            background-color: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid #222;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid #333;
         }
 
         #mobile-menu a:hover {
-            background-color: #111;
-            color: #00ffff;
+            background-color: #222;
+            color: #64cfff;
         }
 
         main section {
             padding: 4rem 1rem;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #333;
         }
 
         #inicio {
@@ -99,7 +87,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+            background: radial-gradient(circle, rgba(100, 207, 255, 0.05) 0%, rgba(0, 0, 0, 0) 60%); /* Softer radial gradient */
             z-index: 1;
         }
 
@@ -111,11 +99,11 @@
             font-size: 3.5rem;
             line-height: 1.1;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px #00ffff;
+            text-shadow: 0 0 5px #64cfff; /* Less intense text shadow */
         }
 
         #inicio h1 span {
-            color: #00ffff;
+            color: #64cfff;
         }
 
         #inicio p {
@@ -127,41 +115,41 @@
         }
 
         #main-ai-chat-button {
-            background-color: #00ffff;
+            background-color: #64cfff;
             color: #000;
             padding: 1rem 2rem;
             border-radius: 25px;
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 8px rgba(100, 207, 255, 0.4); /* Softer button shadow */
         }
 
         #main-ai-chat-button:hover {
-            background-color: #00b3b3;
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            background-color: #40a0d0; /* Darker shade on hover */
+            transform: scale(1.02); /* Less pronounced scale effect */
+            box-shadow: 0 0 12px rgba(100, 207, 255, 0.6); /* Softer hover shadow */
         }
 
         .tool-card {
-            background-color: rgba(0, 0, 0, 0.8);
-            border: 1px solid #222;
+            background-color: rgba(0, 0, 0, 0.7); /* Less opaque card background */
+            border: 1px solid #333;
             border-radius: 8px;
             padding: 2rem;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5); /* Softer card shadow */
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-            border-color: #00ffff;
+            transform: translateY(-3px); /* Less pronounced lift */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Softer hover card shadow */
+            border-color: #64cfff; /* Softer hover border color */
         }
 
         .tool-icon {
             font-size: 2.5rem;
-            color: #00ffff;
+            color: #64cfff;
             margin-bottom: 1rem;
         }
 
@@ -178,9 +166,9 @@
         }
 
         .tool-card button, .tool-card a {
-            background-color: #333;
-            color: #00ffff;
-            border: 1px solid #00ffff;
+            background-color: #222;
+            color: #64cfff;
+            border: 1px solid #64cfff;
             padding: 0.75rem 1.5rem;
             border-radius: 20px;
             font-weight: bold;
@@ -189,12 +177,12 @@
         }
 
         .tool-card button:hover, .tool-card a:hover {
-            background-color: #00ffff;
-            color: #000;
+            background-color: #64cfff;
+            color: #111;
         }
 
         #musica {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.3); /* Softer background for musica section */
         }
 
         #musica h2, #musica p {
@@ -202,8 +190,8 @@
         }
 
         #musica .text-blue-200 {
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
+            color: #64cfff;
+            text-shadow: 0 0 5px #64cfff; /* Less intense text shadow */
         }
 
         #sobre p {
@@ -211,8 +199,8 @@
         }
 
         #ai-chat-modal {
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.7); /* Less intense modal backdrop */
+            backdrop-filter: blur(8px);
         }
 
         #ai-chat-modal .bg-white {
@@ -226,7 +214,7 @@
         }
 
         #ai-chat-modal h3 {
-            color: #00ffff;
+            color: #64cfff;
         }
 
         #ai-chat-modal button {
@@ -234,7 +222,7 @@
         }
 
         #ai-chat-modal button:hover {
-            color: #00ffff;
+            color: #64cfff;
         }
 
         #ai-chat-modal #chat-window {
@@ -243,11 +231,11 @@
 
         #ai-chat-modal .bg-blue-100 {
             background-color: #222;
-            color: #00ffff;
+            color: #64cfff;
         }
 
         #ai-chat-modal .bg-primary {
-            background-color: #00ffff;
+            background-color: #64cfff;
             color: #000;
         }
 
@@ -259,22 +247,22 @@
 
         #ai-chat-modal input[type="text"]:focus {
             outline: none;
-            border-color: #00ffff;
-            box-shadow: 0 0 5px #00ffff;
+            border-color: #64cfff;
+            box-shadow: 0 0 3px #64cfff; /* Softer input focus */
         }
 
         #ai-chat-modal #chat-send-button {
-            background-color: #00ffff;
+            background-color: #64cfff;
             color: #000;
         }
 
         #ai-chat-modal #chat-send-button:hover {
-            background-color: #00b3b3;
+            background-color: #40a0d0;
         }
 
         .spinner {
             border-color: #555;
-            border-left-color: #00ffff;
+            border-left-color: #64cfff;
         }
     </style>
 </head>
