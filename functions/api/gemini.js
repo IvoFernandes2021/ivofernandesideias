@@ -1,6 +1,5 @@
 // Ficheiro: functions/api/gemini.js
-// Este ficheiro atua como um proxy seguro para a API da Gemini,
-// protegendo a sua chave de API.
+// Este é o código correto para o nosso projeto.
 
 export async function onRequest(context) {
     // Apenas permitir pedidos do tipo POST
@@ -36,10 +35,8 @@ export async function onRequest(context) {
             body: JSON.stringify(payload)
         });
         
-        // Obter a resposta da Gemini
         const geminiData = await geminiResponse.json();
 
-        // Se a resposta da Gemini for um erro, devolvê-lo
         if (geminiData.error) {
              return new Response(JSON.stringify(geminiData), {
                 headers: { 'Content-Type': 'application/json' },
@@ -47,7 +44,6 @@ export async function onRequest(context) {
             });
         }
 
-        // Devolver a resposta bem-sucedida da Gemini para o frontend
         return new Response(JSON.stringify(geminiData), {
             headers: { 'Content-Type': 'application/json' },
             status: 200
