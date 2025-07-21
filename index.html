@@ -3,35 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivo Fernandes | Ideias & Inovação</title>
+    <title>Ivo Fernandes | Engenharia, IA & Inovação</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #f8f9fa; color: #212529; font-family: 'Poppins', sans-serif; }
-        .text-primary { color: #0d6efd; } .bg-primary { background-color: #0d6efd; } .border-primary { border-color: #0d6efd; }
-        .nav-link { position: relative; transition: color 0.3s ease; color: #495057; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #0d6efd; transition: width 0.3s ease; }
-        .nav-link:hover, .nav-link.active { color: #0d6efd; }
+        body { background-color: #f4f7f9; color: #1a202c; font-family: 'Poppins', sans-serif; }
+        .text-primary { color: #2563eb; } .bg-primary { background-color: #2563eb; } .border-primary { border-color: #2563eb; }
+        .nav-link { position: relative; transition: color 0.3s ease; color: #4a5568; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #2563eb; transition: width 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: #2563eb; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .modal-backdrop { background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
-        .hero-shape { position: absolute; border-radius: 50%; background: linear-gradient(45deg, rgba(13, 110, 253, 0.1), rgba(13, 110, 253, 0)); animation: float 6s ease-in-out infinite; }
-        .shape1 { width: 200px; height: 200px; top: 10%; left: 15%; animation-delay: 0s; }
-        .shape2 { width: 100px; height: 100px; top: 60%; right: 20%; animation-delay: 2s; }
-        .shape3 { width: 50px; height: 50px; top: 30%; right: 10%; animation-delay: 4s; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #0d6efd; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; }
+        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #2563eb; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .tool-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .tool-card .sketch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 50 L50 100 L100 50 L50 0 Z' stroke='%23dbeafe' stroke-width='1' fill='none'/%3E%3Cpath d='M0 0 L100 100 M0 100 L100 0' stroke='%23dbeafe' stroke-width='1' fill='none'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E");
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            pointer-events: none;
+        }
+        .tool-card:hover .sketch-overlay {
+            opacity: 0.1;
+        }
+        .tool-card .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        .tool-card .tool-icon {
+            font-size: 3rem;
+            line-height: 1;
+            color: #2563eb;
+            transition: transform 0.3s ease;
+        }
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="antialiased">
     <header class="bg-white/80 backdrop-blur-lg p-4 fixed top-0 left-0 right-0 z-50 border-b border-gray-200">
         <nav class="container mx-auto flex justify-between items-center">
             <a href="#inicio" class="text-3xl font-bold text-primary">IVO</a>
-            <div class="hidden md:flex items-center space-x-10">
+            <div class="hidden md:flex items-center space-x-8">
                 <a href="#inicio" class="nav-link font-semibold active">Início</a>
-                <a href="#artigos" class="nav-link font-semibold">Artigos</a>
+                <a href="#engenharia" class="nav-link font-semibold">Engenharia</a>
+                <a href="#ia" class="nav-link font-semibold">I.A.</a>
+                <a href="#crypto" class="nav-link font-semibold">Crypto</a>
+                <a href="#musica" class="nav-link font-semibold">Música</a>
                 <a href="#sobre" class="nav-link font-semibold">Sobre</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:text-primary focus:outline-none">
@@ -40,47 +75,117 @@
         </nav>
         <div id="mobile-menu" class="hidden md:hidden mt-4">
              <a href="#inicio" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Início</a>
-             <a href="#artigos" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Artigos</a>
+             <a href="#engenharia" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Engenharia</a>
+             <a href="#ia" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">I.A.</a>
+             <a href="#crypto" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Crypto</a>
+             <a href="#musica" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Música</a>
              <a href="#sobre" class="block py-2 px-4 text-sm font-semibold hover:bg-blue-50 rounded">Sobre</a>
         </div>
     </header>
     <main>
-        <section id="inicio" class="min-h-screen flex items-center justify-center p-4 pt-24 relative overflow-hidden">
-            <div class="hero-shape shape1"></div><div class="hero-shape shape2"></div><div class="hero-shape shape3"></div>
+        <section id="inicio" class="min-h-screen flex items-center justify-center p-4 pt-24 relative">
             <div class="text-center z-10">
                 <h1 class="text-5xl md:text-7xl font-bold mb-4">Inovação.<br>Criatividade. <span class="text-primary">IA.</span></h1>
                 <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-600 leading-relaxed">Um laboratório digital para explorar o futuro da tecnologia e do design.</p>
-                <button id="ai-chat-button" class="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">Conversar com o Assistente IA</button>
+                <button id="main-ai-chat-button" class="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">Conversar com o Assistente IA</button>
             </div>
         </section>
-        <section id="artigos" class="py-24 px-4 bg-white">
+        
+        <section id="engenharia" class="py-24 px-4 bg-white">
             <div class="container mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Artigos & Insights</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Conteúdo para impulsionar suas ideias e projetos.</p>
-                    <button id="idea-generator-button" class="mt-6 inline-flex items-center text-primary font-semibold">Gerar Ideias com IA ✨</button>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de Engenharia & Design</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ferramentas, manuais e tutoriais para os seus projetos.</p>
                 </div>
-                <div id="filter-buttons" class="flex justify-center space-x-2 md:space-x-4 mb-12">
-                     <button class="filter-btn active bg-primary text-white font-semibold py-2 px-5 rounded-full text-sm" data-filter="all">Todos</button>
-                     <button class="filter-btn bg-gray-200 text-gray-700 font-semibold py-2 px-5 rounded-full text-sm hover:bg-gray-300" data-filter="Produtividade">Produtividade</button>
-                     <button class="filter-btn bg-gray-200 text-gray-700 font-semibold py-2 px-5 rounded-full text-sm hover:bg-gray-300" data-filter="Inteligência Artificial">I.A.</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div>
+                        <div class="card-content">
+                            <div class="tool-icon mb-4">🏗️</div>
+                            <h3 class="text-2xl font-bold mb-2">Assistente Civil 3D</h3>
+                            <p class="text-gray-600 mb-6">Explicações e imagens geradas por IA para qualquer comando.</p>
+                            <a href="autocad.html" class="inline-block bg-primary text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Aceder à Ferramenta</a>
+                        </div>
+                    </div>
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📚</div><h3 class="text-2xl font-bold mb-2">Biblioteca de Manuais</h3><p class="text-gray-600 mb-6">Acesso rápido a manuais oficiais e guias de referência.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
+                    </div>
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📐</div><h3 class="text-2xl font-bold mb-2">Tutoriais Práticos</h3><p class="text-gray-600 mb-6">Guias práticos e visuais para dominar novas técnicas.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
+                    </div>
                 </div>
-                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
             </div>
         </section>
-        <section id="sobre" class="py-24 px-4">
+
+        <section id="ia" class="py-24 px-4">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de Inteligência Artificial</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explore o poder da IA com ferramentas e conhecimento.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div>
+                        <div class="card-content">
+                            <div class="tool-icon mb-4">🤖</div>
+                            <h3 class="text-2xl font-bold mb-2">Converse com a Ivo IA</h3>
+                            <p class="text-gray-600 mb-6">Um assistente virtual para responder às suas perguntas.</p>
+                            <button id="ai-chat-card-button" class="inline-block bg-primary text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Iniciar Chat</button>
+                        </div>
+                    </div>
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📖</div><h3 class="text-2xl font-bold mb-2">Livros de IA</h3><p class="text-gray-600 mb-6">Uma seleção curada dos melhores livros sobre IA.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
+                    </div>
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">💡</div><h3 class="text-2xl font-bold mb-2">Ideias & Insights</h3><p class="text-gray-600 mb-6">Artigos e análises sobre as últimas tendências em IA.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="crypto" class="py-24 px-4 bg-white">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de CryptoMoedas</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Análises e ferramentas para o mercado de ativos digitais.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div>
+                        <div class="card-content">
+                            <div class="tool-icon mb-4">📈</div>
+                            <h3 class="text-2xl font-bold mb-2">Análise de Gráficos</h3>
+                            <p class="text-gray-600 mb-6">Tendências e estratégias para otimizar os seus investimentos.</p>
+                            <button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button>
+                        </div>
+                    </div>
+                     <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">📰</div><h3 class="text-2xl font-bold mb-2">Notícias & Mercados</h3><p class="text-gray-600 mb-6">As últimas notícias que movimentam o mercado cripto.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
+                    </div>
+                     <div class="tool-card bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div class="sketch-overlay"></div><div class="card-content"><div class="tool-icon mb-4">🛡️</div><h3 class="text-2xl font-bold mb-2">Segurança & Wallets</h3><p class="text-gray-600 mb-6">Aprenda a proteger os seus ativos digitais de forma eficaz.</p><button class="w-full bg-gray-200 text-gray-500 font-semibold py-2 px-6 rounded-full cursor-not-allowed">Em Breve</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="musica" class="py-24 px-4">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Central de Música</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Explorando a intersecção entre música, tecnologia e IA.</p>
+                <div class="mt-8 text-6xl text-blue-200">🎶</div>
+                <p class="text-gray-500 mt-4">Novos tópicos e ferramentas em breve.</p>
+            </div>
+        </section>
+
+        <section id="sobre" class="py-24 px-4 bg-white">
             <div class="container mx-auto max-w-3xl text-center">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Sobre Mim</h2>
                  <p class="text-lg text-gray-600 leading-relaxed">Sou um entusiasta da tecnologia e um explorador incansável das fronteiras da inteligência artificial. Este espaço é o meu "caderno de bitácora" digital, onde partilho as minhas descobertas, projetos e reflexões sobre como a tecnologia está a redefinir o potencial humano. O meu objetivo é descomplicar o complexo e inspirar outros a construir o futuro.</p>
             </div>
         </section>
     </main>
-    <div id="article-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-2xl overflow-hidden flex flex-col">
-            <div class="p-4 border-b border-gray-200 flex justify-between items-center"><h3 id="modal-title" class="text-2xl font-bold text-primary"></h3><button id="modal-close-button" class="text-gray-500 hover:text-black text-3xl leading-none">&times;</button></div>
-            <div id="modal-content" class="p-6 overflow-y-auto text-gray-700 leading-relaxed"></div>
-        </div>
-    </div>
+    
     <div id="ai-chat-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-[60] hidden">
         <div class="bg-white w-full max-w-2xl h-[80vh] rounded-lg shadow-2xl flex flex-col">
             <div class="p-4 border-b border-gray-200 flex justify-between items-center"><h3 class="text-2xl font-bold text-primary">Assistente IA</h3><button id="ai-chat-modal-close-button" class="text-gray-500 hover:text-black text-3xl leading-none">&times;</button></div>
@@ -89,24 +194,9 @@
             <div class="p-4 border-t border-gray-200"><div class="flex space-x-2"><input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-full p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Escreva a sua mensagem..."><button id="chat-send-button" class="bg-primary text-white font-bold px-5 py-2 rounded-full hover:bg-blue-700 transition-colors">Enviar</button></div></div>
         </div>
     </div>
-    <div id="idea-generator-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-[60] hidden">
-        <div class="bg-white w-full max-w-3xl rounded-lg shadow-2xl flex flex-col">
-            <div class="p-4 border-b border-gray-200 flex justify-between items-center"><h3 class="text-2xl font-bold text-primary">Gerador de Ideias ✨</h3><button id="idea-modal-close-button" class="text-gray-500 hover:text-black text-3xl leading-none">&times;</button></div>
-            <div class="p-6">
-                <p class="text-gray-600 mb-4">Precisa de inspiração? Insira um tema e a IA irá gerar títulos de artigos para si.</p>
-                <div class="flex space-x-2 mb-4"><input type="text" id="idea-topic-input" class="flex-1 border border-gray-300 rounded-full p-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ex: O futuro do trabalho remoto"><button id="generate-ideas-api-button" class="bg-primary text-white font-bold px-5 py-2 rounded-full hover:bg-blue-700 transition-colors flex items-center">Gerar</button></div>
-                <div id="idea-loading-indicator" class="px-4 pb-2 hidden"><div class="flex items-center space-x-2"><div class="spinner"></div><span class="text-sm text-gray-500">A gerar ideias...</span></div></div>
-                <div id="ideas-output" class="bg-gray-50 p-4 rounded-lg min-h-[200px] max-h-[40vh] overflow-y-auto border border-gray-200"><span class="text-gray-400">As suas ideias aparecerão aqui...</span></div>
-            </div>
-        </div>
-    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const articlesData = [
-                { id: 1, title: '3 Hábitos para Manter o Foco na Era da Distração', category: 'Produtividade', image: 'https://placehold.co/600x400/0d6efd/ffffff?text=FOCO', content: `Vivemos num mundo que luta constantemente pela nossa atenção. Notificações, e-mails, notícias... manter o foco tornou-se uma superpotência. A boa notícia? Pode ser treinado.<br><br><strong>Hábito 1: A Técnica Pomodoro Futurista.</strong> Não se trata apenas de 25 minutos de trabalho e 5 de descanso. Use esses 5 minutos para se desconectar totalmente - olhe pela janela, alongue-se, não toque em nenhum ecrã.<br><br><strong>Hábito 2: Bloco de 'Não-Interrupção'.</strong> Agende na sua agenda um bloco de 90 minutos por dia onde TODAS as notificações são desativadas. Comunique à sua equipa que este é o seu tempo de "deep work".<br><br><strong>Hábito 3: Defina uma 'Missão do Dia'.</strong> Antes de abrir qualquer aplicação, defina UMA coisa que, se a fizer, tornará o seu dia produtivo. Todo o resto é secundário. Comece por aí.` },
-                { id: 2, title: 'IA para Além do Chat: 3 Ferramentas que Vão Mudar o seu Trabalho', category: 'Inteligência Artificial', image: 'https://placehold.co/600x400/0d6efd/ffffff?text=I.A.', content: `Pensar que IA é apenas o ChatGPT é como pensar que a internet é apenas o Google. A revolução é muito mais profunda.<br><br><strong>Ferramenta 1: Gamma.app.</strong> Crie apresentações e documentos inteiros a partir de uma única linha de texto. Adeus, PowerPoint.<br><br><strong>Ferramenta 2: Perplexity.ai.</strong> Uma ferramenta de busca que não lhe dá links, mas sim respostas diretas com fontes citadas. É como ter um assistente de pesquisa pessoal.<br><br><strong>Ferramenta 3: Krea.ai.</strong> Treine uma IA com o seu próprio estilo visual. Pode gerar imagens que são consistentemente "suas", ideal para marcas e criadores de conteúdo.` },
-                { id: 3, title: 'O Futuro do Design com IA Generativa', category: 'Inteligência Artificial', image: 'https://placehold.co/600x400/0d6efd/ffffff?text=DESIGN', content: `A IA generativa está a transformar o design gráfico de uma forma que não víamos desde a invenção do Photoshop. Ferramentas como Midjourney e Stable Diffusion não são apenas para criar imagens bonitas; são parceiros de brainstorming.<br><br>Pode testar dezenas de conceitos visuais em minutos, em vez de horas. O papel do designer está a evoluir de "criador" para "curador" e "diretor" de sistemas de IA, guiando a máquina para alcançar uma visão estética específica. A barreira técnica para a criação de visuais de alta qualidade está a diminuir drasticamente.` }
-            ];
             async function callGemini(prompt) {
                 const apiUrl = `/api/gemini`;
                 try {
@@ -118,30 +208,36 @@
                     return "Não foi possível obter uma resposta. A resposta da API pode estar vazia ou mal formatada.";
                 } catch (error) { console.error('Erro ao chamar a função de proxy:', error); return `Ocorreu um erro ao comunicar com a IA: ${error.message}`; }
             }
-            const articlesGrid = document.getElementById('articles-grid'); const filterButtons = document.querySelectorAll('.filter-btn'); const articleModal = document.getElementById('article-modal'); const modalTitle = document.getElementById('modal-title'); const modalContent = document.getElementById('modal-content'); const modalCloseButton = document.getElementById('modal-close-button'); const aiChatModal = document.getElementById('ai-chat-modal'); const aiChatButton = document.getElementById('ai-chat-button'); const aiChatModalCloseButton = document.getElementById('ai-chat-modal-close-button'); const chatWindow = document.getElementById('chat-window'); const chatInput = document.getElementById('chat-input'); const chatSendButton = document.getElementById('chat-send-button'); const chatLoadingIndicator = document.getElementById('chat-loading-indicator'); const ideaGeneratorModal = document.getElementById('idea-generator-modal'); const ideaGeneratorButton = document.getElementById('idea-generator-button'); const ideaModalCloseButton = document.getElementById('idea-modal-close-button'); const ideaTopicInput = document.getElementById('idea-topic-input'); const generateIdeasApiButton = document.getElementById('generate-ideas-api-button'); const ideaLoadingIndicator = document.getElementById('idea-loading-indicator'); const ideasOutput = document.getElementById('ideas-output'); const mobileMenuButton = document.getElementById('mobile-menu-button'); const mobileMenu = document.getElementById('mobile-menu');
-            function renderArticles(filter = 'all') {
-                articlesGrid.innerHTML = ''; const filteredArticles = articlesData.filter(article => filter === 'all' || article.category === filter);
-                filteredArticles.forEach(article => {
-                    const articleElement = document.createElement('div'); articleElement.className = 'bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 cursor-pointer';
-                    articleElement.innerHTML = `<img src="${article.image}" alt="${article.title}" class="w-full h-48 object-cover"><div class="p-6"><span class="text-xs font-bold uppercase text-primary">${article.category}</span><h3 class="text-xl font-bold mt-2 mb-4 h-16 text-gray-800">${article.title}</h3><span class="text-gray-500 hover:text-primary font-semibold">Ler mais &rarr;</span></div>`;
-                    articleElement.addEventListener('click', () => openArticleModal(article)); articlesGrid.appendChild(articleElement);
-                });
-            }
-            function openArticleModal(article) { modalTitle.textContent = article.title; modalContent.innerHTML = article.content; articleModal.classList.remove('hidden'); }
-            modalCloseButton.addEventListener('click', () => articleModal.classList.add('hidden'));
-            filterButtons.forEach(button => { button.addEventListener('click', () => { filterButtons.forEach(btn => { btn.classList.remove('active', 'bg-primary', 'text-white'); btn.classList.add('bg-gray-200', 'text-gray-700'); }); button.classList.add('active', 'bg-primary', 'text-white'); button.classList.remove('bg-gray-200', 'text-gray-700'); renderArticles(button.dataset.filter); }); });
-            aiChatButton.addEventListener('click', () => aiChatModal.classList.remove('hidden')); aiChatModalCloseButton.addEventListener('click', () => aiChatModal.classList.add('hidden'));
+            const aiChatModal = document.getElementById('ai-chat-modal'); 
+            const mainAiChatButton = document.getElementById('main-ai-chat-button');
+            const cardAiChatButton = document.getElementById('ai-chat-card-button');
+            const aiChatModalCloseButton = document.getElementById('ai-chat-modal-close-button'); 
+            const chatWindow = document.getElementById('chat-window'); 
+            const chatInput = document.getElementById('chat-input'); 
+            const chatSendButton = document.getElementById('chat-send-button'); 
+            const chatLoadingIndicator = document.getElementById('chat-loading-indicator'); 
+            const mobileMenuButton = document.getElementById('mobile-menu-button'); 
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            function openChatModal() { aiChatModal.classList.remove('hidden'); }
+            function closeChatModal() { aiChatModal.classList.add('hidden'); }
+
+            mainAiChatButton.addEventListener('click', openChatModal);
+            cardAiChatButton.addEventListener('click', openChatModal);
+            aiChatModalCloseButton.addEventListener('click', closeChatModal);
+
             function addChatMessage(message, sender) { const bubble = document.createElement('div'); bubble.className = `p-3 rounded-lg max-w-[80%]`; if(sender === 'user'){ bubble.classList.add('bg-primary', 'text-white', 'self-end'); } else { bubble.classList.add('bg-blue-100', 'text-blue-800', 'self-start'); } bubble.textContent = message; chatWindow.appendChild(bubble); chatWindow.scrollTop = chatWindow.scrollHeight; }
             async function handleChatSend() { const userInput = chatInput.value.trim(); if (!userInput) return; addChatMessage(userInput, 'user'); chatInput.value = ''; chatLoadingIndicator.classList.remove('hidden'); const aiResponse = await callGemini(userInput); chatLoadingIndicator.classList.add('hidden'); addChatMessage(aiResponse, 'ai'); }
-            chatSendButton.addEventListener('click', handleChatSend); chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSend(); });
-            ideaGeneratorButton.addEventListener('click', () => ideaGeneratorModal.classList.remove('hidden')); ideaModalCloseButton.addEventListener('click', () => ideaGeneratorModal.classList.add('hidden'));
-            async function handleGenerateIdeas() { const topic = ideaTopicInput.value.trim(); if (!topic) { ideasOutput.innerHTML = '<span class="text-red-500">Por favor, insira um tema.</span>'; return; } ideaLoadingIndicator.classList.remove('hidden'); generateIdeasApiButton.disabled = true; ideasOutput.innerHTML = ''; const prompt = `Gere 5 ideias de títulos para um artigo de blog sobre o tema "${topic}". Os títulos devem ser cativantes e profissionais. Apresente as ideias como uma lista numerada.`; const ideas = await callGemini(prompt); ideaLoadingIndicator.classList.add('hidden'); generateIdeasApiButton.disabled = false; ideasOutput.innerHTML = ideas.replace(/\n/g, '<br>'); }
-            generateIdeasApiButton.addEventListener('click', handleGenerateIdeas); ideaTopicInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleGenerateIdeas(); });
-            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden')); document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
-            const sections = document.querySelectorAll('section'); const headerNavLinks = document.querySelectorAll('header nav .nav-link');
-            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { headerNavLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href').substring(1) === entry.target.id) { link.classList.add('active'); } }); } }); }, { root: null, rootMargin: '0px', threshold: 0.5 });
+            chatSendButton.addEventListener('click', handleChatSend); 
+            chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSend(); });
+            
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden')); 
+            document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
+            
+            const sections = document.querySelectorAll('section'); 
+            const headerNavLinks = document.querySelectorAll('header nav .nav-link');
+            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { headerNavLinks.forEach(link => { link.classList.remove('active'); if (`#${entry.target.id}` === link.getAttribute('href')) { link.classList.add('active'); } }); } }); }, { root: null, rootMargin: '0px', threshold: 0.5 });
             sections.forEach(section => observer.observe(section));
-            renderArticles();
         });
     </script>
 </body>
