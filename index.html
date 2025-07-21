@@ -3,113 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech & Inovação</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Assistente Civil 3D</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f4f7f9; color: #1a202c; font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; }
+        h1, h2, h3 { color: #2563eb; }
+        .comando-section { margin-bottom: 30px; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .comando-exemplo { margin-top: 10px; }
+        .comando-exemplo img { max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px; }
+        .loading-image { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; animation: spin 2s linear infinite; margin: 10px auto; display: block; }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1><i class="fas fa-rocket"></i> Tech & Inovação</h1>
-        <p class="subtitle">Explorando o futuro da tecnologia</p>
+    <header class="mb-8">
+        <h1>Assistente Civil 3D</h1>
+        <p class="text-gray-600">Manual de comandos e instruções de uso com imagens geradas por IA (Ilustrativo).</p>
     </header>
+
     <main>
-        <section class="topic-section" id="ia-civil-3d">
-            <div class="section-header">
-                <h2><i class="fas fa-tools"></i> IA para Projetos em Civil 3D</h2>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-wrench"></i> Ferramentas de Otimização</h3>
-                <p>Descubra como a IA pode otimizar seus projetos de engenharia civil no Civil 3D.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Saiba Mais</a>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-map-marked-alt"></i> Análise Inteligente de Terreno</h3>
-                <p>Utilize a IA para análise avançada de dados de terreno e modelagem.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Saiba Mais</a>
-            </div>
-            </section>
-
-        <section class="topic-section" id="games">
-            <div class="section-header">
-                <h2><i class="fas fa-gamepad"></i> Mundo dos Games de Computador</h2>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-play"></i> Últimos Lançamentos</h3>
-                <p>Fique por dentro dos jogos mais recentes e emocionantes para PC.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Explore</a>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-medal"></i> E-sports e Competições</h3>
-                <p>Notícias e análises do cenário competitivo de games.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Acompanhe</a>
-            </div>
-            </section>
-
-        <section class="topic-section" id="musica">
-            <div class="section-header">
-                <h2><i class="fas fa-music"></i> Música e Tecnologia</h2>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-headphones"></i> Novidades Musicais</h3>
-                <p>Descubra os lançamentos e tendências do mundo da música.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Ouça Agora</a>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-compact-disc"></i> Produção Musical Digital</h3>
-                <p>Ferramentas e técnicas para produção musical com tecnologia.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Crie Sua Música</a>
-            </div>
-            </section>
-
-        <section class="topic-section" id="ia">
-            <div class="section-header">
-                <h2><i class="fas fa-robot"></i> Inteligência Artificial</h2>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-code"></i> Aplicações da IA</h3>
-                <p>Explore as diversas áreas onde a inteligência artificial está transformando o mundo.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Descubra</a>
-            </div>
-            <div class="subtopic">
-                <h3><i class="fas fa-network-wired"></i> Redes Neurais e Aprendizado de Máquina</h3>
-                <p>Entenda os conceitos por trás da inteligência artificial.</p>
-                <a href="#" class="read-more-button"><i class="fas fa-arrow-right"></i> Aprenda Mais</a>
-            </div>
-            </section>
-
-        <section class="data-upload-panel">
-            <div class="panel-header"><i class="fas fa-cloud-upload-alt"></i> Selecione os Arquivos</div>
-            <div class="upload-area">
-                <p><i class="fas fa-file-upload"></i> Arraste e solte os arquivos aqui ou clique para selecionar</p>
-                <input type="file" id="fileInput" multiple>
-            </div>
-            <button class="upload-button"><i class="fas fa-rocket"></i> Iniciar Upload</button>
-        </section>
-
-        <section class="data-status-panel">
-            <div class="panel-header"><i class="fas fa-list-alt"></i> Status do Processamento</div>
-            <div class="status-item">
-                <i class="fas fa-cog fa-spin"></i> Processando arquivo 1...
-            </div>
-            <div class="status-item">
-                <i class="fas fa-check-circle" style="color: #00ff00;"></i> Arquivo 2: Concluído
-            </div>
-            <div class="status-item">
-                <i class="fas fa-exclamation-triangle" style="color: #ffcc00;"></i> Arquivo 3: Pendente
+        <section class="comando-section" data-comando="LINE">
+            <h2>Comando: LINE</h2>
+            <p>O comando LINE é utilizado para criar segmentos de reta.</p>
+            <h3>Como usar:</h3>
+            <ol>
+                <li>Digite <code>LINE</code> ou clique no ícone correspondente na barra de ferramentas.</li>
+                <li>Especifique o primeiro ponto clicando na área de desenho ou inserindo as coordenadas.</li>
+                <li>Especifique o próximo ponto. Continue especificando pontos para criar segmentos de reta consecutivos.</li>
+                <li>Pressione Enter para finalizar o comando.</li>
+            </ol>
+            <div class="comando-exemplo">
+                <p>Exemplo:</p>
+                <div id="imagem-line-container">
+                    <div class="loading-image"></div>
+                    </div>
             </div>
         </section>
 
-        <section class="system-info-panel">
-            <div class="panel-header"><i class="fas fa-info-circle"></i> Informações do Sistema</div>
-            <p><i class="fas fa-server"></i> Servidor: Ativo</p>
-            <p><i class="fas fa-network-wired"></i> Conexão: Estável</p>
+        <section class="comando-section" data-comando="CIRCLE">
+            <h2>Comando: CIRCLE</h2>
+            <p>O comando CIRCLE é usado para criar círculos.</p>
+            <h3>Como usar:</h3>
+            <ol>
+                <li>Digite <code>CIRCLE</code> ou clique no ícone correspondente.</li>
+                <li>Especifique o centro do círculo clicando ou inserindo coordenadas.</li>
+                <li>Especifique o raio do círculo clicando ou inserindo o valor.</li>
+            </ol>
+            <div class="comando-exemplo">
+                <p>Exemplo:</p>
+                <div id="imagem-circle-container">
+                    <div class="loading-image"></div>
+                    </div>
+            </div>
         </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Tech & Inovação</p>
+
+        </main>
+
+    <footer class="mt-8 text-center text-gray-500">
+        <p>&copy; 2025 Ivo Fernandes</p>
     </footer>
+
+    <script>
+        // ESTE SCRIPT É APENAS PARA ILUSTRAR COMO A GERAÇÃO DE IMAGEM POR IA PODERIA FUNCIONAR
+        // ELE NÃO FUNCIONARÁ SEM A IMPLEMENTAÇÃO DE BACK-END E INTEGRAÇÃO COM UMA API DE IA
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const comandoSections = document.querySelectorAll('.comando-section');
+
+            comandoSections.forEach(section => {
+                const comando = section.dataset.comando;
+                const imagemContainerId = `imagem-${comando.toLowerCase()}-container`;
+                const imagemContainer = document.getElementById(imagemContainerId);
+
+                // Simulação de uma chamada para um serviço de back-end para gerar a imagem
+                // Em um cenário real, isso seria uma chamada AJAX para um servidor
+                setTimeout(() => {
+                    const loadingIndicator = imagemContainer.querySelector('.loading-image');
+                    if (loadingIndicator) {
+                        loadingIndicator.remove();
+                    }
+                    const imagem = document.createElement('img');
+                    // Em um cenário real, o 'src' seria a URL da imagem gerada pela IA
+                    imagem.src = `imagens/placeholder_${comando.toLowerCase()}.png`;
+                    imagem.alt = `Exemplo do comando ${comando}`;
+                    imagemContainer.appendChild(imagem);
+                }, 2000); // Simula um tempo de espera para a geração da imagem
+            });
+        });
+    </script>
 </body>
 </html>
