@@ -6,8 +6,8 @@
     <title>Projeto Ivo Fernandes: O Futuro das Ideias</title>
     
     <!-- Chosen Palette: Futuristic Neon -->
-    <!-- Application Structure Plan: A aplicação foi estruturada como uma SPA (Single-Page Application) para uma experiência de utilizador fluida e moderna. A navegação é gerida por uma barra superior fixa que permite saltar suavemente entre secções temáticas: 'Início', 'Artigos', 'Tutoriais', 'Ferramentas' e 'Sobre'. Esta arquitetura foi escolhida para traduzir a estrutura de múltiplas páginas do blueprint num formato coeso e de fácil exploração, onde todo o conteúdo está acessível sem recarregar a página. A secção de artigos é interativa, permitindo filtrar por categoria e visualizar o conteúdo completo numa janela modal, promovendo o engajamento e a descoberta. -->
-    <!-- Visualization & Content Choices: O blueprint é focado em conteúdo textual e conceito visual, sem dados quantitativos. Portanto, não foram usados gráficos. A escolha foi traduzir o conteúdo em elementos interativos de HTML. Informação: Artigos do CMS. | Meta: Organizar e Apresentar. | Método: Grelha de cartões interativos. | Interação: Filtros por categoria e clique para abrir modal com o artigo completo. | Justificação: Este método organiza o conteúdo de forma visualmente apelativa e permite ao utilizador focar-se no que lhe interessa, melhorando a usabilidade. | Biblioteca: Vanilla JS para a interatividade. -->
+    <!-- Application Structure Plan: A estrutura de SPA foi mantida e expandida com a integração da API Gemini. Foram adicionados dois novos componentes interativos em modais: um chatbot funcional ('Ivo IA') e um gerador de ideias para artigos. Esta abordagem mantém a experiência de página única, mas enriquece-a com funcionalidades de IA que são acionadas pelo utilizador, promovendo a interatividade. O chatbot oferece um ponto de contacto direto com a IA, enquanto o gerador de ideias serve como uma ferramenta de produtividade, alinhada com o tema do site. -->
+    <!-- Visualization & Content Choices: Para além da apresentação de conteúdo estático, foram implementadas funcionalidades dinâmicas com a Gemini API. Informação: Prompts do utilizador. | Meta: Gerar conteúdo dinâmico (respostas de chat, ideias de artigos). | Método: Modais interativos com áreas de input e output. | Interação: O utilizador escreve um prompt, clica num botão e o conteúdo gerado pela Gemini API é exibido. | Justificação: Este método demonstra o poder da IA generativa de forma prática e útil, transformando o site de um portefólio passivo numa ferramenta ativa. | Biblioteca: Vanilla JS para a lógica e chamadas à API Gemini. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,6 +54,34 @@
         .modal-backdrop {
             background-color: rgba(0,0,0,0.7);
             backdrop-filter: blur(5px);
+        }
+        .chat-bubble {
+            max-width: 75%;
+            padding: 10px 15px;
+            border-radius: 20px;
+        }
+        .chat-bubble-user {
+            background-color: #005f5f; /* Dark Cyan */
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        .chat-bubble-ai {
+            background-color: #1e293b; /* Slate 800 */
+            color: #e0e0e0;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 255, 255, 0.2);
+            border-left-color: #00ffff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -102,10 +130,15 @@
         <!-- Section: Artigos -->
         <section id="artigos" class="py-24 px-4 min-h-screen">
             <div class="container mx-auto">
-                <h2 class="text-4xl font-orbitron text-center mb-4 text-glow">Artigos Recentes</h2>
-                <p class="text-center text-lg text-gray-400 max-w-2xl mx-auto mb-12">Conteúdo gerado e curado para manter você na vanguarda da tecnologia e produtividade. Filtre para encontrar o que mais lhe interessa.</p>
-
-                <div id="filter-buttons" class="flex justify-center space-x-2 md:space-x-4 mb-12">
+                <div class="text-center">
+                    <h2 class="text-4xl font-orbitron mb-4 text-glow">Artigos Recentes</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Conteúdo gerado e curado para manter você na vanguarda da tecnologia e produtividade.</p>
+                    <button id="idea-generator-button" class="bg-cyan-500/10 border border-cyan-500 text-cyan-300 font-bold py-2 px-6 rounded-lg hover:bg-cyan-500/20 transition-all duration-300 transform hover:scale-105">
+                        Gerar Ideias de Artigos com IA ✨
+                    </button>
+                </div>
+                
+                <div id="filter-buttons" class="flex justify-center space-x-2 md:space-x-4 my-12">
                      <button class="filter-btn active bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg" data-filter="all">Todos</button>
                      <button class="filter-btn bg-cyan-900/50 text-cyan-300 font-bold py-2 px-4 rounded-lg hover:bg-cyan-800/50" data-filter="Produtividade">Produtividade</button>
                      <button class="filter-btn bg-cyan-900/50 text-cyan-300 font-bold py-2 px-4 rounded-lg hover:bg-cyan-800/50" data-filter="Inteligência Artificial">I.A.</button>
@@ -117,7 +150,7 @@
             </div>
         </section>
         
-        <!-- Section: Tutoriais -->
+        <!-- Other sections remain the same -->
         <section id="tutoriais" class="py-24 px-4 bg-[#0A192F]/30">
              <div class="container mx-auto text-center">
                  <h2 class="text-4xl font-orbitron mb-4 text-glow">Tutoriais Técnicos</h2>
@@ -125,8 +158,6 @@
                  <div class="mt-8 text-6xl text-cyan-500/50">◧</div>
              </div>
         </section>
-
-        <!-- Section: Ferramentas IA -->
         <section id="ferramentas" class="py-24 px-4">
              <div class="container mx-auto text-center">
                  <h2 class="text-4xl font-orbitron mb-4 text-glow">Bots & Ferramentas IA</h2>
@@ -139,8 +170,6 @@
                  </div>
              </div>
         </section>
-
-        <!-- Section: Sobre Mim -->
         <section id="sobre" class="py-24 px-4 bg-[#0A192F]/30">
             <div class="container mx-auto max-w-3xl text-center">
                 <h2 class="text-4xl font-orbitron mb-4 text-glow">Sobre Mim</h2>
@@ -156,18 +185,61 @@
         <div class="bg-[#0A192F] border border-cyan-500/30 w-full max-w-4xl max-h-[90vh] rounded-lg shadow-lg overflow-hidden flex flex-col">
             <div class="p-4 border-b border-cyan-500/30 flex justify-between items-center">
                 <h3 id="modal-title" class="text-2xl font-orbitron text-glow"></h3>
-                <button id="modal-close-button" class="text-gray-400 hover:text-white">&times;</button>
+                <button id="modal-close-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             </div>
             <div id="modal-content" class="p-6 overflow-y-auto text-gray-300 leading-relaxed"></div>
         </div>
     </div>
     
      <!-- Modal for AI Chat -->
-    <div id="ai-chat-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-[#0A192F] border border-cyan-500/30 w-full max-w-md rounded-lg shadow-lg text-center p-8">
-            <h3 class="text-2xl font-orbitron text-glow mb-4">Ivo IA</h3>
-            <p class="text-gray-300 mb-6">A funcionalidade de chatbot com IA está em desenvolvimento e será lançada em breve. Integrará a API do ChatGPT para conversas inteligentes e úteis.</p>
-            <button id="ai-chat-modal-close-button" class="bg-cyan-500 text-black font-bold py-2 px-6 rounded-lg">Entendido</button>
+    <div id="ai-chat-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-[60] hidden">
+        <div class="bg-[#0A192F] border border-cyan-500/30 w-full max-w-2xl h-[80vh] rounded-lg shadow-lg flex flex-col">
+            <div class="p-4 border-b border-cyan-500/30 flex justify-between items-center">
+                <h3 class="text-2xl font-orbitron text-glow">Ivo IA</h3>
+                <button id="ai-chat-modal-close-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+            <div id="chat-window" class="flex-1 p-4 overflow-y-auto flex flex-col space-y-4">
+                <!-- Chat messages will appear here -->
+                 <div class="chat-bubble chat-bubble-ai">Olá! Sou o Ivo IA, o seu assistente digital. Como posso ajudar a explorar o futuro hoje?</div>
+            </div>
+            <div id="chat-loading-indicator" class="px-4 pb-2 hidden">
+                <div class="flex items-center space-x-2">
+                    <div class="spinner"></div>
+                    <span class="text-sm text-gray-400">A pensar...</span>
+                </div>
+            </div>
+            <div class="p-4 border-t border-cyan-500/30">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" class="flex-1 bg-gray-900/50 border border-cyan-700 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Escreva a sua mensagem...">
+                    <button id="chat-send-button" class="bg-cyan-500 text-black font-bold px-5 py-2 rounded-lg hover:bg-cyan-400 transition-colors">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Idea Generator -->
+    <div id="idea-generator-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-[60] hidden">
+        <div class="bg-[#0A192F] border border-cyan-500/30 w-full max-w-3xl rounded-lg shadow-lg flex flex-col">
+            <div class="p-4 border-b border-cyan-500/30 flex justify-between items-center">
+                <h3 class="text-2xl font-orbitron text-glow">Gerador de Ideias ✨</h3>
+                <button id="idea-modal-close-button" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-300 mb-4">Precisa de inspiração? Insira um tema e a IA irá gerar títulos de artigos para si.</p>
+                <div class="flex space-x-2 mb-4">
+                    <input type="text" id="idea-topic-input" class="flex-1 bg-gray-900/50 border border-cyan-700 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Ex: O futuro do trabalho remoto">
+                    <button id="generate-ideas-api-button" class="bg-cyan-500 text-black font-bold px-5 py-2 rounded-lg hover:bg-cyan-400 transition-colors flex items-center">Gerar</button>
+                </div>
+                <div id="idea-loading-indicator" class="px-4 pb-2 hidden">
+                    <div class="flex items-center space-x-2">
+                        <div class="spinner"></div>
+                        <span class="text-sm text-gray-400">A gerar ideias...</span>
+                    </div>
+                </div>
+                <div id="ideas-output" class="bg-gray-900/50 p-4 rounded-lg min-h-[200px] max-h-[40vh] overflow-y-auto border border-cyan-900/50">
+                    <span class="text-gray-500">As suas ideias aparecerão aqui...</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -175,29 +247,45 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const articlesData = [
-                {
-                    id: 1,
-                    title: '3 Hábitos para Manter o Foco na Era da Distração',
-                    category: 'Produtividade',
-                    image: 'https://placehold.co/600x400/050a14/00ffff?text=FOCO',
-                    content: `Vivemos num mundo que luta constantemente pela nossa atenção. Notificações, e-mails, notícias... manter o foco tornou-se uma superpotência. A boa notícia? Pode ser treinado.<br><br><strong>Hábito 1: A Técnica Pomodoro Futurista.</strong> Não se trata apenas de 25 minutos de trabalho e 5 de descanso. Use esses 5 minutos para se desconectar totalmente - olhe pela janela, alongue-se, não toque em nenhum ecrã.<br><br><strong>Hábito 2: Bloco de 'Não-Interrupção'.</strong> Agende na sua agenda um bloco de 90 minutos por dia onde TODAS as notificações são desativadas. Comunique à sua equipa que este é o seu tempo de "deep work".<br><br><strong>Hábito 3: Defina uma 'Missão do Dia'.</strong> Antes de abrir qualquer aplicação, defina UMA coisa que, se a fizer, tornará o seu dia produtivo. Todo o resto é secundário. Comece por aí.`
-                },
-                {
-                    id: 2,
-                    title: 'IA para Além do Chat: 3 Ferramentas que Vão Mudar o seu Trabalho',
-                    category: 'Inteligência Artificial',
-                    image: 'https://placehold.co/600x400/050a14/00ffff?text=I.A.',
-                    content: `Pensar que IA é apenas o ChatGPT é como pensar que a internet é apenas o Google. A revolução é muito mais profunda.<br><br><strong>Ferramenta 1: Gamma.app.</strong> Crie apresentações e documentos inteiros a partir de uma única linha de texto. Adeus, PowerPoint.<br><br><strong>Ferramenta 2: Perplexity.ai.</strong> Uma ferramenta de busca que não lhe dá links, mas sim respostas diretas com fontes citadas. É como ter um assistente de pesquisa pessoal.<br><br><strong>Ferramenta 3: Krea.ai.</strong> Treine uma IA com o seu próprio estilo visual. Pode gerar imagens que são consistentemente "suas", ideal para marcas e criadores de conteúdo.`
-                },
-                {
-                    id: 3,
-                    title: 'O Futuro do Design com IA Generativa',
-                    category: 'Inteligência Artificial',
-                    image: 'https://placehold.co/600x400/050a14/00ffff?text=DESIGN',
-                    content: `A IA generativa está a transformar o design gráfico de uma forma que não víamos desde a invenção do Photoshop. Ferramentas como Midjourney e Stable Diffusion não são apenas para criar imagens bonitas; são parceiros de brainstorming.<br><br>Pode testar dezenas de conceitos visuais em minutos, em vez de horas. O papel do designer está a evoluir de "criador" para "curador" e "diretor" de sistemas de IA, guiando a máquina para alcançar uma visão estética específica. A barreira técnica para a criação de visuais de alta qualidade está a diminuir drasticamente.`
-                }
+                { id: 1, title: '3 Hábitos para Manter o Foco na Era da Distração', category: 'Produtividade', image: 'https://placehold.co/600x400/050a14/00ffff?text=FOCO', content: `Vivemos num mundo que luta constantemente pela nossa atenção. Notificações, e-mails, notícias... manter o foco tornou-se uma superpotência. A boa notícia? Pode ser treinado.<br><br><strong>Hábito 1: A Técnica Pomodoro Futurista.</strong> Não se trata apenas de 25 minutos de trabalho e 5 de descanso. Use esses 5 minutos para se desconectar totalmente - olhe pela janela, alongue-se, não toque em nenhum ecrã.<br><br><strong>Hábito 2: Bloco de 'Não-Interrupção'.</strong> Agende na sua agenda um bloco de 90 minutos por dia onde TODAS as notificações são desativadas. Comunique à sua equipa que este é o seu tempo de "deep work".<br><br><strong>Hábito 3: Defina uma 'Missão do Dia'.</strong> Antes de abrir qualquer aplicação, defina UMA coisa que, se a fizer, tornará o seu dia produtivo. Todo o resto é secundário. Comece por aí.` },
+                { id: 2, title: 'IA para Além do Chat: 3 Ferramentas que Vão Mudar o seu Trabalho', category: 'Inteligência Artificial', image: 'https://placehold.co/600x400/050a14/00ffff?text=I.A.', content: `Pensar que IA é apenas o ChatGPT é como pensar que a internet é apenas o Google. A revolução é muito mais profunda.<br><br><strong>Ferramenta 1: Gamma.app.</strong> Crie apresentações e documentos inteiros a partir de uma única linha de texto. Adeus, PowerPoint.<br><br><strong>Ferramenta 2: Perplexity.ai.</strong> Uma ferramenta de busca que não lhe dá links, mas sim respostas diretas com fontes citadas. É como ter um assistente de pesquisa pessoal.<br><br><strong>Ferramenta 3: Krea.ai.</strong> Treine uma IA com o seu próprio estilo visual. Pode gerar imagens que são consistentemente "suas", ideal para marcas e criadores de conteúdo.` },
+                { id: 3, title: 'O Futuro do Design com IA Generativa', category: 'Inteligência Artificial', image: 'https://placehold.co/600x400/050a14/00ffff?text=DESIGN', content: `A IA generativa está a transformar o design gráfico de uma forma que não víamos desde a invenção do Photoshop. Ferramentas como Midjourney e Stable Diffusion não são apenas para criar imagens bonitas; são parceiros de brainstorming.<br><br>Pode testar dezenas de conceitos visuais em minutos, em vez de horas. O papel do designer está a evoluir de "criador" para "curador" e "diretor" de sistemas de IA, guiando a máquina para alcançar uma visão estética específica. A barreira técnica para a criação de visuais de alta qualidade está a diminuir drasticamente.` }
             ];
 
+            // --- Gemini API Call Function ---
+            async function callGemini(prompt) {
+                const apiKey = ""; // Leave empty, will be handled by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const payload = {
+                    contents: [{ role: "user", parts: [{ text: prompt }] }]
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        return "Não foi possível obter uma resposta. Por favor, tente novamente.";
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    return `Ocorreu um erro ao comunicar com a IA: ${error.message}`;
+                }
+            }
+
+            // --- Element Selectors ---
             const articlesGrid = document.getElementById('articles-grid');
             const filterButtons = document.querySelectorAll('.filter-btn');
             
@@ -209,10 +297,23 @@
             const aiChatModal = document.getElementById('ai-chat-modal');
             const aiChatButton = document.getElementById('ai-chat-button');
             const aiChatModalCloseButton = document.getElementById('ai-chat-modal-close-button');
+            const chatWindow = document.getElementById('chat-window');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendButton = document.getElementById('chat-send-button');
+            const chatLoadingIndicator = document.getElementById('chat-loading-indicator');
+
+            const ideaGeneratorModal = document.getElementById('idea-generator-modal');
+            const ideaGeneratorButton = document.getElementById('idea-generator-button');
+            const ideaModalCloseButton = document.getElementById('idea-modal-close-button');
+            const ideaTopicInput = document.getElementById('idea-topic-input');
+            const generateIdeasApiButton = document.getElementById('generate-ideas-api-button');
+            const ideaLoadingIndicator = document.getElementById('idea-loading-indicator');
+            const ideasOutput = document.getElementById('ideas-output');
             
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
 
+            // --- Article Rendering Logic ---
             function renderArticles(filter = 'all') {
                 articlesGrid.innerHTML = '';
                 const filteredArticles = articlesData.filter(article => filter === 'all' || article.category === filter);
@@ -238,46 +339,81 @@
                 modalContent.innerHTML = article.content;
                 articleModal.classList.remove('hidden');
             }
-
             modalCloseButton.addEventListener('click', () => articleModal.classList.add('hidden'));
             
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('active', 'bg-cyan-500', 'text-black');
-                        btn.classList.add('bg-cyan-900/50', 'text-cyan-300');
-                    });
+                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-cyan-500', 'text-black'));
                     button.classList.add('active', 'bg-cyan-500', 'text-black');
-                    button.classList.remove('bg-cyan-900/50', 'text-cyan-300');
                     renderArticles(button.dataset.filter);
                 });
             });
 
+            // --- AI Chat Logic ---
             aiChatButton.addEventListener('click', () => aiChatModal.classList.remove('hidden'));
             aiChatModalCloseButton.addEventListener('click', () => aiChatModal.classList.add('hidden'));
 
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+            function addChatMessage(message, sender) {
+                const bubble = document.createElement('div');
+                bubble.className = `chat-bubble chat-bubble-${sender}`;
+                bubble.textContent = message;
+                chatWindow.appendChild(bubble);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            async function handleChatSend() {
+                const userInput = chatInput.value.trim();
+                if (!userInput) return;
+
+                addChatMessage(userInput, 'user');
+                chatInput.value = '';
+                chatLoadingIndicator.classList.remove('hidden');
+
+                const aiResponse = await callGemini(userInput);
+                
+                chatLoadingIndicator.classList.add('hidden');
+                addChatMessage(aiResponse, 'ai');
+            }
+            chatSendButton.addEventListener('click', handleChatSend);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleChatSend();
             });
+
+            // --- Idea Generator Logic ---
+            ideaGeneratorButton.addEventListener('click', () => ideaGeneratorModal.classList.remove('hidden'));
+            ideaModalCloseButton.addEventListener('click', () => ideaGeneratorModal.classList.add('hidden'));
             
-            const navLinks = document.querySelectorAll('header a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if(!mobileMenu.classList.contains('hidden')) {
-                         mobileMenu.classList.add('hidden');
-                    }
-                });
+            async function handleGenerateIdeas() {
+                const topic = ideaTopicInput.value.trim();
+                if (!topic) {
+                    ideasOutput.innerHTML = '<span class="text-red-400">Por favor, insira um tema.</span>';
+                    return;
+                }
+                
+                ideaLoadingIndicator.classList.remove('hidden');
+                generateIdeasApiButton.disabled = true;
+                ideasOutput.innerHTML = '';
+
+                const prompt = `Gere 5 ideias de títulos para um artigo de blog sobre o tema "${topic}". Os títulos devem ser cativantes, no estilo de um blog de tecnologia e futurismo. Apresente as ideias como uma lista numerada.`;
+                const ideas = await callGemini(prompt);
+
+                ideaLoadingIndicator.classList.add('hidden');
+                generateIdeasApiButton.disabled = false;
+                ideasOutput.innerHTML = ideas.replace(/\n/g, '<br>');
+            }
+            generateIdeasApiButton.addEventListener('click', handleGenerateIdeas);
+            ideaTopicInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleGenerateIdeas();
+            });
+
+            // --- Mobile Menu & Navigation Observer Logic ---
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
             });
             
             const sections = document.querySelectorAll('section');
             const headerNavLinks = document.querySelectorAll('header nav .nav-link');
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5
-            };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -289,11 +425,9 @@
                         });
                     }
                 });
-            }, observerOptions);
+            }, { root: null, rootMargin: '0px', threshold: 0.5 });
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            sections.forEach(section => observer.observe(section));
 
             renderArticles();
         });
