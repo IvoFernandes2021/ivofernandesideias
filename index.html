@@ -1,15 +1,302 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo ao meu site!</title>
+    <title>Projeto Ivo Fernandes: O Futuro das Ideias</title>
+    
+    <!-- Chosen Palette: Futuristic Neon -->
+    <!-- Application Structure Plan: A aplicação foi estruturada como uma SPA (Single-Page Application) para uma experiência de utilizador fluida e moderna. A navegação é gerida por uma barra superior fixa que permite saltar suavemente entre secções temáticas: 'Início', 'Artigos', 'Tutoriais', 'Ferramentas' e 'Sobre'. Esta arquitetura foi escolhida para traduzir a estrutura de múltiplas páginas do blueprint num formato coeso e de fácil exploração, onde todo o conteúdo está acessível sem recarregar a página. A secção de artigos é interativa, permitindo filtrar por categoria e visualizar o conteúdo completo numa janela modal, promovendo o engajamento e a descoberta. -->
+    <!-- Visualization & Content Choices: O blueprint é focado em conteúdo textual e conceito visual, sem dados quantitativos. Portanto, não foram usados gráficos. A escolha foi traduzir o conteúdo em elementos interativos de HTML. Informação: Artigos do CMS. | Meta: Organizar e Apresentar. | Método: Grelha de cartões interativos. | Interação: Filtros por categoria e clique para abrir modal com o artigo completo. | Justificação: Este método organiza o conteúdo de forma visualmente apelativa e permite ao utilizador focar-se no que lhe interessa, melhorando a usabilidade. | Biblioteca: Vanilla JS para a interatividade. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; margin: 0; }
-        h1 { color: #333; }
+        body {
+            background-color: #050a14;
+            color: #e0e0e0;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+        .text-glow {
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.7);
+        }
+        .bg-gradient-body {
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 255, 255, 0.1), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(75, 0, 130, 0.12), transparent 40%);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00ffff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .modal-backdrop {
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
     </style>
 </head>
-<body>
-    <h1>Olá, Mundo! O meu projeto está online.</h1>
+<body class="bg-gradient-body">
+
+    <!-- Header / Navigation -->
+    <header class="bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 bg-[#050a14]/50 p-4 fixed top-0 left-0 right-0 z-50 border-b border-cyan-500/20">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#inicio" class="text-2xl font-orbitron font-bold text-glow">IVO</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#inicio" class="nav-link text-lg hover:text-cyan-300 active">Início</a>
+                <a href="#artigos" class="nav-link text-lg hover:text-cyan-300">Artigos</a>
+                <a href="#tutoriais" class="nav-link text-lg hover:text-cyan-300">Tutoriais</a>
+                <a href="#ferramentas" class="nav-link text-lg hover:text-cyan-300">Ferramentas</a>
+                <a href="#sobre" class="nav-link text-lg hover:text-cyan-300">Sobre</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+             <a href="#inicio" class="block py-2 px-4 text-sm hover:bg-cyan-900/50 rounded">Início</a>
+             <a href="#artigos" class="block py-2 px-4 text-sm hover:bg-cyan-900/50 rounded">Artigos</a>
+             <a href="#tutoriais" class="block py-2 px-4 text-sm hover:bg-cyan-900/50 rounded">Tutoriais</a>
+             <a href="#ferramentas" class="block py-2 px-4 text-sm hover:bg-cyan-900/50 rounded">Ferramentas</a>
+             <a href="#sobre" class="block py-2 px-4 text-sm hover:bg-cyan-900/50 rounded">Sobre</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section: Início (Homepage) -->
+        <section id="inicio" class="min-h-screen flex items-center justify-center p-4 pt-24">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="border border-cyan-500/20 bg-[#0A192F]/20 backdrop-filter backdrop-blur-sm rounded-lg p-6 md:p-12 shadow-2xl shadow-cyan-900/20">
+                    <h1 class="text-4xl md:text-6xl font-orbitron font-bold text-glow mb-4">Bem-vindo ao Futuro das Ideias</h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+                        Um laboratório digital onde a Inteligência Artificial, a tecnologia e a criatividade se encontram. Explore artigos, tutoriais e ferramentas que moldam o amanhã.
+                    </p>
+                    <button id="ai-chat-button" class="mt-8 inline-block bg-cyan-500/10 border border-cyan-500 text-cyan-300 font-bold py-3 px-8 rounded-lg hover:bg-cyan-500/20 transition-all duration-300 transform hover:scale-105">
+                        &gt; Iniciar Conversa com Ivo IA
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Artigos -->
+        <section id="artigos" class="py-24 px-4 min-h-screen">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-orbitron text-center mb-4 text-glow">Artigos Recentes</h2>
+                <p class="text-center text-lg text-gray-400 max-w-2xl mx-auto mb-12">Conteúdo gerado e curado para manter você na vanguarda da tecnologia e produtividade. Filtre para encontrar o que mais lhe interessa.</p>
+
+                <div id="filter-buttons" class="flex justify-center space-x-2 md:space-x-4 mb-12">
+                     <button class="filter-btn active bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg" data-filter="all">Todos</button>
+                     <button class="filter-btn bg-cyan-900/50 text-cyan-300 font-bold py-2 px-4 rounded-lg hover:bg-cyan-800/50" data-filter="Produtividade">Produtividade</button>
+                     <button class="filter-btn bg-cyan-900/50 text-cyan-300 font-bold py-2 px-4 rounded-lg hover:bg-cyan-800/50" data-filter="Inteligência Artificial">I.A.</button>
+                </div>
+
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Articles will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section: Tutoriais -->
+        <section id="tutoriais" class="py-24 px-4 bg-[#0A192F]/30">
+             <div class="container mx-auto text-center">
+                 <h2 class="text-4xl font-orbitron mb-4 text-glow">Tutoriais Técnicos</h2>
+                 <p class="text-lg text-gray-400 max-w-2xl mx-auto">Em breve, uma biblioteca de tutoriais detalhados sobre AutoCAD, desenvolvimento de jogos, e as mais recentes ferramentas de IA. Fique atento!</p>
+                 <div class="mt-8 text-6xl text-cyan-500/50">◧</div>
+             </div>
+        </section>
+
+        <!-- Section: Ferramentas IA -->
+        <section id="ferramentas" class="py-24 px-4">
+             <div class="container mx-auto text-center">
+                 <h2 class="text-4xl font-orbitron mb-4 text-glow">Bots & Ferramentas IA</h2>
+                 <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Uma seleção curada das ferramentas que estão a revolucionar a forma como trabalhamos e criamos. Algumas das minhas favoritas:</p>
+                 <div class="flex flex-wrap justify-center gap-4">
+                     <div class="bg-cyan-900/50 p-4 rounded-lg border border-cyan-500/20">Gamma.app</div>
+                     <div class="bg-cyan-900/50 p-4 rounded-lg border border-cyan-500/20">Perplexity.ai</div>
+                     <div class="bg-cyan-900/50 p-4 rounded-lg border border-cyan-500/20">Krea.ai</div>
+                     <div class="bg-cyan-900/50 p-4 rounded-lg border border-cyan-500/20">RunwayML</div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Section: Sobre Mim -->
+        <section id="sobre" class="py-24 px-4 bg-[#0A192F]/30">
+            <div class="container mx-auto max-w-3xl text-center">
+                <h2 class="text-4xl font-orbitron mb-4 text-glow">Sobre Mim</h2>
+                 <p class="text-lg text-gray-300 leading-relaxed">
+                    Sou um entusiasta da tecnologia e um explorador incansável das fronteiras da inteligência artificial. Este espaço é o meu "caderno de bitácora" digital, onde partilho as minhas descobertas, projetos e reflexões sobre como a tecnologia está a redefinir o potencial humano. O meu objetivo é descomplicar o complexo e inspirar outros a construir o futuro.
+                 </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Article Content -->
+    <div id="article-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-[#0A192F] border border-cyan-500/30 w-full max-w-4xl max-h-[90vh] rounded-lg shadow-lg overflow-hidden flex flex-col">
+            <div class="p-4 border-b border-cyan-500/30 flex justify-between items-center">
+                <h3 id="modal-title" class="text-2xl font-orbitron text-glow"></h3>
+                <button id="modal-close-button" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div id="modal-content" class="p-6 overflow-y-auto text-gray-300 leading-relaxed"></div>
+        </div>
+    </div>
+    
+     <!-- Modal for AI Chat -->
+    <div id="ai-chat-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-[#0A192F] border border-cyan-500/30 w-full max-w-md rounded-lg shadow-lg text-center p-8">
+            <h3 class="text-2xl font-orbitron text-glow mb-4">Ivo IA</h3>
+            <p class="text-gray-300 mb-6">A funcionalidade de chatbot com IA está em desenvolvimento e será lançada em breve. Integrará a API do ChatGPT para conversas inteligentes e úteis.</p>
+            <button id="ai-chat-modal-close-button" class="bg-cyan-500 text-black font-bold py-2 px-6 rounded-lg">Entendido</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const articlesData = [
+                {
+                    id: 1,
+                    title: '3 Hábitos para Manter o Foco na Era da Distração',
+                    category: 'Produtividade',
+                    image: 'https://placehold.co/600x400/050a14/00ffff?text=FOCO',
+                    content: `Vivemos num mundo que luta constantemente pela nossa atenção. Notificações, e-mails, notícias... manter o foco tornou-se uma superpotência. A boa notícia? Pode ser treinado.<br><br><strong>Hábito 1: A Técnica Pomodoro Futurista.</strong> Não se trata apenas de 25 minutos de trabalho e 5 de descanso. Use esses 5 minutos para se desconectar totalmente - olhe pela janela, alongue-se, não toque em nenhum ecrã.<br><br><strong>Hábito 2: Bloco de 'Não-Interrupção'.</strong> Agende na sua agenda um bloco de 90 minutos por dia onde TODAS as notificações são desativadas. Comunique à sua equipa que este é o seu tempo de "deep work".<br><br><strong>Hábito 3: Defina uma 'Missão do Dia'.</strong> Antes de abrir qualquer aplicação, defina UMA coisa que, se a fizer, tornará o seu dia produtivo. Todo o resto é secundário. Comece por aí.`
+                },
+                {
+                    id: 2,
+                    title: 'IA para Além do Chat: 3 Ferramentas que Vão Mudar o seu Trabalho',
+                    category: 'Inteligência Artificial',
+                    image: 'https://placehold.co/600x400/050a14/00ffff?text=I.A.',
+                    content: `Pensar que IA é apenas o ChatGPT é como pensar que a internet é apenas o Google. A revolução é muito mais profunda.<br><br><strong>Ferramenta 1: Gamma.app.</strong> Crie apresentações e documentos inteiros a partir de uma única linha de texto. Adeus, PowerPoint.<br><br><strong>Ferramenta 2: Perplexity.ai.</strong> Uma ferramenta de busca que não lhe dá links, mas sim respostas diretas com fontes citadas. É como ter um assistente de pesquisa pessoal.<br><br><strong>Ferramenta 3: Krea.ai.</strong> Treine uma IA com o seu próprio estilo visual. Pode gerar imagens que são consistentemente "suas", ideal para marcas e criadores de conteúdo.`
+                },
+                {
+                    id: 3,
+                    title: 'O Futuro do Design com IA Generativa',
+                    category: 'Inteligência Artificial',
+                    image: 'https://placehold.co/600x400/050a14/00ffff?text=DESIGN',
+                    content: `A IA generativa está a transformar o design gráfico de uma forma que não víamos desde a invenção do Photoshop. Ferramentas como Midjourney e Stable Diffusion não são apenas para criar imagens bonitas; são parceiros de brainstorming.<br><br>Pode testar dezenas de conceitos visuais em minutos, em vez de horas. O papel do designer está a evoluir de "criador" para "curador" e "diretor" de sistemas de IA, guiando a máquina para alcançar uma visão estética específica. A barreira técnica para a criação de visuais de alta qualidade está a diminuir drasticamente.`
+                }
+            ];
+
+            const articlesGrid = document.getElementById('articles-grid');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            const articleModal = document.getElementById('article-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const modalCloseButton = document.getElementById('modal-close-button');
+
+            const aiChatModal = document.getElementById('ai-chat-modal');
+            const aiChatButton = document.getElementById('ai-chat-button');
+            const aiChatModalCloseButton = document.getElementById('ai-chat-modal-close-button');
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function renderArticles(filter = 'all') {
+                articlesGrid.innerHTML = '';
+                const filteredArticles = articlesData.filter(article => filter === 'all' || article.category === filter);
+
+                filteredArticles.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.className = 'bg-[#0A192F]/50 border border-cyan-500/20 rounded-lg overflow-hidden shadow-lg hover:shadow-cyan-700/30 transition-shadow duration-300 transform hover:-translate-y-1 cursor-pointer';
+                    articleElement.innerHTML = `
+                        <img src="${article.image}" alt="${article.title}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-bold uppercase text-cyan-400">${article.category}</span>
+                            <h3 class="text-xl font-bold mt-2 mb-4 h-16">${article.title}</h3>
+                            <span class="text-gray-400 hover:text-white">Ler mais &rarr;</span>
+                        </div>
+                    `;
+                    articleElement.addEventListener('click', () => openArticleModal(article));
+                    articlesGrid.appendChild(articleElement);
+                });
+            }
+
+            function openArticleModal(article) {
+                modalTitle.textContent = article.title;
+                modalContent.innerHTML = article.content;
+                articleModal.classList.remove('hidden');
+            }
+
+            modalCloseButton.addEventListener('click', () => articleModal.classList.add('hidden'));
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-cyan-500', 'text-black');
+                        btn.classList.add('bg-cyan-900/50', 'text-cyan-300');
+                    });
+                    button.classList.add('active', 'bg-cyan-500', 'text-black');
+                    button.classList.remove('bg-cyan-900/50', 'text-cyan-300');
+                    renderArticles(button.dataset.filter);
+                });
+            });
+
+            aiChatButton.addEventListener('click', () => aiChatModal.classList.remove('hidden'));
+            aiChatModalCloseButton.addEventListener('click', () => aiChatModal.classList.add('hidden'));
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const navLinks = document.querySelectorAll('header a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if(!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            
+            const sections = document.querySelectorAll('section');
+            const headerNavLinks = document.querySelectorAll('header nav .nav-link');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        headerNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            renderArticles();
+        });
+    </script>
 </body>
 </html>
