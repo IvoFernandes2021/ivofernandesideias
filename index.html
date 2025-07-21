@@ -1,72 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ivo Fernandes | Engenharia & IA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivo Fernandes | Engenharia, IA & Cripto</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #0f172a; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
+    }
   </style>
 </head>
-<body class="text-white">
+<body class="text-white px-4 pt-8 pb-12">
 
   <!-- Cabeçalho -->
-  <header class="bg-[#1e293b] py-4 shadow-lg fixed top-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Ivo Fernandes</h1>
-      <nav class="space-x-4">
-        <a href="#" class="hover:text-cyan-400">Início</a>
-        <a href="#" class="hover:text-cyan-400">Projetos</a>
-        <a href="#" class="hover:text-cyan-400">Contato</a>
-      </nav>
-    </div>
+  <header class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-cyan-400">Ivo Fernandes</h1>
+    <p class="text-gray-400 mt-2">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
   </header>
 
-  <!-- Hero Section -->
-  <section class="pt-24 pb-16 px-6 text-center">
-    <h2 class="text-4xl font-bold mb-4">Engenharia, Jogos e Inteligência Artificial</h2>
-    <p class="text-gray-300 max-w-xl mx-auto mb-6">Plataforma interativa com comandos inteligentes, dicas técnicas e visual futurista.</p>
-    <button class="px-6 py-3 bg-cyan-600 rounded-xl hover:bg-cyan-700 transition-all font-semibold shadow-lg">Ativar Assistente</button>
+  <!-- Seção Principal -->
+  <section class="text-center max-w-2xl mx-auto mb-12">
+    <h2 class="text-2xl font-bold mb-4">Bem-vindo à minha central de ideias</h2>
+    <p class="text-gray-300 mb-6">Explore conteúdos sobre engenharia civil, automações com IA e acompanhe o desempenho do nosso ativo digital em tempo real.</p>
+    <a href="crypto.html">
+      <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
+        Acessar Página de Criptomoedas
+      </button>
+    </a>
   </section>
 
-  <!-- Quadros -->
-  <section class="grid md:grid-cols-3 gap-6 px-6 max-w-7xl mx-auto mb-16">
+  <!-- Quadros de destaque -->
+  <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-16">
     <div class="bg-[#1e293b] p-6 rounded-xl border border-cyan-500">
-      <h3 class="text-xl font-bold mb-2">Comandos Técnicos</h3>
-      <p class="text-gray-300">Veja exemplos reais de comandos no Civil 3D com passo a passo.</p>
+      <h3 class="text-xl font-bold mb-2">Projetos Técnicos</h3>
+      <p class="text-gray-300">Modelagem, comandos e exemplos aplicados no AutoCAD Civil 3D.</p>
     </div>
     <div class="bg-[#1e293b] p-6 rounded-xl border border-indigo-500">
-      <h3 class="text-xl font-bold mb-2">IA Aplicada</h3>
-      <p class="text-gray-300">Simule projetos e obtenha sugestões da IA diretamente no navegador.</p>
+      <h3 class="text-xl font-bold mb-2">Inteligência Artificial</h3>
+      <p class="text-gray-300">Automatize tarefas com prompts, bots e integração ao seu fluxo de trabalho.</p>
     </div>
     <div class="bg-[#1e293b] p-6 rounded-xl border border-purple-500">
-      <h3 class="text-xl font-bold mb-2">Tutoriais Visuais</h3>
-      <p class="text-gray-300">Imagens geradas automaticamente para demonstrar cada funcionalidade.</p>
-    </div>
-  </section>
-
-  <!-- Cards com imagem -->
-  <section class="px-6 max-w-7xl mx-auto mb-20">
-    <h2 class="text-2xl font-bold mb-6">Galeria de Comandos</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-indigo-700">
-        <img src="https://via.placeholder.com/400x200" alt="Exemplo IA" class="w-full">
-        <div class="p-4">
-          <h4 class="text-xl font-bold">Comando TRIM</h4>
-          <p class="text-gray-400 text-sm">Demonstração prática com linha e círculo.</p>
-          <button class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Ver Exemplo</button>
-        </div>
-      </div>
-      <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-purple-700">
-        <img src="https://via.placeholder.com/400x200" alt="Exemplo IA" class="w-full">
-        <div class="p-4">
-          <h4 class="text-xl font-bold">Comando OFFSET</h4>
-          <p class="text-gray-400 text-sm">Offset em curvas e trechos retos.</p>
-          <button class="mt-3 px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">Ver Exemplo</button>
-        </div>
-      </div>
+      <h3 class="text-xl font-bold mb-2">Mercado Cripto</h3>
+      <p class="text-gray-300">Veja como transformar lucros reais em crescimento do ativo digital do projeto.</p>
     </div>
   </section>
 
