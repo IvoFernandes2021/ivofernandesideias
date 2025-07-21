@@ -1,88 +1,250 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ivo Fernandes | Engenharia, IA & Inovação</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      background-color: #f4f7f9;
-      color: #1a202c;
-      font-family: 'Poppins', sans-serif;
-    }
-    .text-primary { color: #2563eb; }
-    .bg-primary { background-color: #2563eb; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Projeto - Ivo Fernandes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Fundo branco/claro */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Evita scroll horizontal */
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            color: #007bff;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            color: #555;
+            font-size: 1.1em;
+        }
+        .hero {
+            background-color: #ffffff;
+            padding: 60px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h2 {
+            color: #007bff;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        .symbol {
+            position: absolute;
+            font-size: 8em;
+            color: rgba(0, 123, 255, 0.05); /* Azul claro e transparente */
+            z-index: 0;
+            pointer-events: none;
+        }
+        .symbol.top-left { top: 10%; left: 5%; transform: rotate(-20deg); }
+        .symbol.top-right { top: 15%; right: 8%; transform: rotate(30deg); }
+        .symbol.bottom-left { bottom: 10%; left: 12%; transform: rotate(45deg); }
+        .symbol.bottom-right { bottom: 15%; right: 10%; transform: rotate(-10deg); }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #28a745; /* Verde para o botão */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+        }
+        .cta-button:hover {
+            background-color: #218838;
+        }
+        .content-section {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .content-section h3 {
+            color: #007bff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .content-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .ai-section {
+            background-color: #e9ecef; /* Um cinza claro para destacar */
+            padding: 40px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .ai-section h3 {
+            color: #6f42c1; /* Roxo para IA */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .ai-section textarea {
+            width: 80%;
+            max-width: 600px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .ai-section button {
+            background-color: #6f42c1;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        .ai-section button:hover {
+            background-color: #5a359c;
+        }
+        .ai-response {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            border: 1px dashed #007bff;
+            font-style: italic;
+            color: #333;
+            text-align: left;
+            white-space: pre-wrap; /* Preserva quebras de linha */
+        }
+        footer {
+            background-color: #343a40; /* Fundo escuro para o rodapé */
+            color: white;
+            padding: 20px 0;
+            margin-top: auto; /* Empurra o rodapé para baixo */
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
-  <main class="max-w-4xl mx-auto p-6 space-y-6">
-    <h1 class="text-4xl font-bold text-primary">Assistente de Comandos Civil 3D</h1>
-    <p class="text-lg">Converse com a IA para obter explicações, exemplos práticos e ilustrações de comandos.</p>
 
-    <div id="chat-window" class="flex flex-col gap-2 p-4 bg-white rounded shadow h-96 overflow-y-auto border border-gray-200"></div>
+    <header>
+        <div class="container">
+            <h1>Ivo Fernandes</h1>
+            <p>Engenharia | Games & Conteúdo | Mercado Cripto | Motivação & IA</p>
+        </div>
+    </header>
 
-    <div class="flex gap-2 items-center mt-4">
-      <input id="chat-input" class="flex-grow p-3 rounded border" placeholder="Digite um comando ou uma pergunta..." />
-      <button id="chat-send-button" class="bg-primary text-white px-4 py-2 rounded">Enviar</button>
-    </div>
+    <main>
+        <section class="hero">
+            <span class="symbol top-left">⚙️</span>
+            <span class="symbol top-right">🎮</span>
+            <span class="symbol bottom-left">💡</span>
+            <span class="symbol bottom-right">🚀</span>
+            <div class="container">
+                <h2>Transformando Ideias em Realidade Digital</h2>
+                <p>Com uma paixão por inovação e tecnologia, crio soluções que conectam o mundo da engenharia, games e o futuro digital.</p>
+                <a href="#ia-gemini" class="cta-button">Explore a IA Gemini</a>
+            </div>
+        </section>
 
-    <div id="chat-loading-indicator" class="text-sm text-gray-500 hidden">⏳ IA está gerando a resposta...</div>
-  </main>
+        <section class="content-section">
+            <div class="container">
+                <h3>Sobre Mim</h3>
+                <p>Sou um profissional multidisciplinar com experiência em engenharia, desenvolvimento de conteúdo para games e profundo conhecimento do mercado de criptoativos. Acredito no poder da tecnologia para impulsionar a criatividade e a eficiência.</p>
+                <p>Meu objetivo é construir pontes entre ideias complexas e soluções práticas, utilizando as ferramentas mais avançadas disponíveis.</p>
+            </div>
+        </section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const chatWindow = document.getElementById('chat-window');
-      const chatInput = document.getElementById('chat-input');
-      const chatSendButton = document.getElementById('chat-send-button');
-      const chatLoadingIndicator = document.getElementById('chat-loading-indicator');
+        <section class="content-section">
+            <div class="container">
+                <h3>Minhas Áreas de Atuação</h3>
+                <p><strong>Engenharia:</strong> Projetos inovadores e soluções técnicas robustas.</p>
+                <p><strong>Games & Conteúdo:</strong> Criação de experiências imersivas e narrativas envolventes.</p>
+                <p><strong>Mercado Cripto:</strong> Análise estratégica e visão de futuro em blockchain e ativos digitais.</p>
+            </div>
+        </section>
 
-      function addChatMessage(message, sender) {
-        const bubble = document.createElement('div');
-        bubble.className = `p-3 rounded-lg max-w-[80%]`;
-        bubble.classList.add(sender === 'user' ? 'bg-primary text-white self-end' : 'bg-blue-100 text-blue-800 self-start');
-        bubble.textContent = message;
-        chatWindow.appendChild(bubble);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-      }
+        <section id="ia-gemini" class="ai-section">
+            <div class="container">
+                <h3>Experimente a IA Gemini</h3>
+                <p>Faça uma pergunta ou peça uma ideia. A IA irá gerar uma resposta baseada nos seus interesses.</p>
+                <textarea id="user-input" placeholder="Ex: 'Me dê 3 dicas para me manter motivado em projetos de longo prazo.'"></textarea>
+                <button onclick="callGeminiAPI()">Gerar Resposta</button>
+                <div id="ai-output" class="ai-response" style="display:none;">
+                    </div>
+            </div>
+        </section>
+    </main>
 
-      async function callGemini(prompt) {
-        const apiUrl = `/api/gemini`;
-        try {
-          const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt })
-          });
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ivo Fernandes. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-          if (!response.ok) {
-            const errorData = await response.json().catch(() => ({ message: response.statusText }));
-            throw new Error(`API request failed: ${errorData.message}`);
-          }
+    <script>
+        async function callGeminiAPI() {
+            const userInput = document.getElementById('user-input').value;
+            const aiOutputDiv = document.getElementById('ai-output');
+            aiOutputDiv.style.display = 'block';
+            aiOutputDiv.innerText = 'Gerando resposta...';
 
-          const result = await response.json();
-          return result.resposta || 'Resposta vazia ou mal formatada pela IA.';
-        } catch (error) {
-          console.error('Erro ao chamar a função de proxy:', error);
-          return `Erro: ${error.message}`;
+            try {
+                // O proxy irá lidar com a chamada segura para a API da Gemini
+                const response = await fetch('/api/gemini-proxy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: userInput }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+                aiOutputDiv.innerText = data.text; // Exibe a resposta da IA
+            } catch (error) {
+                console.error('Erro ao chamar a API Gemini:', error);
+                aiOutputDiv.innerText = 'Erro ao gerar resposta. Tente novamente mais tarde.';
+            }
         }
-      }
-
-      async function handleChatSend() {
-        const userInput = chatInput.value.trim();
-        if (!userInput) return;
-        addChatMessage(userInput, 'user');
-        chatInput.value = '';
-        chatLoadingIndicator.classList.remove('hidden');
-        const aiResponse = await callGemini(userInput);
-        chatLoadingIndicator.classList.add('hidden');
-        addChatMessage(aiResponse, 'ia');
-      }
-
-      chatSendButton.addEventListener('click', handleChatSend);
-      chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSend(); });
-    });
-  </script>
+    </script>
 </body>
 </html>
