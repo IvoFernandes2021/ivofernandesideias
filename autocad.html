@@ -54,7 +54,7 @@
                      <div id="chat-loading-indicator" class="px-2 pb-2 hidden">
                         <div class="flex items-center space-x-2">
                             <div class="spinner"></div>
-                            <span class="text-sm text-gray-500">A IA está a gerar a explicação e a ilustração...</span>
+                            <span class="text-sm text-gray-500">A IA está a gerar a explicação...</span>
                         </div>
                     </div>
                     <div class="flex space-x-2">
@@ -141,7 +141,7 @@
                 generateButton.disabled = true;
 
                 try {
-                    // Step 1: Generate and display text first
+                    // Step 1: Generate and display text
                     const textPrompt = `Aja como um especialista em AutoCAD Civil 3D. Explique o comando "${command}". Primeiro, dê uma descrição clara do que ele faz. Em seguida, crie um exemplo prático com valores aleatórios (ex: coordenadas, comprimentos, raios) e forneça um guia passo a passo de como executar o comando nesse exemplo. Formate a resposta com títulos em negrito e parágrafos curtos, em português.`;
                     const textPayload = { prompt: textPrompt };
                     const textData = await callApi('/api/gemini', textPayload);
@@ -149,28 +149,21 @@
                     if (textData.candidates && textData.candidates[0]?.content?.parts[0]?.text) {
                         addMessage(textData.candidates[0].content.parts[0].text.replace(/\n/g, '<br>'), 'ai');
                     } else {
-                        addMessage('Não foi possível gerar a explicação textual.', 'ai');
+                        throw new Error("Não foi possível gerar a explicação textual.");
                     }
 
-                    // Step 2: Generate and display image
-                    const imagePrompt = `Crie uma imagem infográfica para um manual técnico, ilustrando o exemplo prático do comando "${command}" do AutoCAD Civil 3D, conforme descrito no passo a passo. A imagem deve ser um blueprint técnico, limpo e minimalista, com fundo branco e detalhes em azul, mostrando claramente os objetos antes e depois da execução do comando.`;
-                    const imagePayload = { prompt: imagePrompt };
-                    const imageData = await callApi('/api/imagen', imagePayload);
-
-                    if (imageData.predictions && imageData.predictions[0]?.bytesBase64Encoded) {
-                        const imgSrc = `data:image/png;base64,${imageData.predictions[0].bytesBase64Encoded}`;
-                        const imageContent = `
-                            <p class="font-bold mb-2">Ilustração do Exemplo:</p>
-                            <img src="${imgSrc}" alt="Ilustração gerada para o comando ${command}" class="rounded-lg cursor-pointer w-full max-w-md border border-gray-200"/>
-                            <small class="text-gray-500">Clique na imagem para expandir ou baixar.</small>
-                        `;
-                        addMessage(imageContent, 'ai');
-                    } else {
-                        addMessage('Não foi possível gerar a imagem ilustrativa.', 'ai');
-                    }
+                    // Step 2: Generate a placeholder image as an alternative
+                    const placeholderText = `Comando:\n${command.toUpperCase()}`;
+                    const imgSrc = `https://placehold.co/600x400/2563eb/ffffff?text=${encodeURIComponent(placeholderText)}`;
+                    const imageContent = `
+                        <p class="font-bold mb-2">Ilustração do Exemplo (Temporária):</p>
+                        <img src="${imgSrc}" alt="Ilustração para o comando ${command}" class="rounded-lg cursor-pointer w-full max-w-md border border-gray-200"/>
+                        <small class="text-gray-500">A geração de imagens por IA está indisponível. Clique na imagem para expandir.</small>
+                    `;
+                    addMessage(imageContent, 'ai');
 
                 } catch (error) {
-                    addMessage(`<p class="text-red-500">Ocorreu um erro ao gerar a resposta: ${error.message}</p>`, 'ai');
+                    addMessage(`<p class="text-red-500">Ocorreu um erro: ${error.message}</p>`, 'ai');
                 } finally {
                     loadingIndicator.classList.add('hidden');
                     generateButton.disabled = false;
