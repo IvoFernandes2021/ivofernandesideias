@@ -1,21 +1,13 @@
-// Ficheiro: functions/api/gemini.js
-// Este é o código correto para o nosso projeto.
+// Ficheiro: functions/api/gemini.js (Versão Melhorada)
 
-export async function onRequest(context) {
-    // Apenas permitir pedidos do tipo POST
-    if (context.request.method !== 'POST') {
-        return new Response('Método não permitido.', { status: 405 });
-    }
-
+export async function onRequestPost(context) {
     try {
-        // Obter o prompt enviado pelo frontend
         const { prompt } = await context.request.json();
 
         if (!prompt) {
-            return new Response(JSON.stringify({ message: 'O "prompt" é obrigatório no corpo do pedido.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+            return new Response(JSON.stringify({ message: 'O "prompt" é obrigatório.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
         }
 
-        // Obter a chave de API das variáveis de ambiente (configuradas no painel da Cloudflare)
         const apiKey = context.env.GEMINI_API_KEY;
 
         if (!apiKey) {
@@ -23,12 +15,10 @@ export async function onRequest(context) {
         }
 
         const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
         const payload = {
             contents: [{ role: "user", parts: [{ text: prompt }] }]
         };
 
-        // Fazer a chamada segura para a API da Gemini
         const geminiResponse = await fetch(geminiApiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -38,16 +28,10 @@ export async function onRequest(context) {
         const geminiData = await geminiResponse.json();
 
         if (geminiData.error) {
-             return new Response(JSON.stringify(geminiData), {
-                headers: { 'Content-Type': 'application/json' },
-                status: 400
-            });
+             return new Response(JSON.stringify(geminiData), { status: 400, headers: { 'Content-Type': 'application/json' } });
         }
 
-        return new Response(JSON.stringify(geminiData), {
-            headers: { 'Content-Type': 'application/json' },
-            status: 200
-        });
+        return new Response(JSON.stringify(geminiData), { status: 200, headers: { 'Content-Type': 'application/json' } });
 
     } catch (error) {
         return new Response(JSON.stringify({ message: `Erro no servidor proxy: ${error.message}` }), { status: 500, headers: { 'Content-Type': 'application/json' } });
