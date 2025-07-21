@@ -252,35 +252,34 @@
                 { id: 3, title: 'O Futuro do Design com IA Generativa', category: 'Inteligência Artificial', image: 'https://placehold.co/600x400/050a14/00ffff?text=DESIGN', content: `A IA generativa está a transformar o design gráfico de uma forma que não víamos desde a invenção do Photoshop. Ferramentas como Midjourney e Stable Diffusion não são apenas para criar imagens bonitas; são parceiros de brainstorming.<br><br>Pode testar dezenas de conceitos visuais em minutos, em vez de horas. O papel do designer está a evoluir de "criador" para "curador" e "diretor" de sistemas de IA, guiando a máquina para alcançar uma visão estética específica. A barreira técnica para a criação de visuais de alta qualidade está a diminuir drasticamente.` }
             ];
 
-            // --- Gemini API Call Function ---
+            // --- Gemini API Call Function (via secure proxy) ---
             async function callGemini(prompt) {
-                const apiKey = ""; // Leave empty, will be handled by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                
-                const payload = {
-                    contents: [{ role: "user", parts: [{ text: prompt }] }]
-                };
+                const apiUrl = `/api/gemini`;
 
                 try {
                     const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
+                        body: JSON.stringify({ prompt: prompt })
                     });
 
                     if (!response.ok) {
-                        throw new Error(`API request failed with status ${response.status}`);
+                        const errorData = await response.json().catch(() => ({ message: response.statusText }));
+                        throw new Error(`API request failed with status ${response.status}: ${errorData.message || response.statusText}`);
                     }
 
                     const result = await response.json();
                     
                     if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
                         return result.candidates[0].content.parts[0].text;
-                    } else {
-                        return "Não foi possível obter uma resposta. Por favor, tente novamente.";
+                    } else if (result.error) {
+                        return `Erro da API Gemini: ${result.error.message}`;
+                    }
+                    else {
+                        return "Não foi possível obter uma resposta. A resposta da API pode estar vazia ou mal formatada.";
                     }
                 } catch (error) {
-                    console.error('Error calling Gemini API:', error);
+                    console.error('Erro ao chamar a função de proxy:', error);
                     return `Ocorreu um erro ao comunicar com a IA: ${error.message}`;
                 }
             }
@@ -343,8 +342,12 @@
             
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-cyan-500', 'text-black'));
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-cyan-500', 'text-black');
+                        btn.classList.add('bg-cyan-900/50', 'text-cyan-300');
+                    });
                     button.classList.add('active', 'bg-cyan-500', 'text-black');
+                    button.classList.remove('bg-cyan-900/50', 'text-cyan-300');
                     renderArticles(button.dataset.filter);
                 });
             });
