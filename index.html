@@ -13,6 +13,7 @@
     .backface-hidden { backface-visibility: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     .rotate-y-180 { transform: rotateY(180deg); }
     .sub-btn { border-radius: 16px; }
+    .quadro-base { background-color: #1e293b; padding: 1rem; border-radius: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; }
   </style>
 </head>
 <body class="scroll-smooth">
@@ -44,185 +45,124 @@
 
 <!-- INÍCIO DOS QUADROS -->
 <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
-  <!-- Engenharia e Designer -->
-  <div class="cursor-default perspective">
-    <div class="w-full h-auto preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-        <div class="text-center text-4xl mb-2">🏗️</div>
-        <h3 class="text-xl font-bold text-white text-center mb-4">Engenharia e Designer</h3>
-        <div class="flex flex-col gap-3">
-          <button onclick="abrirPopup()" class="bg-cyan-600 text-white px-4 py-2 sub-btn hover:bg-cyan-700 transition">Geração de Comandos por IA/Civil3D</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Projetos de Engenharia Civil</button>
-        </div>
-      </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
-        Central dedicada à engenharia prática e visual: comandos automatizados por IA, tutoriais ilustrados e projetos reais desenvolvidos com ferramentas profissionais.
-      </div>
-    </div>
+  <div class="quadro-base">
+    <!-- Quadro Engenharia -->
   </div>
-
-  <!-- CryptoMoeda + Inteligência Artificial -->
-  <div class="cursor-default perspective">
-    <div class="w-full h-auto preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-        <div class="text-center text-4xl mb-2">🧠</div>
-        <h3 class="text-xl font-bold text-white text-center mb-4">CryptoMoeda + Inteligência Artificial</h3>
-        <div class="flex flex-col gap-3">
-          <button onclick="abrirPerguntaCrypto()" class="bg-purple-600 text-white px-4 py-2 sub-btn hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Análise de Gráficos</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Notícias e Atualidades</button>
-        </div>
-      </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
-        Pergunte qualquer coisa sobre o mundo cripto e receba respostas claras e rápidas com o apoio da IA integrada.
-      </div>
-    </div>
+  <div class="quadro-base">
+    <!-- Quadro Crypto -->
   </div>
-
-  <!-- Conteúdo + Motivação -->
-  <div class="cursor-default perspective">
-    <div class="w-full h-auto preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-        <div class="text-center text-4xl mb-2">💬</div>
-        <h3 class="text-xl font-bold text-white text-center mb-4">Conteúdo + Motivação</h3>
-        <div class="flex flex-col gap-3">
-          <button onclick="abrirConselhoIA()" class="bg-pink-600 text-white px-4 py-2 sub-btn hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Conteúdo Vlog</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Atualidades IA</button>
-        </div>
-      </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
-        Precisa de um conselho para mudar de vida? Esta IA foi criada para te ouvir e te ajudar com orientações conscientes e motivacionais.
-      </div>
-    </div>
+  <div class="quadro-base">
+    <!-- Quadro Motivação -->
   </div>
 </section>
 
-<div class="h-64"></div>
-
-$1
-
-<!-- SEÇÃO: NOSSO ATIVO DIGITAL -->
-<section class="bg-gray-900 rounded-2xl p-6 text-center max-w-6xl mx-auto mb-12 shadow-xl">
-  <h2 class="text-2xl font-bold text-white mb-2">Nosso Ativo Digital</h2>
-  <p class="text-gray-400 mb-6 max-w-3xl mx-auto">Esse valor é construído com base em transações reais feitas por Ivo Fernandes. Parte do lucro é convertido para alimentar esse ativo comunitário.</p>
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-white text-sm">
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Valor Atual</p>
-      <p class="text-xl font-bold">R$ 0.000,00</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Lucro Acumulado</p>
-      <p class="text-xl font-bold">R$ 0.000,00</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Transações Positivas</p>
-      <p class="text-xl font-bold">0</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Perdas</p>
-      <p class="text-xl font-bold">0</p>
-    </div>
-  </div>
-  <div class="flex flex-wrap justify-center gap-4 mt-8">
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Comprar Participação</button>
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Vender Participação</button>
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Ver Histórico</button>
-  </div>
-</section>
-
-<!-- CAIXA DE TOKENS DISPONÍVEIS -->
+<!-- Nosso Ativo Digital -->
 <section class="bg-gray-800 rounded-2xl p-6 text-center max-w-5xl mx-auto mb-24 shadow-lg">
-  <h3 class="text-xl font-bold text-white mb-4">Tokens Disponíveis para Compra</h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-white text-sm">
-    <div class="bg-gray-900 p-4 rounded-xl">
-      <p class="text-gray-400">Token #1</p>
-      <p class="text-xl font-bold">R$ 0,00</p>
+  <h2 class="text-2xl font-bold mb-4">Nosso Ativo Digital</h2>
+  <p class="text-gray-300 mb-4">Valor total, transações e desempenho atual do ativo baseado em nossas operações.</p>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="bg-gray-700 rounded-xl p-4">
+      <p class="text-sm text-gray-400">Valor do Ativo</p>
+      <p class="text-xl font-bold text-green-400">R$ 0,00</p>
     </div>
-    <div class="bg-gray-900 p-4 rounded-xl">
-      <p class="text-gray-400">Token #2</p>
-      <p class="text-xl font-bold">R$ 0,00</p>
-    </div>
-    <div class="bg-gray-900 p-4 rounded-xl">
-      <p class="text-gray-400">Token #3</p>
-      <p class="text-xl font-bold">R$ 0,00</p>
+    <div class="bg-gray-700 rounded-xl p-4">
+      <p class="text-sm text-gray-400">Transações Lucro</p>
+      <p class="text-xl font-bold text-green-400">0</p>
     </div>
   </div>
 </section>
 
-<!-- SEÇÃO DE COMENTÁRIOS -->
-<section class="bg-gray-900 rounded-2xl p-6 text-center max-w-4xl mx-auto mb-12 shadow-xl">
-  <h2 class="text-2xl font-bold text-white mb-6">O que as pessoas estão dizendo</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p>
-      <p class="text-sm text-gray-500 mt-2">— Mariana L.</p>
+<!-- Tokens Disponíveis para Compra -->
+<section class="bg-gray-900 rounded-2xl p-6 text-center max-w-4xl mx-auto mb-24 shadow">
+  <h2 class="text-xl font-bold text-white mb-4">Tokens Disponíveis</h2>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <p class="text-gray-400">Token IVO-A</p>
+      <p class="text-cyan-400 text-lg font-semibold">0 disponível</p>
     </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p>
-      <p class="text-sm text-gray-500 mt-2">— João V.</p>
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <p class="text-gray-400">Token IVO-B</p>
+      <p class="text-cyan-400 text-lg font-semibold">0 disponível</p>
     </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p>
-      <p class="text-sm text-gray-500 mt-2">— Camila F.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p>
-      <p class="text-sm text-gray-500 mt-2">— Ricardo T.</p>
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <p class="text-gray-400">Token IVO-C</p>
+      <p class="text-cyan-400 text-lg font-semibold">0 disponível</p>
     </div>
   </div>
 </section>
 
-<!-- SEÇÃO SOBRE NÓS -->
-<section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl">
-  <h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2>
-  <p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p>
+<!-- Comentários de Pessoas -->
+<section class="max-w-5xl mx-auto px-6 mb-24">
+  <h2 class="text-2xl font-bold mb-6 text-center">O que Estão Dizendo</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="bg-gray-800 rounded-xl p-4 shadow">
+      <p class="text-gray-200 italic">“O conteúdo do site é simplesmente incrível. Aprendi muito!”</p>
+      <p class="text-sm text-gray-400 mt-2">– João Silva</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl p-4 shadow">
+      <p class="text-gray-200 italic">“Uma plataforma essencial para quem busca motivação e tecnologia.”</p>
+      <p class="text-sm text-gray-400 mt-2">– Carla Dias</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl p-4 shadow">
+      <p class="text-gray-200 italic">“Muito além de um site comum. Parabéns!”</p>
+      <p class="text-sm text-gray-400 mt-2">– Felipe Rocha</p>
+    </div>
+    <div class="bg-gray-800 rounded-xl p-4 shadow">
+      <p class="text-gray-200 italic">“Uso todos os dias para aprender e crescer.”</p>
+      <p class="text-sm text-gray-400 mt-2">– Ana Beatriz</p>
+    </div>
+  </div>
 </section>
 
-<!-- SEÇÃO DE NOVIDADES -->
-<section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg">
-  <h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2>
-  <ul class="text-gray-300 space-y-2">
-    <li>🚀 Lançamento oficial do site e início da fase beta!</li>
-    <li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li>
-    <li>📊 Monitoramento de Ativo Digital agora disponível.</li>
-    <li>📦 Mais recursos chegando em breve, fique ligado!</li>
+<!-- Sobre Nós -->
+<section class="bg-[#1e293b] py-12 px-6 text-center text-white max-w-4xl mx-auto rounded-2xl mb-24">
+  <h2 class="text-2xl font-bold mb-4">Sobre Nós</h2>
+  <p class="text-gray-300">Somos um time apaixonado por inovação, engenharia, IA e evolução pessoal. Acreditamos no poder da tecnologia e do conhecimento para transformar vidas e criar novas oportunidades. Nosso projeto é construído por pessoas reais, com vontade de ajudar, ensinar e crescer junto com você.</p>
+</section>
+
+<!-- Novidades & Atualizações -->
+<section class="max-w-4xl mx-auto px-6 mb-24">
+  <h2 class="text-2xl font-bold mb-4 text-center">Novidades & Atualizações</h2>
+  <ul class="text-gray-300 list-disc list-inside space-y-2">
+    <li>Novo quadro de Tokens disponível</li>
+    <li>Inteligência Artificial para análises de Crypto e Motivação em funcionamento</li>
+    <li>Seção de Comentários e Sobre Nós adicionadas</li>
+    <li>Layout otimizado para dispositivos móveis</li>
   </ul>
 </section>
 
-<!-- SEÇÃO FAQ -->
-<section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl">
-  <h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2>
-  <div class="space-y-6 text-left text-gray-300">
-    <div>
-      <h3 class="font-bold">🔎 O que é o Ativo Digital?</h3>
-      <p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p>
+<!-- FAQ -->
+<section class="max-w-4xl mx-auto px-6 mb-24">
+  <h2 class="text-2xl font-bold mb-6 text-center">Perguntas Frequentes</h2>
+  <div class="space-y-4">
+    <div class="bg-gray-800 p-4 rounded-xl">
+      <h3 class="text-lg font-semibold">Como o valor do ativo é calculado?</h3>
+      <p class="text-gray-400">É baseado nos lucros das nossas transações, sendo atualizado manualmente por enquanto.</p>
     </div>
-    <div>
-      <h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3>
-      <p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p>
+    <div class="bg-gray-800 p-4 rounded-xl">
+      <h3 class="text-lg font-semibold">Quem pode comprar tokens?</h3>
+      <p class="text-gray-400">Inicialmente, o sistema é demonstrativo. Em breve haverá cadastro para interessados.</p>
     </div>
-    <div>
-      <h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3>
-      <p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p>
+    <div class="bg-gray-800 p-4 rounded-xl">
+      <h3 class="text-lg font-semibold">Como funciona a IA motivacional?</h3>
+      <p class="text-gray-400">Ela responde com mensagens positivas aleatórias para inspirar os usuários.</p>
     </div>
   </div>
 </section>
 
-<!-- SEÇÃO DE CONTATO -->
-<section class="bg-gray-950 rounded-2xl p-8 text-center max-w-4xl mx-auto mb-24 shadow-2xl">
-  <h2 class="text-2xl font-bold text-white mb-4">Fale Conosco</h2>
-  <p class="text-gray-400 mb-6">Tem dúvidas, sugestões ou quer participar do projeto? Entre em contato conosco.</p>
-  <form class="flex flex-col space-y-4">
-    <input type="text" placeholder="Seu nome" class="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500">
-    <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500">
-    <textarea placeholder="Sua mensagem" rows="4" class="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500"></textarea>
-    <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-6 py-2 rounded-xl">Enviar Mensagem</button>
+<!-- Formulário de Contato -->
+<section class="max-w-3xl mx-auto px-6 mb-24">
+  <h2 class="text-2xl font-bold mb-6 text-center">Fale Conosco</h2>
+  <form class="space-y-4">
+    <input type="text" placeholder="Seu nome" class="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400">
+    <input type="email" placeholder="Seu e-mail" class="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400">
+    <textarea placeholder="Sua mensagem" rows="4" class="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400"></textarea>
+    <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded">
+      Enviar
+    </button>
   </form>
 </section>
 
-<!-- Scripts -->
 <script>
 function voltarTopo() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
