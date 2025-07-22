@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF--T">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ivo Fernandes | Engenharia, IA & Inovação</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -47,7 +47,7 @@
   </section>
 
   <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
-    <div id="engenharia" class="cursor-pointer perspective">
+    <div id="engenharia" class="cursor-pointer perspective min-h-[260px]">
       <div class="w-full h-full preserve-3d group relative">
         <div class="absolute w-full h-full backface-hidden bg-gray-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
           <div>
@@ -56,7 +56,7 @@
             <p class="text-sm text-gray-400 text-center mb-4 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
           </div>
           <div class="flex flex-col gap-3">
-            <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa. Ex: criar uma superfície a partir de um grupo de pontos com nome X...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
+            <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
             <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
           </div>
         </div>
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div id="crypto" class="cursor-pointer perspective">
+    <div id="crypto" class="cursor-pointer perspective min-h-[260px]">
       <div class="w-full h-full preserve-3d group relative">
         <div class="absolute w-full h-full backface-hidden bg-gray-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
           <div>
@@ -75,7 +75,7 @@
             <p class="text-sm text-gray-400 text-center mb-4 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
           </div>
           <div class="flex flex-col gap-3">
-            <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto. Ex: o que é halving do Bitcoin?')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
+            <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
             <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
           </div>
         </div>
@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <div id="motivacao" class="cursor-pointer perspective">
+    <div id="motivacao" class="cursor-pointer perspective min-h-[260px]">
       <div class="w-full h-full preserve-3d group relative">
         <div class="absolute w-full h-full backface-hidden bg-gray-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
           <div>
@@ -94,7 +94,7 @@
             <p class="text-sm text-gray-400 text-center mb-4 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
           </div>
           <div class="flex flex-col gap-3">
-            <button onclick="abrirModal('Crescimento Pessoal IA', 'Peça um conselho. Ex: como posso ter mais disciplina nos estudos?')" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
+            <button onclick="abrirModal('Crescimento Pessoal IA', 'Peça um conselho...')" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
             <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
           </div>
         </div>
@@ -110,7 +110,6 @@
     <p class="text-center text-gray-400 mb-10 max-w-3xl mx-auto">
       Construído com base em transações reais. Parte do lucro é convertida para alimentar esse ativo comunitário.
     </p>
-
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg hover:scale-105 transition transform">
         <p class="text-gray-400 text-sm mb-1">Valor Atual</p>
@@ -129,7 +128,6 @@
         <p id="perdas" class="text-2xl font-bold text-red-400">0</p>
       </div>
     </div>
-
     <div class="flex flex-wrap justify-center gap-4 mt-10">
       <button disabled class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-2 font-bold rounded-xl shadow-lg transition opacity-50 cursor-not-allowed">
         💼 Comprar Participação
@@ -137,6 +135,65 @@
       <button onclick="mostrarHistorico()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium transition">
         📜 Ver Histórico
       </button>
+    </div>
+  </section>
+
+  <section class="bg-gray-900 rounded-2xl p-6 max-w-6xl mx-auto mb-24 shadow-xl">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">O que as pessoas estão dizendo</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <p class="text-sm italic text-gray-300 mb-2">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p>
+        <p class="text-xs text-gray-400">— Mariana L.</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <p class="text-sm italic text-gray-300 mb-2">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p>
+        <p class="text-xs text-gray-400">— João V.</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Camila" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <p class="text-sm italic text-gray-300 mb-2">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p>
+        <p class="text-xs text-gray-400">— Camila F.</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Ricardo" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <p class="text-sm italic text-gray-300 mb-2">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p>
+        <p class="text-xs text-gray-400">— Ricardo T.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl">
+    <h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2>
+    <p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p>
+  </section>
+
+  <section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg">
+    <h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2>
+    <ul class="text-gray-300 space-y-2">
+      <li>🚀 Lançamento oficial do site e início da fase beta!</li>
+      <li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li>
+      <li>📊 Monitoramento de Ativo Digital agora disponível.</li>
+      <li>📦 Mais recursos chegando em breve, fique ligado!</li>
+    </ul>
+  </section>
+
+  <section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl">
+    <h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2>
+    <div class="space-y-6 text-left text-gray-300">
+      <div>
+        <h3 class="font-bold">🔎 O que é o Ativo Digital?</h3>
+        <p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p>
+      </div>
+      <div>
+        <h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3>
+        <p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p>
+      </div>
+      <div>
+        <h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3>
+        <p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p>
+      </div>
     </div>
   </section>
 
@@ -148,7 +205,6 @@
       <p id="respostaRecompensa" class="mt-3 text-sm text-green-400"></p>
     </div>
   </section>
-
 </main>
 
 <footer class="text-center p-10 text-gray-500 text-sm">
@@ -169,73 +225,35 @@
 </div>
 
 <script>
-  // --- Geração de Mensagem Positiva ---
   function gerarMensagem() {
-    const mensagens = [
-      "Você é capaz de conquistar o que quiser!",
-      "Acredite no seu potencial todos os dias.",
-      "O futuro pertence a quem se prepara hoje.",
-      "Nunca é tarde para recomeçar com força total."
-    ];
+    const mensagens = ["Você é capaz de conquistar o que quiser!","Acredite no seu potencial todos os dias.","O futuro pertence a quem se prepara hoje.","Nunca é tarde para recomeçar com força total."];
     const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+    document.getElementById("mensagem").innerText = msg;
     const container = document.getElementById("mensagem-container");
-    const texto = document.getElementById("mensagem");
-    texto.innerText = msg;
     container.style.opacity = 1;
     setTimeout(() => { container.style.opacity = 0; }, 5000);
   }
-
-  // --- Controle do Modal Genérico ---
-  const modal = document.getElementById('modal-ia');
-  const modalContent = document.getElementById('modal-content');
-  const modalTitulo = document.getElementById('modal-titulo');
-  const modalBody = document.getElementById('modal-body');
-  const modalInput = document.getElementById('modal-input');
-  const modalResposta = document.getElementById('modal-resposta');
-  const modalSubmit = document.getElementById('modal-submit');
-
+  const modal = document.getElementById('modal-ia'), modalContent = document.getElementById('modal-content'), modalTitulo = document.getElementById('modal-titulo'), modalBody = document.getElementById('modal-body'), modalInput = document.getElementById('modal-input'), modalResposta = document.getElementById('modal-resposta'), modalSubmit = document.getElementById('modal-submit');
   function abrirModal(titulo, placeholder) {
     modalTitulo.innerText = titulo;
     modalInput.placeholder = placeholder;
     modalResposta.innerHTML = '';
     modalInput.value = '';
-    
     modalBody.style.display = 'block';
-
     modal.classList.remove('hidden');
-    setTimeout(() => {
-        modalContent.classList.remove('scale-95', 'opacity-0');
-    }, 10);
+    setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
   }
-
   function fecharModal() {
     modalContent.classList.add('scale-95', 'opacity-0');
-    setTimeout(() => {
-        modal.classList.add('hidden');
-    }, 200);
+    setTimeout(() => { modal.classList.add('hidden'); }, 200);
   }
 </script>
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-  // ===================================================================================
-  // 1. CONFIGURE SEU FIREBASE AQUI
-  // ===================================================================================
-  const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_PROJETO.firebaseapp.com",
-    projectId: "SEU_PROJECT_ID",
-    storageBucket: "SEU_BUCKET",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID"
-  };
-
+  const firebaseConfig = { apiKey: "SUA_API_KEY", authDomain: "SEU_PROJETO.firebaseapp.com", projectId: "SEU_PROJECT_ID", storageBucket: "SEU_BUCKET", messagingSenderId: "SENDER_ID", appId: "APP_ID" };
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-
-  // --- Função para Recompensa de Vídeo ---
   window.confirmarVisualizacao = async function() {
     const resposta = document.getElementById("respostaRecompensa");
     resposta.innerText = "Verificando...";
@@ -243,37 +261,26 @@
         const ipRes = await fetch("https://api.ipify.org?format=json");
         const ipData = await ipRes.json();
         const ip = ipData.ip;
-        
         const key = `video_reward_${ip}`;
         const ref = doc(db, "visualizacoes", key);
         const docSnap = await getDoc(ref);
-
         if (!docSnap.exists()) {
-            await setDoc(ref, {
-            video: "video1",
-            ip,
-            timestamp: serverTimestamp()
-            });
+            await setDoc(ref, { video: "video1", ip, timestamp: serverTimestamp() });
             resposta.innerText = "✅ Visualização registrada! Você ganhou 1 satoshi.";
         } else {
             resposta.innerText = "⚠️ Você já recebeu recompensa por este vídeo hoje.";
         }
     } catch(e) {
         resposta.innerText = "❌ Erro ao verificar. Tente mais tarde.";
-        console.error("Erro na recompensa: ", e);
     }
   }
-
-  // --- Função para carregar dados do Ativo Digital ---
   async function carregarDadosDoAtivo() {
     try {
         const docRef = doc(db, "ativos", "comunitario");
         const docSnap = await getDoc(docRef);
-
         if (docSnap.exists()) {
             const dados = docSnap.data();
             const formatarMoeda = (valor) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor || 0);
-
             document.getElementById('valor-atual').innerText = formatarMoeda(dados.valorAtual);
             document.getElementById('lucro-acumulado').innerText = formatarMoeda(dados.lucroAcumulado);
             document.getElementById('transacoes-positivas').innerText = dados.transacoesPositivas || 0;
@@ -281,86 +288,50 @@
         } else {
             console.log("Documento 'ativos/comunitario' não encontrado no Firestore!");
         }
-    } catch (e) {
-        console.error("Erro ao carregar dados do ativo: ", e);
-    }
+    } catch (e) { console.error("Erro ao carregar dados do ativo: ", e); }
   }
-  
-  // --- Função para mostrar o Histórico de Transações ---
   window.mostrarHistorico = async function() {
     abrirModal('Histórico de Transações', '');
     modalBody.style.display = 'none';
     modalResposta.innerHTML = '<p>Buscando histórico...</p>';
-    
     try {
         const historicoRef = collection(db, "ativos", "comunitario", "historico");
         const q = query(historicoRef, orderBy("data", "desc"), limit(10));
-        
         const querySnapshot = await getDocs(q);
         if(querySnapshot.empty) {
             modalResposta.innerHTML = '<p>Nenhuma transação encontrada.</p>';
             return;
         }
-        
         let htmlHistorico = '<ul class="space-y-3 text-left">';
         querySnapshot.forEach((doc) => {
             const transacao = doc.data();
             const data = transacao.data.toDate().toLocaleDateString('pt-BR');
             const valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(transacao.valor || 0);
             const tipoClasse = transacao.tipo.toLowerCase().includes('lucro') || transacao.tipo.toLowerCase().includes('aporte') ? 'text-green-400' : 'text-red-400';
-
-            htmlHistorico += `<li class="border-b border-gray-700 pb-2 flex justify-between">
-                                <span>${data} - ${transacao.tipo}</span>
-                                <span class="${tipoClasse} font-bold">${valor}</span>
-                              </li>`;
+            htmlHistorico += `<li class="border-b border-gray-700 pb-2 flex justify-between"><span>${data} - ${transacao.tipo}</span><span class="${tipoClasse} font-bold">${valor}</span></li>`;
         });
         htmlHistorico += '</ul>';
         modalResposta.innerHTML = htmlHistorico;
-
     } catch(e) {
         modalResposta.innerHTML = '<p>Erro ao buscar o histórico.</p>';
-        console.error("Erro ao buscar histórico: ", e);
     }
   }
-
-  // --- Lógica para o botão de Enviar do Modal de IA ---
   modalSubmit.addEventListener('click', async () => {
     const pergunta = modalInput.value;
     if (!pergunta) return;
-
     modalResposta.innerText = "Pensando...";
     modalSubmit.disabled = true;
-
     try {
-      // ===================================================================================
-      // 2. IMPLEMENTE SUA CLOUD FUNCTION E SUBSTITUA A URL ABAIXO
-      // ===================================================================================
-      // const cloudFunctionUrl = 'URL_REAL_DA_SUA_CLOUD_FUNCTION'; 
-      // const response = await fetch(cloudFunctionUrl, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ prompt: pergunta })
-      // });
-      // const data = await response.json();
-      // modalResposta.innerText = data.resposta;
-
-      // ---- CÓDIGO DE SIMULAÇÃO (REMOVER EM PRODUÇÃO) ----
       await new Promise(resolve => setTimeout(resolve, 1500)); 
-      const respostaSimulada = `Esta é uma resposta simulada para a pergunta: "${pergunta}". Para receber uma resposta real, o desenvolvedor precisa conectar este site a uma Cloud Function que utilize uma API de Inteligência Artificial.`;
+      const respostaSimulada = `Esta é uma resposta simulada para a pergunta: "${pergunta}". Para receber uma resposta real, o desenvolvedor precisa conectar este site a uma Cloud Function.`;
       modalResposta.innerText = respostaSimulada;
-      // ---- FIM DO CÓDIGO DE SIMULAÇÃO ----
-
     } catch (error) {
         modalResposta.innerText = "Ocorreu um erro. Tente novamente.";
-        console.error("Erro ao chamar a IA:", error);
     } finally {
         modalSubmit.disabled = false;
     }
   });
-
-  // --- Carregar dados iniciais quando a página estiver pronta ---
   window.addEventListener('DOMContentLoaded', carregarDadosDoAtivo);
-
 </script>
 
 </body>
