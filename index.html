@@ -35,23 +35,15 @@
 </header>
 
 <main>
-  <section id="topo" class="text-center max-w-2xl mx-auto px-6 mt-20 mb-12">
-    <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
-    <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
-    <button onclick="gerarMensagem()" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
-      Gerar Mensagem Positiva
-    </button>
-    <div id="mensagem-container" class="mt-6 transition-opacity duration-500 opacity-0">
-      <p id="mensagem" class="text-lg font-medium text-cyan-400"></p>
-    </div>
-  </section>
-
   <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
     <div id="engenharia" class="cursor-pointer perspective">
       <div class="w-full h-full preserve-3d group relative">
         <div class="absolute w-full h-full backface-hidden bg-gray-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
-          <div class="text-center text-4xl mb-2">🏗️</div>
-          <h3 class="text-xl font-bold text-white text-center mb-4">Engenharia e Designer</h3>
+          <div>
+            <div class="text-center text-4xl mb-2">🏗️</div>
+            <h3 class="text-xl font-bold text-white text-center mb-2">Engenharia e Designer</h3>
+            <p class="text-sm text-gray-400 text-center mb-4 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
+          </div>
           <div class="flex flex-col gap-3">
             <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa. Ex: criar uma superfície a partir de um grupo de pontos com nome X...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
             <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
@@ -66,8 +58,11 @@
     <div id="crypto" class="cursor-pointer perspective">
       <div class="w-full h-full preserve-3d group relative">
         <div class="absolute w-full h-full backface-hidden bg-gray-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
-          <div class="text-center text-4xl mb-2">🧠</div>
-          <h3 class="text-xl font-bold text-white text-center mb-4">CryptoMoeda + IA</h3>
+          <div>
+            <div class="text-center text-4xl mb-2">🧠</div>
+            <h3 class="text-xl font-bold text-white text-center mb-2">CryptoMoeda + IA</h3>
+            <p class="text-sm text-gray-400 text-center mb-4 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
+          </div>
           <div class="flex flex-col gap-3">
             <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto. Ex: o que é halving do Bitcoin?')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
             <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
@@ -82,8 +77,11 @@
     <div id="motivacao" class="cursor-pointer perspective">
       <div class="w-full h-full preserve-3d group relative">
         <div class="absolute w-full h-full backface-hidden bg-gray-800 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
-          <div class="text-center text-4xl mb-2">💬</div>
-          <h3 class="text-xl font-bold text-white text-center mb-4">Conteúdo + Motivação</h3>
+          <div>
+            <div class="text-center text-4xl mb-2">💬</div>
+            <h3 class="text-xl font-bold text-white text-center mb-2">Conteúdo + Motivação</h3>
+            <p class="text-sm text-gray-400 text-center mb-4 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
+          </div>
           <div class="flex flex-col gap-3">
             <button onclick="abrirModal('Crescimento Pessoal IA', 'Peça um conselho. Ex: como posso ter mais disciplina nos estudos?')" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
             <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
