@@ -38,48 +38,44 @@
     </div>
   </section>
 
-<section class="grid md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-24">
-
-  <div id="engenharia" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-    <div class="text-center">
-      <a href="engenharia.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Engenharia">🏗️</a>
-      <h3 class="text-xl font-bold text-white mb-2">Engenharia e Designer</h3>
-      <p class="text-sm text-gray-400 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
+  <section class="grid md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-24">
+    <div id="engenharia" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      <div class="text-center">
+        <a href="engenharia.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Engenharia">🏗️</a>
+        <h3 class="text-xl font-bold text-white mb-2">Engenharia e Designer</h3>
+        <p class="text-sm text-gray-400 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
+      </div>
+      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+        <button onclick="abrirModal('Geração de Comandos por IA', 'Descreva a rotina que você precisa...', 'engenharia.html', 'Explore a Página de Engenharia →')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
+        <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
+        <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Projetos de Engenharia Civil</button>
+      </div>
     </div>
-    <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
-      <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
-      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
-      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Projetos de Engenharia Civil</button>
+    <div id="crypto" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      <div class="text-center">
+        <a href="crypto.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Crypto">🧠</a>
+        <h3 class="text-xl font-bold text-white mb-2">CryptoMoeda + IA</h3>
+        <p class="text-sm text-gray-400 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
+      </div>
+      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+        <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...', 'crypto.html', 'Explore a Página de Crypto →')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
+        <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
+        <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Notícias e Atualidades</button>
+      </div>
     </div>
-  </div>
-
-  <div id="crypto" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-    <div class="text-center">
-      <a href="crypto.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Crypto">🧠</a>
-      <h3 class="text-xl font-bold text-white mb-2">CryptoMoeda + IA</h3>
-      <p class="text-sm text-gray-400 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
+    <div id="motivacao" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      <div class="text-center">
+        <a href="motivacao.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Motivação">💬</a>
+        <h3 class="text-xl font-bold text-white mb-2">Conteúdo + Motivação</h3>
+        <p class="text-sm text-gray-400 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
+      </div>
+      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+        <button onclick="abrirModal('Crescimento Pessoal IA', 'Peça um conselho...', 'motivacao.html', 'Explore a Página de Motivação →')" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
+        <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Atualidades IA</button>
+        <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
+      </div>
     </div>
-    <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
-      <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
-      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
-      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Notícias e Atualidades</button>
-    </div>
-  </div>
-
-  <div id="motivacao" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-    <div class="text-center">
-      <a href="motivacao.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Motivação">💬</a>
-      <h3 class="text-xl font-bold text-white mb-2">Conteúdo + Motivação</h3>
-      <p class="text-sm text-gray-400 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
-    </div>
-    <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
-  <button onclick="abrirModal('Crescimento Pessoal IA', 'Peça um conselho...')" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
-  <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Atualidades IA</button>
-  <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
-</div>
-  </div>
-
-</section>
+  </section>
 
   <section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-10 max-w-6xl mx-auto my-24 shadow-2xl">
     <h2 class="text-3xl font-bold text-center text-white mb-8">📈 Nosso Ativo Digital</h2>
@@ -141,9 +137,7 @@
     <div id="modal-body">
       <p class="text-gray-300 text-sm mb-4">Use a IA para obter respostas. Digite sua pergunta abaixo.</p>
       <div class="text-center my-4 border-y border-gray-700 py-3">
-        <a href="motivacao.html" class="text-pink-400 font-semibold hover:text-pink-300 transition text-sm">
-          Ou explore nossa página completa de Conteúdo e Motivação &rarr;
-        </a>
+        <a id="modal-link" href="#" class="font-semibold hover:text-pink-300 transition text-sm">Link de exploração</a>
       </div>
       <textarea id="modal-input" class="w-full bg-gray-900 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" rows="4" placeholder="Digite aqui..."></textarea>
       <button id="modal-submit" class="mt-4 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 rounded-lg transition">Gerar Resposta</button>
@@ -162,9 +156,15 @@
   const modalResposta = document.getElementById('modal-resposta');
   const modalSubmit = document.getElementById('modal-submit');
 
-  function abrirModal(titulo, placeholder) {
+  function abrirModal(titulo, placeholder, linkUrl, linkTexto) {
+    const modalLink = document.getElementById('modal-link');
     modalTitulo.innerText = titulo;
     modalInput.placeholder = placeholder;
+    modalLink.href = linkUrl;
+    modalLink.innerText = linkTexto;
+    if (linkUrl.includes('engenharia')) modalLink.className = 'text-cyan-400 font-semibold hover:text-cyan-300 transition text-sm';
+    if (linkUrl.includes('crypto')) modalLink.className = 'text-purple-400 font-semibold hover:text-purple-300 transition text-sm';
+    if (linkUrl.includes('motivacao')) modalLink.className = 'text-pink-400 font-semibold hover:text-pink-300 transition text-sm';
     modalResposta.innerHTML = '';
     modalInput.value = '';
     modalBody.style.display = 'block';
