@@ -40,7 +40,7 @@
 </header>
 
 <!-- Nome fixo ao rolar -->
-<a href="#topo" onclick="voltarTopo()" id="flutuante" class="fixed top-4 left-6 text-cyan-400 text-lg font-bold z-50 hidden cursor-pointer">
+<a onclick="voltarTopo()" id="flutuante" class="fixed top-4 left-6 text-cyan-400 text-lg font-bold z-50 cursor-pointer transition-opacity duration-300 opacity-0 pointer-events-none">
   Ivo Fernandes
 </a>
 
@@ -49,8 +49,8 @@
   <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
   <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
   <a href="#crypto">
-    <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
-      Ver Criptomoedas
+    <button class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
+      Gerar Mensagem Positiva
     </button>
   </a>
 </section>
@@ -126,22 +126,22 @@
 
 <!-- Scripts -->
 <script>
-  // Mostrar nome fixo ao rolar
+  const nome = document.getElementById("flutuante");
+
   window.addEventListener("scroll", () => {
-    const nome = document.getElementById("flutuante");
     if (window.scrollY > 120) {
-      nome.classList.remove("hidden");
+      nome.classList.remove("opacity-0", "pointer-events-none");
+      nome.classList.add("opacity-100");
     } else {
-      nome.classList.add("hidden");
+      nome.classList.remove("opacity-100");
+      nome.classList.add("opacity-0", "pointer-events-none");
     }
   });
 
-  // Voltar para o topo
   function voltarTopo() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Gerador de frases motivacionais
   const mensagens = [
     "Você é mais forte do que imagina.",
     "A cada passo, você está mais perto do seu objetivo.",
@@ -159,6 +159,11 @@
     }, 500);
   }
 </script>
+
+<!-- Nome flutuante ao rolar -->
+<a onclick="voltarTopo()" id="flutuante" class="fixed top-4 left-6 text-cyan-400 text-lg font-bold z-50 cursor-pointer transition-opacity duration-300 opacity-0 pointer-events-none">
+  Ivo Fernandes
+</a>
 
 </body>
 </html>
