@@ -19,116 +19,146 @@
 </head>
 <body class="text-white scroll-smooth">
 
-  <!-- Cabeçalho -->
-  <header class="text-center py-8">
-    <h1 class="text-4xl font-bold text-cyan-400">Ivo Fernandes</h1>
-    <p class="text-gray-400 mt-2">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
-  </header>
+<!-- âncora para o topo -->
+<span id="topo"></span>
 
-  <!-- Hero -->
-  <section class="text-center max-w-2xl mx-auto px-6 mb-12">
-    <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
-    <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
-    <a href="#crypto">
-      <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
-        Ver Criptomoedas
-      </button>
-    </a>
-  </section>
-
-  <!-- Quadros interativos -->
-  <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
-    
-    <!-- Quadro 1 -->
-    <div onclick="this.querySelector('.preserve-3d').classList.toggle('rotate-y-180')" class="cursor-pointer perspective">
-      <div class="w-full h-64 preserve-3d group">
-        <!-- Frente -->
-        <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:scale-105 transition">
-          <div class="text-center text-4xl mb-2">⚙️</div>
-          <h3 class="text-lg font-bold text-white text-center mb-4">AutoCAD</h3>
-          <a href="autocad.html">
-            <button class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700">Acessar</button>
-          </a>
-        </div>
-        <!-- Verso -->
-        <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
-          AutoCAD Civil 3D aplicado com tutoriais visuais, exemplos técnicos e comandos explicados passo a passo.
-        </div>
-      </div>
+<!-- Cabeçalho principal -->
+<header class="bg-[#0b1120] py-4 shadow-md relative z-20">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <!-- Esquerda: Nome + Subtítulo -->
+    <div>
+      <h1 class="text-xl font-bold text-cyan-400">Ivo Fernandes</h1>
+      <p class="text-sm text-gray-400">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
     </div>
+    <!-- Direita: Menu -->
+    <nav class="space-x-6 text-sm font-medium text-gray-300">
+      <a href="autocad.html" class="hover:text-cyan-400 transition">AutoCAD</a>
+      <a href="ia.html" class="hover:text-cyan-400 transition">IA</a>
+      <a href="#crypto" class="hover:text-cyan-400 transition">Cripto</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- Quadro 2 -->
-    <div onclick="this.querySelector('.preserve-3d').classList.toggle('rotate-y-180')" class="cursor-pointer perspective">
-      <div class="w-full h-64 preserve-3d group">
-        <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:scale-105 transition">
-          <div class="text-center text-4xl mb-2">🤖</div>
-          <h3 class="text-lg font-bold text-white text-center mb-4">IA Aplicada</h3>
-          <a href="ia.html">
-            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Acessar</button>
-          </a>
-        </div>
-        <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
-          Ferramentas com Inteligência Artificial para gerar conteúdo, automatizar processos e resolver tarefas complexas.
-        </div>
-      </div>
-    </div>
+<!-- Nome fixo ao rolar -->
+<a href="#topo" onclick="voltarTopo()" id="flutuante" class="fixed top-4 left-6 text-cyan-400 text-lg font-bold z-50 hidden cursor-pointer">
+  Ivo Fernandes
+</a>
 
-    <!-- Quadro 3 -->
-    <div onclick="this.querySelector('.preserve-3d').classList.toggle('rotate-y-180')" class="cursor-pointer perspective">
-      <div class="w-full h-64 preserve-3d group">
-        <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:scale-105 transition">
-          <div class="text-center text-4xl mb-2">📊</div>
-          <h3 class="text-lg font-bold text-white text-center mb-4">Criptomoedas</h3>
-          <a href="#crypto">
-            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Ver</button>
-          </a>
-        </div>
-        <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
-          Visualize gráficos de entrada e saída, crescimento do ativo e histórico de performance financeira do projeto.
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Seção Crypto -->
-  <section id="crypto" class="text-center max-w-xl mx-auto px-4 mb-20">
-    <h2 class="text-3xl font-bold text-green-400 mb-4">Ativo Digital do Projeto</h2>
-    <p class="text-sm text-gray-400 mb-6">Lucros acumulados fortalecem o valor interno do projeto. Inspire-se e continue crescendo.</p>
-
-    <!-- Frase Motivacional -->
-    <p id="motivacional" class="text-xl font-light text-green-300 transition-all duration-700 ease-in-out mb-4 font-[Orbitron]">
-      Clique abaixo para se inspirar!
-    </p>
-    <button onclick="gerarMotivacao()" class="mt-2 px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
-      Gerar Mensagem Positiva
+<!-- Hero -->
+<section class="text-center max-w-2xl mx-auto px-6 mt-20 mb-12">
+  <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
+  <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
+  <a href="#crypto">
+    <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
+      Ver Criptomoedas
     </button>
-  </section>
+  </a>
+</section>
 
-  <!-- Rodapé -->
-  <footer class="bg-[#1e293b] text-center py-6 text-gray-400">
-    © 2025 Ivo Fernandes. Todos os direitos reservados.
-  </footer>
+<!-- Quadros interativos -->
+<section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
+  <!-- Quadro 1 -->
+  <div onclick="this.querySelector('.preserve-3d').classList.toggle('rotate-y-180')" class="cursor-pointer perspective">
+    <div class="w-full h-64 preserve-3d group">
+      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:scale-105 transition">
+        <div class="text-center text-4xl mb-2">⚙️</div>
+        <h3 class="text-lg font-bold text-white text-center mb-4">AutoCAD</h3>
+        <a href="autocad.html">
+          <button class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700">Acessar</button>
+        </a>
+      </div>
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+        AutoCAD Civil 3D aplicado com tutoriais visuais, exemplos técnicos e comandos explicados passo a passo.
+      </div>
+    </div>
+  </div>
 
-  <!-- JS das frases -->
-  <script>
-    const mensagens = [
-      "Você é mais forte do que imagina.",
-      "A cada passo, você está mais perto do seu objetivo.",
-      "Grandes jornadas começam com pequenas decisões.",
-      "Não pare até se orgulhar.",
-      "Seu esforço de hoje é seu sucesso de amanhã."
-    ];
+  <!-- Quadro 2 -->
+  <div onclick="this.querySelector('.preserve-3d').classList.toggle('rotate-y-180')" class="cursor-pointer perspective">
+    <div class="w-full h-64 preserve-3d group">
+      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:scale-105 transition">
+        <div class="text-center text-4xl mb-2">🤖</div>
+        <h3 class="text-lg font-bold text-white text-center mb-4">IA Aplicada</h3>
+        <a href="ia.html">
+          <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Acessar</button>
+        </a>
+      </div>
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+        Ferramentas com Inteligência Artificial para gerar conteúdo, automatizar processos e resolver tarefas complexas.
+      </div>
+    </div>
+  </div>
 
-    function gerarMotivacao() {
-      const el = document.getElementById('motivacional');
-      el.classList.add("opacity-0");
-      setTimeout(() => {
-        el.textContent = mensagens[Math.floor(Math.random() * mensagens.length)];
-        el.classList.remove("opacity-0");
-      }, 500);
+  <!-- Quadro 3 -->
+  <div onclick="this.querySelector('.preserve-3d').classList.toggle('rotate-y-180')" class="cursor-pointer perspective">
+    <div class="w-full h-64 preserve-3d group">
+      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl hover:scale-105 transition">
+        <div class="text-center text-4xl mb-2">📊</div>
+        <h3 class="text-lg font-bold text-white text-center mb-4">Criptomoedas</h3>
+        <a href="#crypto">
+          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Ver</button>
+        </a>
+      </div>
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+        Visualize gráficos de entrada e saída, crescimento do ativo e histórico de performance financeira do projeto.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção Crypto com Frase Motivacional -->
+<section id="crypto" class="text-center max-w-xl mx-auto px-4 mb-20">
+  <h2 class="text-3xl font-bold text-green-400 mb-4">Ativo Digital do Projeto</h2>
+  <p class="text-sm text-gray-400 mb-6">Lucros acumulados fortalecem o valor interno do projeto. Inspire-se e continue crescendo.</p>
+
+  <p id="motivacional" class="text-xl font-light text-green-300 transition-all duration-700 ease-in-out mb-4 font-[Orbitron]">
+    Clique abaixo para se inspirar!
+  </p>
+  <button onclick="gerarMotivacao()" class="mt-2 px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
+    Gerar Mensagem Positiva
+  </button>
+</section>
+
+<!-- Rodapé -->
+<footer class="bg-[#1e293b] text-center py-6 text-gray-400">
+  © 2025 Ivo Fernandes. Todos os direitos reservados.
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Mostrar nome fixo ao rolar
+  window.addEventListener("scroll", () => {
+    const nome = document.getElementById("flutuante");
+    if (window.scrollY > 120) {
+      nome.classList.remove("hidden");
+    } else {
+      nome.classList.add("hidden");
     }
-  </script>
+  });
+
+  // Voltar para o topo
+  function voltarTopo() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Gerador de frases motivacionais
+  const mensagens = [
+    "Você é mais forte do que imagina.",
+    "A cada passo, você está mais perto do seu objetivo.",
+    "Grandes jornadas começam com pequenas decisões.",
+    "Não pare até se orgulhar.",
+    "Seu esforço de hoje é seu sucesso de amanhã."
+  ];
+
+  function gerarMotivacao() {
+    const el = document.getElementById('motivacional');
+    el.classList.add("opacity-0");
+    setTimeout(() => {
+      el.textContent = mensagens[Math.floor(Math.random() * mensagens.length)];
+      el.classList.remove("opacity-0");
+    }, 500);
+  }
+</script>
 
 </body>
 </html>
