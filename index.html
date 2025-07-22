@@ -3,256 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Ivo Fernandes | Futurista VR & IA</title>
+  <title>Ivo Fernandes | Futurista VR & IA (Desktop)</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.4/dist/tailwind.min.css"/>
+  <style>
+    body { font-family: 'Orbitron','Roboto Mono',sans-serif; background:#0a0a0a; color:#ccc; }
+    h1,h2,h3 { color:#00ffff; text-shadow:0 0 10px #00ffff; }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="scroll-smooth">
-  <!-- Fundo particulas VR -->
-  <canvas id="fundoVR" class="fixed top-0 left-0 w-full h-full z-[-1]"></canvas>
+<body class="relative overflow-x-hidden">
+  <canvas id="fundoVR" class="fixed inset-0 w-full h-full z-0"></canvas>
 
-  <!-- Header -->
-  <header class="bg-[#0b1120] py-4 shadow-md relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+  <div class="max-w-7xl mx-auto px-8 py-12 space-y-24 relative z-10">
+
+    <!-- HEADER -->
+    <header class="flex justify-between items-center">
       <div>
-        <a href="#topo" class="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition block">Ivo Fernandes</a>
-        <p class="text-sm text-gray-400">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
+        <a href="#topo" class="text-2xl font-bold text-cyan-400 hover:text-cyan-300 transition">Ivo Fernandes</a>
+        <p class="text-gray-400">Engenharia • IA • Conteúdo • Crypto</p>
       </div>
-      <nav class="space-x-6 text-sm font-medium text-gray-300">
-        <a href="#eng" class="hover:text-cyan-400 transition">Engenharia</a>
-        <a href="#crypto" class="hover:text-cyan-400 transition">Crypto</a>
-        <a href="#motivacao" class="hover:text-cyan-400 transition">Motivação</a>
-        <a href="#videos-recompensa" class="hover:text-yellow-400 transition">Ganhar Satoshis</a>
-        <button onclick="loginAdminPrompt()" class="text-sm text-red-500 hover:text-red-400">Painel Admin</button>
+      <nav class="space-x-8 text-gray-300 text-lg">
+        <a href="#chat-ia" class="hover:text-cyan-400">Assistente IA</a>
+        <a href="#ativo" class="hover:text-cyan-400">Ativo Digital</a>
+        <a href="#simulador" class="hover:text-cyan-400">Simulador</a>
+        <a href="#gamificacao" class="hover:text-cyan-400">Gamificação</a>
+        <button onclick="loginAdminPrompt()" class="text-red-500 hover:text-red-400">Painel Admin</button>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <!-- Chat IA -->
-  <section id="chat-ia" class="bg-gray-950 text-white rounded-2xl p-6 max-w-4xl mx-auto my-20 shadow-2xl border border-cyan-500">
-    <h2 class="text-2xl font-bold mb-4 text-cyan-400 text-center">🤖 Assistente IA</h2>
-    <div id="chatBox" class="h-80 overflow-y-auto p-4 bg-gray-900 rounded-xl border border-cyan-700 mb-4 space-y-3 shadow-inner"></div>
-    <div class="flex items-center gap-4">
-      <input type="text" id="userInput" placeholder="Pergunte algo..." class="flex-1 px-4 py-2 rounded-lg bg-gray-800 text-white border border-cyan-500 focus:outline-none">
-      <button onclick="enviarMensagem()" class="bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded-lg font-bold shadow-md">Enviar</button>
-    </div>
-  </section>
-
-  <!-- Ativo Digital e Gráfico -->
-  <section id="ativo" class="bg-gray-900 rounded-2xl p-10 max-w-6xl mx-auto my-24 shadow-2xl">
-    <h2 class="text-3xl font-bold text-center text-white mb-8">📈 Nosso Ativo Digital</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-      <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg"><div class="text-4xl">💰</div><p class="text-gray-400">Valor Atual</p><p class="text-2xl font-bold text-white" id="valorAtual">R$ 0,00</p></div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg"><div class="text-4xl">📊</div><p class="text-gray-400">Lucro</p><p class="text-2xl font-bold text-green-400" id="lucroAtual">R$ 0,00</p></div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg"><div class="text-4xl">✅</div><p class="text-gray-400">Transações</p><p class="text-2xl font-bold text-white" id="transCount">0</p></div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg"><div class="text-4xl">⚠️</div><p class="text-gray-400">Perdas</p><p class="text-2xl font-bold text-red-400" id="perdasCount">0</p></div>
-    </div>
-    <div class="mt-10 bg-gray-800 rounded-xl p-6 shadow-lg">
-      <canvas id="graficoAtivoDigital" height="120"></canvas>
-    </div>
-  </section>
-
-  <!-- Simulador -->
-  <section id="simulador" class="bg-gray-950 text-white rounded-2xl p-6 max-w-4xl mx-auto my-12 shadow-2xl border border-green-400">
-    <h2 class="text-2xl font-bold mb-4 text-green-400 text-center">🧮 Simulador de Investimento</h2>
-    <div class="flex flex-col md:flex-row items-center gap-4 mb-4">
-      <input type="number" id="valorInvestido" placeholder="Valor em R$" class="flex-1 px-4 py-2 bg-gray-800 text-white border border-green-500 rounded-lg">
-      <select id="criptoSelecionada" class="px-4 py-2 bg-gray-800 text-white border border-green-500 rounded-lg">
-        <option value="bitcoin">Bitcoin</option>
-        <option value="ethereum">Ethereum</option>
-      </select>
-      <button onclick="simularInvestimento()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-bold shadow-md">Simular</button>
-    </div>
-    <div id="resultadoSimulador" class="text-center text-lg mt-4 text-green-300 font-mono"></div>
-  </section>
-
-  <!-- Gamificação -->
-  <section id="gamificacao" class="bg-gray-950 text-white rounded-2xl p-6 max-w-4xl mx-auto my-20 shadow-2xl border border-purple-500">
-    <h2 class="text-2xl font-bold mb-4 text-purple-400 text-center">🎮 Progresso & Níveis</h2>
-    <div class="text-center mb-4">
-      <p>Pontos acumulados: <span id="pontosTotais" class="text-green-400 font-bold">0</span></p>
-      <p>Nível Atual: <span id="nivelUsuario" class="text-cyan-400 font-mono">Iniciante</span></p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-      <div class="p-4 bg-gray-900 rounded-xl shadow hover:scale-105 transition">🧿<p class="text-sm mt-2 text-purple-300">Curioso Digital</p></div>
-      <div class="p-4 bg-gray-900 rounded-xl shadow hover:scale-105 transition">💬<p class="text-sm mt-2 text-purple-300">Explorador IA</p></div>
-      <div class="p-4 bg-gray-900 rounded-xl shadow hover:scale-105 transition">🧠<p class="text-sm mt-2 text-purple-300">CriptoVisionário</p></div>
-      <div class="p-4 bg-gray-900 rounded-xl shadow hover:scale-105 transition">👾<p class="text-sm mt-2 text-purple-300">Neural Hacker</p></div>
-    </div>
-  </section>
-
-  <!-- Admin -->
-  <section id="admin" class="hidden bg-gray-950 rounded-2xl p-6 max-w-3xl mx-auto my-20 shadow-2xl border border-red-500">
-    <h2 class="text-2xl font-bold mb-4 text-red-400 text-center">🔧 Painel Admin</h2>
-    <div id="adminLogin" class="text-center">
-      <button onclick="loginAdminPrompt()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-bold">Entrar como Admin</button>
-      <button onclick="logoutAdmin()" class="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded-lg font-bold hidden" id="btnLogout">Sair</button>
-    </div>
-    <div id="adminArea" class="hidden">
-      <button onclick="verVisualizacoes()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg mb-4 w-full">📋 Ver Visualizações</button>
-      <div id="listaVisualizacoes" class="max-h-64 overflow-y-auto text-sm text-gray-300 mb-6"></div>
-      <button onclick="verConversas()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg mb-4 w-full">💬 Ver Conversas IA</button>
-      <div id="listaConversas" class="max-h-64 overflow-y-auto text-sm text-gray-300 mb-6"></div>
-      <h3 class="text-lg font-semibold mb-2 text-gray-200">Configurar Pontos/Satoshis</h3>
-      <div class="space-y-3 mb-6">
-        <div class="flex justify-between gap-4"><span>📺 Vídeo:</span><input type="number" id="ptsVideo" class="w-20 px-2 bg-gray-800 text-white rounded" placeholder="10"></div>
-        <div class="flex justify-between gap-4"><span>💬 Chat:</span><input type="number" id="ptsChat" class="w-20 px-2 bg-gray-800 text-white rounded" placeholder="15"></div>
-        <div class="flex justify-between gap-4"><span>📈 Simulação:</span><input type="number" id="ptsSimulacao" class="w-20 px-2 bg-gray-800 text-white rounded" placeholder="20"></div>
+    <!-- CHAT IA -->
+    <section id="chat-ia" class="bg-gray-950 rounded-2xl p-8 shadow-2xl border border-cyan-500">
+      <h2 class="text-3xl font-bold mb-6 text-center">🤖 Assistente IA</h2>
+      <div id="chatBox" class="h-96 overflow-y-auto p-6 bg-gray-900 rounded-xl border border-cyan-700 mb-6"></div>
+      <div class="flex gap-4">
+        <input id="userInput" type="text" placeholder="Pergunte algo..." class="flex-1 px-4 py-3 bg-gray-800 text-white border border-cyan-500 rounded-lg focus:outline-none">
+        <button onclick="enviarMensagem()" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 rounded-lg font-bold">Enviar</button>
       </div>
-      <button onclick="salvarConfig()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold w-full">Salvar Configuração</button>
-    </div>
-  </section>
+    </section>
 
-  <!-- Vídeo recompensa -->
-  <section id="videos-recompensa" class="bg-gray-900 rounded-2xl p-6 max-w-5xl mx-auto my-24 shadow-xl">
-    <h2 class="text-2xl font-bold text-white mb-6 text-center">🎥 Assista e Ganhe Satoshis</h2>
-    <div class="bg-gray-800 rounded-xl p-4">
-      <iframe id="video1" width="100%" height="315" class="rounded-md shadow-md" src="https://www.youtube.com/embed/SEU_VIDEO_ID_AQUI" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      <button onclick="confirmarVisualizacao()" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">✅ Já Assisti</button>
-      <p id="respostaRecompensa" class="mt-3 text-sm text-green-400"></p>
-    </div>
-  </section>
+    <!-- ATIVO DIGITAL + GRÁFICO -->
+    <section id="ativo" class="grid lg:grid-cols-3 gap-8">
+      <div class="bg-gray-800 rounded-xl p-8 text-center shadow-lg hover:scale-105 transition-transform">
+        <div class="text-5xl mb-4">💰</div>
+        <p class="text-gray-400">Valor Atual</p>
+        <p id="valorAtual" class="text-3xl font-bold text-white">R$ 0,00</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-8 text-center shadow-lg hover:scale-105 transition-transform">
+        <div class="text-5xl mb-4">📊</div>
+        <p class="text-gray-400">Lucro</p>
+        <p id="lucroAtual" class="text-3xl font-bold text-green-400">R$ 0,00</p>
+      </div>
+      <div class="col-span-3 lg:col-span-1 bg-gray-800 rounded-xl p-8 shadow-lg hover:scale-105 transition-transform lg:col-start-1 lg:row-start-2 lg:col-span-3">
+        <canvas id="graficoAtivoDigital" class="w-full h-64 lg:h-80"></canvas>
+      </div>
+    </section>
 
-  <!-- Scripts -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    <!-- SIMULADOR -->
+    <section id="simulador" class="bg-gray-950 rounded-2xl p-8 shadow-2xl border border-green-400">
+      <h2 class="text-3xl font-bold mb-6 text-center text-green-400">🧮 Simulador de Investimento</h2>
+      <div class="flex items-center gap-6">
+        <input id="valorInvestido" type="number" placeholder="Valor em R$" class="flex-1 px-4 py-3 bg-gray-800 text-white border border-green-500 rounded-lg">
+        <select id="criptoSelecionada" class="px-4 py-3 bg-gray-800 text-white border border-green-500 rounded-lg">
+          <option value="bitcoin">Bitcoin</option>
+          <option value="ethereum">Ethereum</option>
+        </select>
+        <button onclick="simularInvestimento()" class="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-bold">Simular</button>
+      </div>
+      <p id="resultadoSimulador" class="mt-6 text-center text-lg text-green-300 font-mono"></p>
+    </section>
 
-    const firebaseConfig = {
-      apiKey: "SUA_API_KEY",
-      authDomain: "SEU_AUTH_DOMAIN",
-      projectId: "SEU_PROJECT_ID",
-      storageBucket: "SEU_BUCKET",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
+    <!-- GAMIFICAÇÃO -->
+    <section id="gamificacao" class="bg-gray-950 rounded-2xl p-8 shadow-2xl border border-purple-500">
+      <h2 class="text-3xl font-bold mb-6 text-center text-purple-400">🎮 Progresso & Níveis</h2>
+      <div class="text-center space-y-2 mb-8">
+        <p>Pontos acumulados: <span id="pontosTotais" class="text-green-400 font-bold">0</span></p>
+        <p>Nível Atual: <span id="nivelUsuario" class="text-cyan-400 font-mono">Iniciante</span></p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-gray-900 rounded-xl p-6 shadow hover:scale-105 transition">🧿<p class="mt-2 text-purple-300">Curioso Digital</p></div>
+        <div class="bg-gray-900 rounded-xl p-6 shadow hover:scale-105 transition">💬<p class="mt-2 text-purple-300">Explorador IA</p></div>
+        <div class="bg-gray-900 rounded-xl p-6 shadow hover:scale-105 transition">🧠<p class="mt-2 text-purple-300">CriptoVisionário</p></div>
+        <div class="bg-gray-900 rounded-xl p-6 shadow hover:scale-105 transition">👾<p class="mt-2 text-purple-300">Neural Hacker</p></div>
+      </div>
+    </section>
 
-    // Fundo VR
-    const canvas = document.getElementById("fundoVR"), ctx2 = canvas.getContext("2d");
-    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
-    window.addEventListener("resize", resize); resize();
-    const nodes = Array.from({ length: 100 }, () => ({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5 }));
-    function draw(){ ctx2.clearRect(0,0,canvas.width,canvas.height); nodes.forEach(n=>{ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>canvas.width)n.vx*=-1; if(n.y<0||n.y>canvas.height)n.vy*=-1; ctx2.fillStyle="#39ff14";ctx2.fillRect(n.x,n.y,2,2); });
-      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){ const a=nodes[i],b=nodes[j]; const d=Math.hypot(a.x-b.x,a.y-b.y); if(d<100){ ctx2.strokeStyle="rgba(57,255,20,"+(1-d/100)+")"; ctx2.beginPath();ctx2.moveTo(a.x,a.y);ctx2.lineTo(b.x,b.y);ctx2.stroke(); }} requestAnimationFrame(draw); }
-    draw();
+    <!-- ADMIN PANEL -->
+    <section id="admin" class="hidden bg-gray-950 rounded-2xl p-8 shadow-2xl border border-red-500">
+      <div id="adminLogin" class="text-center">
+        <button onclick="loginAdminPrompt()" class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-bold">Entrar como Admin</button>
+        <button id="btnLogout" onclick="logoutAdmin()" class="px-6 py-3 bg-gray-600 hover:bg-gray-500 rounded-lg font-bold hidden">Sair</button>
+      </div>
+      <div id="adminArea" class="hidden space-y-6">
+        <div>
+          <button onclick="verVisualizacoes()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg w-full">📋 Ver Visualizações</button>
+          <div id="listaVisualizacoes" class="mt-2 max-h-48 overflow-y-auto text-sm text-gray-300"></div>
+        </div>
+        <div>
+          <button onclick="verConversas()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg w-full">💬 Ver Conversas IA</button>
+          <div id="listaConversas" class="mt-2 max-h-48 overflow-y-auto text-sm text-gray-300"></div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-200">Configurar Pontos/Satoshis</h3>
+          <div class="grid grid-cols-3 gap-4">
+            <div><label>📺 Vídeo:</label><input type="number" id="ptsVideo" class="w-full px-2 py-1 bg-gray-800 text-white rounded"></div>
+            <div><label>💬 Chat:</label><input type="number" id="ptsChat" class="w-full px-2 py-1 bg-gray-800 text-white rounded"></div>
+            <div><label>📈 Simulação:</label><input type="number" id="ptsSimulacao" class="w-full px-2 py-1 bg-gray-800 text-white rounded"></div>
+          </div>
+          <button onclick="salvarConfig()" class="mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold">Salvar Configuração</button>
+        </div>
+      </div>
+    </section>
 
-    // Gamificação
-    let pontos=0, cfg={ptsVideo:10,ptsChat:15,ptsSimulacao:20};
-    function adicionarPontos(v){ pontos+=v; document.getElementById("pontosTotais").innerText=pontos;
-      let n="Iniciante"; if(pontos>=100)n="Neural Hacker 👾"; else if(pontos>=60)n="CriptoVisionário 🧠"; else if(pontos>=30)n="Explorador IA 💬"; else if(pontos>=10)n="Curioso Digital 🧿"; document.getElementById("nivelUsuario").innerText=n; }
-    function adicionarPontosAcao(tipo){ adicionarPontos(cfg["pts"+tipo.charAt(0).toUpperCase()+tipo.slice(1)]); }
+    <!-- VÍDEO RECOMPENSA -->
+    <section id="videos-recompensa" class="bg-gray-900 rounded-2xl p-8 shadow-xl">
+      <h2 class="text-3xl font-bold mb-6 text-center">🎥 Assista e Ganhe Satoshis</h2>
+      <div class="bg-gray-800 rounded-xl p-6">
+        <iframe id="video1" width="100%" height="360" class="rounded-lg shadow-md" src="https://www.youtube.com/embed/SEU_VIDEO_ID_AQUI" allowfullscreen></iframe>
+        <button onclick="confirmarVisualizacao()" class="mt-4 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 rounded-lg font-bold">✅ Já Assisti</button>
+        <p id="respostaRecompensa" class="mt-4 text-center text-green-400"></p>
+      </div>
+    </section>
+  </div>
 
-    // Chat IA
-    async function enviarMensagem(){
-      const inp=document.getElementById("userInput"), msg=inp.value.trim(); if(!msg)return;
-      const box=document.getElementById("chatBox");
-      box.innerHTML+=`<div class="text-right"><p class="inline-block bg-cyan-700 px-4 py-2 rounded-xl max-w-[80%]">${msg}</p></div>`;
-      inp.value=""; box.scrollTop=box.scrollHeight;
-      try{
-        const res=await fetch("https://api.openai.com/v1/chat/completions",{ method:"POST", headers:{"Content-Type":"application/json","Authorization":"Bearer SUA_OPENAI_KEY"}, body:JSON.stringify({model:"gpt-3.5-turbo",messages:[{role:"user",content:msg}],temperature:0.7})});
-        const data=await res.json();
-        const reply=data.choices?.[0]?.message?.content||"❌ Erro";
-        box.innerHTML+=`<div class="text-left"><p class="inline-block bg-gray-700 px-4 py-2 rounded-xl max-w-[80%] text-green-400">${reply}</p></div>`;
-        box.scrollTop=box.scrollHeight;
-        adicionarPontosAcao('chat');
-        await setDoc(doc(db,"conversas",String(Date.now())),{userMsg:msg,iaMsg:reply,timestamp:serverTimestamp()});
-      }catch(e){console.error(e);}
-    }
+  <!-- Aqui incluir o script com toda lógica Firebase, Chat, Simulador etc. -->
+  <!-- Copie o script do index.html anterior -->
 
-    // Chart.js gráfico
-    const ctx = document.getElementById('graficoAtivoDigital').getContext('2d');
-    new Chart(ctx,{type:'line',data:{labels:['Jul 1','Jul 5','Jul 10','Jul 15','Jul 20'],datasets:[{label:'Lucro (R$)',data:[0,150,300,260,400],fill:true,borderColor:'#00ffff',backgroundColor:'rgba(0,255,255,0.1)',tension:0.4,pointBorderWidth:2,pointBorderColor:'#00ffff'}]},options:{plugins:{legend:{labels:{color:'white'}}},scales:{x:{ticks:{color:'white'}},y:{ticks:{color:'white'}}}}});
-
-    // Simulador coingecko
-    async function fetchPrecoAtual(c){ const r=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${c}&vs_currencies=brl`); const d=await r.json(); return d[c]?.brl; }
-    async function fetchPrecoHistorico(c,dt){ const r=await fetch(`https://api.coingecko.com/api/v3/coins/${c}/history?date=${dt}&localization=false`); const d=await r.json(); return d.market_data.current_price.brl; }
-    async function simularInvestimento(){
-      const v=parseFloat(document.getElementById("valorInvestido").value), c=document.getElementById("criptoSelecionada").value, rdiv=document.getElementById("resultadoSimulador");
-      if(!v||v<=0){rdiv.textContent="Insira valor válido.";return;}
-      const today=new Date(), back=new Date(); back.setFullYear(today.getFullYear()-1);
-      const dt=`${String(back.getDate()).padStart(2,'0')}-${String(back.getMonth()+1).padStart(2,'0')}-${back.getFullYear()}`;
-      try{
-        const p0=await fetchPrecoHistorico(c,dt), p1=await fetchPrecoAtual(c);
-        const qtd=v/p0, vhoje=qtd*p1, lp=((vhoje/v)-1)*100;
-        rdiv.innerHTML=`🟢 Com R$${v.toFixed(2)} em ${dt}, teria comprado ${qtd.toFixed(4)} ${c} e hoje valeria R$${vhoje.toFixed(2)} (${lp.toFixed(2)}%).`;
-        adicionarPontosAcao('simulacao');
-      }catch(e){console.error(e);rdiv.textContent="Erro ao buscar dados.";}
-    }
-
-    // vídeo recompensa
-    async function confirmarVisualizacao(){
-      const resDiv=document.getElementById("respostaRecompensa");
-      const ip=await fetch("https://api.ipify.org?format=json").then(r=>r.json()).then(d=>d.ip);
-      const key=`video1_${ip}`;
-      const docSnap=await getDoc(doc(db,"visualizacoes",key));
-      if(!docSnap.exists()){
-        await setDoc(doc(db,"visualizacoes",key),{video:"video1",ip, timestamp:serverTimestamp()});
-        resDiv.innerText="✅ Visualização registrada!"; adicionarPontosAcao('video');
-      } else resDiv.innerText="⚠️ Já registrado hoje.";
-    }
-
-    // Admin Auth
-    function loginAdminPrompt(){ const e=prompt("Email admin?"); const s=prompt("Senha?"); loginAdmin(e,s); }
-    async function loginAdmin(e,s){ try { await signInWithEmailAndPassword(auth,e,s); document.getElementById("btnLogout").classList.remove("hidden"); } catch(e){alert("Falha no login: "+e.message);} }
-    async function logoutAdmin(){ signOut(auth); }
-
-    onAuthStateChanged(auth,user=>{
-      const sec=document.getElementById("admin");
-      if(user){
-        sec.classList.remove("hidden");
-        document.getElementById("adminLogin").classList.add("hidden");
-        document.getElementById("adminArea").classList.remove("hidden");
-        document.getElementById("btnLogout").classList.remove("hidden");
-        carregarConfig();
-      } else {
-        sec.classList.add("hidden");
-        document.getElementById("adminLogin").classList.remove("hidden");
-        document.getElementById("adminArea").classList.add("hidden");
-        document.getElementById("btnLogout").classList.add("hidden");
-      }
-    });
-
-    // Configuração dinâmica
-    async function carregarConfig(){
-      const snap=await getDoc(doc(db,"config","pontos"));
-      if(snap.exists()){
-        cfg=snap.data();
-        document.getElementById("ptsVideo").value=cfg.ptsVideo;
-        document.getElementById("ptsChat").value=cfg.ptsChat;
-        document.getElementById("ptsSimulacao").value=cfg.ptsSimulacao;
-      }
-    }
-    async function salvarConfig(){
-      cfg.ptsVideo=parseInt(document.getElementById("ptsVideo").value);
-      cfg.ptsChat=parseInt(document.getElementById("ptsChat").value);
-      cfg.ptsSimulacao=parseInt(document.getElementById("ptsSimulacao").value);
-      await setDoc(doc(db,"config","pontos"),cfg);
-      alert("Configurações salvas!");
-    }
-
-    // Visualizar logs admin
-    async function verVisualizacoes(){
-      const q=await getDocs(collection(db,"visualizacoes")), div=document.getElementById("listaVisualizacoes");
-      div.innerHTML="";
-      q.forEach(d=>{
-        const it=d.data();
-        div.innerHTML+=`<p>🎥 ${it.video} — IP:${it.ip} — ${new Date(it.timestamp.seconds*1000).toLocaleString()}</p>`;
-      });
-    }
-    async function verConversas(){
-      const q=await getDocs(collection(db,"conversas")), div=document.getElementById("listaConversas");
-      div.innerHTML="";
-      q.forEach(d=>{
-        const it=d.data();
-        div.innerHTML+=`<p><strong>${new Date(it.timestamp.seconds*1000).toLocaleString()}</strong><br>🧑 ${it.userMsg}<br>🤖 ${it.iaMsg}</p><hr>`;
-      });
-    }
-
-  </script>
 </body>
 </html>
