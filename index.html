@@ -135,32 +135,6 @@
     </div>
   </section>
 
-  <section class="bg-gray-900 rounded-2xl p-6 max-w-6xl mx-auto mb-24 shadow-xl">
-    <h2 class="text-2xl font-bold text-white mb-6 text-center">O que as pessoas estão dizendo</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <p class="text-sm italic text-gray-300 mb-2">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p>
-        <p class="text-xs text-gray-400">— Mariana L.</p>
-      </div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <p class="text-sm italic text-gray-300 mb-2">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p>
-        <p class="text-xs text-gray-400">— João V.</p>
-      </div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Camila" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <p class="text-sm italic text-gray-300 mb-2">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p>
-        <p class="text-xs text-gray-400">— Camila F.</p>
-      </div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-        <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Ricardo" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <p class="text-sm italic text-gray-300 mb-2">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p>
-        <p class="text-xs text-gray-400">— Ricardo T.</p>
-      </div>
-    </div>
-  </section>
-
   <section id="videos-recompensa" class="bg-gray-900 rounded-2xl p-6 max-w-5xl mx-auto my-24 shadow-xl px-4 sm:px-6">
     <h2 class="text-2xl font-bold text-white mb-6 text-center">🎥 Assista e Ganhe Satoshis</h2>
     <div class="bg-gray-800 rounded-xl p-4 text-center">
@@ -198,15 +172,6 @@
   const modalResposta = document.getElementById('modal-resposta');
   const modalSubmit = document.getElementById('modal-submit');
 
-  function gerarMensagem() {
-    const mensagens = ["Você é capaz de conquistar o que quiser!","Acredite no seu potencial todos os dias.","O futuro pertence a quem se prepara hoje.","Nunca é tarde para recomeçar com força total."];
-    const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
-    document.getElementById("mensagem").innerText = msg;
-    const container = document.getElementById("mensagem-container");
-    container.style.opacity = 1;
-    setTimeout(() => { container.style.opacity = 0; }, 5000);
-  }
-
   function abrirModal(titulo, placeholder) {
     modalTitulo.innerText = titulo;
     modalInput.placeholder = placeholder;
@@ -223,6 +188,38 @@
   }
   
   // --- Funções que chamam a API ---
+  async function gerarMensagem() {
+    const button = document.querySelector('#topo button');
+    const container = document.getElementById("mensagem-container");
+    const texto = document.getElementById("mensagem");
+
+    button.disabled = true;
+    button.innerText = "Gerando...";
+    texto.innerText = "";
+    container.style.opacity = 1;
+
+    try {
+      const response = await fetch('/api/positive-message');
+      if (!response.ok) {
+        throw new Error('A IA não conseguiu gerar uma mensagem.');
+      }
+      const data = await response.json();
+      texto.innerText = `"${data.message}"`;
+
+    } catch (error) {
+      console.error("Erro ao gerar mensagem:", error);
+      texto.innerText = "Não foi possível gerar uma mensagem. Tente novamente.";
+    } finally {
+      button.disabled = false;
+      button.innerText = "Gerar Outra Mensagem";
+      setTimeout(() => {
+          if(container.style.opacity === "1") {
+             container.style.opacity = 0;
+          }
+      }, 8000);
+    }
+  }
+
   async function carregarDadosDoAtivo() {
     try {
       const response = await fetch('/api/ativo');
