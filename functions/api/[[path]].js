@@ -1,3 +1,5 @@
+// Código para functions/api/[[path]].js
+
 // Dados falsos que simulam nosso banco de dados
 const mockAtivo = {
   valorAtual: 1850.55,
@@ -19,24 +21,21 @@ async function handleRequest(context) {
   const apiRoute = url.pathname.replace('/api/', '');
 
   try {
-    // Rota para buscar os dados do ativo (agora usa os dados falsos)
     if (apiRoute === 'ativo') {
       return new Response(JSON.stringify(mockAtivo), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    // Rota para buscar o histórico (agora usa os dados falsos)
     if (apiRoute === 'historico') {
       return new Response(JSON.stringify(mockHistorico), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    // Rota para interagir com a IA (continua funcionando normalmente)
     if (apiRoute === 'ai' && request.method === 'POST') {
       const { prompt } = await request.json();
-      const { AI } = context.env; // Note que a IA ainda precisa do 'env'
+      const { AI } = context.env;
 
       const aiResponse = await AI.run('@cf/meta/llama-2-7b-chat-int8', {
         prompt: `Você é um assistente prestativo. Responda à seguinte pergunta de forma concisa e direta: ${prompt}`,
