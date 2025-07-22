@@ -112,15 +112,62 @@
 
 <script>
   const modal = document.getElementById('modal-ia'), modalContent = document.getElementById('modal-content'), modalTitulo = document.getElementById('modal-titulo'), modalBody = document.getElementById('modal-body'), modalInput = document.getElementById('modal-input'), modalResposta = document.getElementById('modal-resposta'), modalSubmit = document.getElementById('modal-submit');
-  function abrirModal(t, p, l, x) { const n = document.getElementById('modal-link'); modalTitulo.innerText = t; modalInput.placeholder = p; n.href = l; n.innerText = x; l.includes('engenharia') && (n.className = 'text-cyan-400 font-semibold hover:text-cyan-300 transition text-sm'); l.includes('crypto') && (n.className = 'text-purple-400 font-semibold hover:text-purple-300 transition text-sm'); l.includes('motivacao') && (n.className = 'text-pink-400 font-semibold hover:text-pink-300 transition text-sm'); modalResposta.innerHTML = ''; modalInput.value = ''; modalBody.style.display = 'block'; modal.classList.remove('hidden'); setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0') }, 10) }
+  const modalConfig = document.getElementById('modal-config'), modalConfigContent = document.getElementById('modal-config-content');
+  const modalConfirm = document.getElementById('modal-confirm'), modalConfirmContent = document.getElementById('modal-confirm-content'), confirmTitle = document.getElementById('confirm-title'), confirmText = document.getElementById('confirm-text');
+
+  function abrirModal(t, p, l, x) {
+    const n = document.getElementById('modal-link'), o = n.parentElement;
+    modalTitulo.innerText = t; modalInput.placeholder = p;
+    if (l && x) {
+      n.href = l; n.innerText = x;
+      if (l.includes('engenharia')) n.className = 'text-cyan-400 font-semibold hover:text-cyan-300 transition text-sm';
+      if (l.includes('crypto')) n.className = 'text-purple-400 font-semibold hover:text-purple-300 transition text-sm';
+      if (l.includes('motivacao')) n.className = 'text-pink-400 font-semibold hover:text-pink-300 transition text-sm';
+      o.style.display = 'block';
+    } else { o.style.display = 'none'; }
+    modalResposta.innerHTML = ''; modalInput.value = ''; modalBody.style.display = 'block'; modal.classList.remove('hidden'); setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0') }, 10)
+  }
   function fecharModal() { modalContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modal.classList.add('hidden') }, 200) }
-  async function abrirModalMotivacao() { abrirModal('Conselho do Dia', ''); modalBody.style.display = 'none'; modalResposta.innerHTML = '<p>Buscando inspiração para você...</p>'; try { const e = await fetch('/api/motivation-summary'); if (!e.ok) throw new Error('Falha ao buscar o conselho.'); const o = await e.json(); modalResposta.innerHTML = `<p class="text-gray-300 mb-6">${o.summary}</p><a href="motivacao.html" class="inline-block w-full text-center bg-pink-600 text-white font-bold py-3 rounded-lg hover:bg-pink-700 transition">Ver mais na Página de Motivação</a>` } catch (e) { modalResposta.innerHTML = '<p>Não foi possível buscar um conselho agora. Tente novamente.</p>' } }
-  async function gerarMensagem() { const e = document.querySelector('#topo button'), o = document.getElementById("mensagem-container"), t = document.getElementById("mensagem"); e.disabled = !0; e.innerText = "Gerando..."; t.innerText = ""; o.style.opacity = 1; try { const n = await fetch('/api/positive-message'); if (!n.ok) throw new Error('A IA não conseguiu gerar uma mensagem.'); const s = await n.json(); t.innerText = `"${s.message}"` } catch (n) { t.innerText = "Não foi possível gerar uma mensagem. Tente novamente." } finally { e.disabled = !1; e.innerText = "Gerar Outra Mensagem"; setTimeout(() => { "1" === o.style.opacity && (o.style.opacity = 0) }, 8e3) } }
-  async function carregarDadosDoAtivo() { try { const e = await fetch('/api/ativo'); if (!e.ok) throw new Error('Falha ao buscar dados.'); const o = await e.json(); const t = e => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(e || 0); document.getElementById('valor-atual').innerText = t(o.valorAtual); document.getElementById('lucro-acumulado').innerText = t(o.lucroAcumulado); document.getElementById('transacoes-positivas').innerText = o.transacoesPositivas || 0; document.getElementById('perdas').innerText = o.perdas || 0 } catch (e) { document.getElementById('valor-atual').innerText = "Erro" } }
-  window.mostrarHistorico = async function () { abrirModal('Histórico de Transações', ''); modalBody.style.display = 'none'; modalResposta.innerHTML = '<p>Buscando histórico...</p>'; try { const e = await fetch('/api/historico'); if (!e.ok) throw new Error('Falha ao buscar histórico.'); const o = await e.json(); if (0 === o.length) { modalResposta.innerHTML = '<p>Nenhuma transação encontrada.</p>'; return } let t = '<ul class="space-y-3 text-left">'; o.forEach(e => { const o = new Date(e.data + "T00:00:00").toLocaleDateString('pt-BR'), n = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(e.valor || 0), s = e.tipo.toLowerCase().includes('lucro') || e.tipo.toLowerCase().includes('aporte') ? 'text-green-400' : 'text-red-400'; t += `<li class="border-b border-gray-700 pb-2 flex justify-between"><span>${o} - ${e.tipo}</span><span class="${s} font-bold">${n}</span></li>` }); t += '</ul>'; modalResposta.innerHTML = t } catch (e) { modalResposta.innerHTML = '<p>Erro ao buscar o histórico.</p>' } };
-  modalSubmit.addEventListener('click', async () => { const e = modalInput.value; if (!e) return; modalResposta.innerText = "Pensando..."; modalSubmit.disabled = !0; try { const o = await fetch('/api/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: e }) }); if (!o.ok) throw new Error('A IA não conseguiu responder.'); const t = await o.json(); modalResposta.innerText = t.response.trim() } catch (e) { modalResposta.innerText = "Ocorreu um erro ao conectar com a IA." } finally { modalSubmit.disabled = !1 } });
-  const modalConfig = document.getElementById('modal-config'), modalConfigContent = document.getElementById('modal-config-content'); function abrirModalConfig() { modalConfig.classList.remove('hidden'); setTimeout(() => { modalConfigContent.classList.remove('scale-95', 'opacity-0') }, 10) } function fecharModalConfig() { modalConfigContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modalConfig.classList.add('hidden') }, 200) }
-  const modalConfirm = document.getElementById('modal-confirm'), modalConfirmContent = document.getElementById('modal-confirm-content'), confirmTitle = document.getElementById('confirm-title'), confirmText = document.getElementById('confirm-text'), confirmButton = document.getElementById('confirm-button'); function simularCompra() { alert('Ação de compra confirmada! (Simulação)') } function simularVenda() { alert('Ação de venda confirmada! (Simulação)') } function abrirModalConfirm(e, o, t, n) { confirmTitle.innerText = e; confirmText.innerText = o; const s = confirmButton.cloneNode(!0); confirmButton.parentNode.replaceChild(s, confirmButton); s.className = `w-full ${n} text-white font-bold py-3 rounded-lg transition`; s.addEventListener('click', () => { t(); fecharModalConfirm() }); modalConfirm.classList.remove('hidden'); setTimeout(() => { modalConfirmContent.classList.remove('scale-95', 'opacity-0') }, 10) } function fecharModalConfirm() { modalConfirmContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modalConfirm.classList.add('hidden') }, 200) }
+  function abrirModalConfig() { modalConfig.classList.remove('hidden'); setTimeout(() => { modalConfigContent.classList.remove('scale-95', 'opacity-0') }, 10) }
+  function fecharModalConfig() { modalConfigContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modalConfig.classList.add('hidden') }, 200) }
+
+  function simularCompra() { alert('Ação de compra confirmada! (Simulação)') }
+  function simularVenda() { alert('Ação de venda confirmada! (Simulação)') }
+  function abrirModalConfirm(e, o, t, n) {
+    confirmTitle.innerText = e; confirmText.innerText = o;
+    const c = document.getElementById('confirm-button'), l = c.cloneNode(!0);
+    c.parentNode.replaceChild(l, c);
+    l.className = `w-full ${n} text-white font-bold py-3 rounded-lg transition`;
+    l.addEventListener('click', () => { t(); fecharModalConfirm() }, { once: true });
+    modalConfirm.classList.remove('hidden'); setTimeout(() => { modalConfirmContent.classList.remove('scale-95', 'opacity-0') }, 10)
+  }
+  function fecharModalConfirm() { modalConfirmContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modalConfirm.classList.add('hidden') }, 200) }
+
+  async function abrirModalMotivacao() {
+    abrirModal('Conselho do Dia', ''); modalBody.style.display = 'none'; modalResposta.innerHTML = '<p>Buscando inspiração para você...</p>';
+    try { const e = await fetch('/api/motivation-summary'); if (!e.ok) throw new Error('Falha ao buscar o conselho.'); const o = await e.json(); modalResposta.innerHTML = `<p class="text-gray-300 mb-6">${o.summary}</p><a href="motivacao.html" class="inline-block w-full text-center bg-pink-600 text-white font-bold py-3 rounded-lg hover:bg-pink-700 transition">Ver mais na Página de Motivação</a>` } catch (e) { modalResposta.innerHTML = '<p>Não foi possível buscar um conselho agora. Tente novamente.</p>' }
+  }
+  async function gerarMensagem() {
+    const e = document.querySelector('#topo button'), o = document.getElementById("mensagem-container"), t = document.getElementById("mensagem");
+    e.disabled = !0; e.innerText = "Gerando..."; t.innerText = ""; o.style.opacity = 1;
+    try { const n = await fetch('/api/positive-message'); if (!n.ok) throw new Error('A IA não conseguiu gerar uma mensagem.'); const s = await n.json(); t.innerText = `"${s.message}"` } catch (n) { t.innerText = "Não foi possível gerar uma mensagem. Tente novamente." } finally { e.disabled = !1; e.innerText = "Gerar Outra Mensagem"; setTimeout(() => { "1" === o.style.opacity && (o.style.opacity = 0) }, 8e3) }
+  }
+  async function carregarDadosDoAtivo() {
+    try { const e = await fetch('/api/ativo'); if (!e.ok) throw new Error('Falha ao buscar dados.'); const o = await e.json(); const t = e => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(e || 0); document.getElementById('valor-atual').innerText = t(o.valorAtual); document.getElementById('lucro-acumulado').innerText = t(o.lucroAcumulado); document.getElementById('transacoes-positivas').innerText = o.transacoesPositivas || 0; document.getElementById('perdas').innerText = o.perdas || 0 } catch (e) { document.getElementById('valor-atual').innerText = "Erro" }
+  }
+  window.mostrarHistorico = async function () {
+    abrirModal('Histórico de Transações', '', null, null); modalBody.style.display = 'none'; modalResposta.innerHTML = '<p>Buscando histórico...</p>';
+    try {
+      const e = await fetch('/api/historico'); if (!e.ok) throw new Error('Falha ao buscar histórico.'); const o = await e.json();
+      if (0 === o.length) { modalResposta.innerHTML = '<p>Nenhuma transação encontrada.</p>'; return }
+      let t = '<ul class="space-y-3 text-left">'; o.forEach(e => { const o = new Date(e.data + "T00:00:00").toLocaleDateString('pt-BR'), n = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(e.valor || 0), s = e.tipo.toLowerCase().includes('lucro') || e.tipo.toLowerCase().includes('aporte') ? 'text-green-400' : 'text-red-400'; t += `<li class="border-b border-gray-700 pb-2 flex justify-between"><span>${o} - ${e.tipo}</span><span class="${s} font-bold">${n}</span></li>` }); t += '</ul>'; modalResposta.innerHTML = t
+    } catch (e) { modalResposta.innerHTML = '<p>Erro ao buscar o histórico.</p>' }
+  };
+  modalSubmit.addEventListener('click', async () => {
+    const e = modalInput.value; if (!e) return;
+    modalResposta.innerText = "Pensando..."; modalSubmit.disabled = !0;
+    try { const o = await fetch('/api/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: e }) }); if (!o.ok) throw new Error('A IA não conseguiu responder.'); const t = await o.json(); modalResposta.innerText = t.response.trim() } catch (e) { modalResposta.innerText = "Ocorreu um erro ao conectar com a IA." } finally { modalSubmit.disabled = !1 }
+  });
   window.addEventListener('DOMContentLoaded', carregarDadosDoAtivo);
 </script>
 
