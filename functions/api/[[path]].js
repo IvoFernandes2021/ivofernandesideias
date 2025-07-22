@@ -34,15 +34,19 @@ async function handleRequest(context) {
     }
 
     // Rota para gerar uma mensagem positiva com IA
-    if (apiRoute === 'positive-message') {
-      const { AI } = context.env;
-      // PROMPT CORRIGIDO E APRIMORADO
-const prompt = "Gere uma única frase motivacional, em português do Brasil, que seja curta e impactante, ideal para uma única linha. A frase deve ser original e inspiradora.";
-      const aiResponse = await AI.run('@cf/meta/llama-2-7b-chat-int8', { prompt });
-      return new Response(JSON.stringify({ message: aiResponse.response.trim() }), {
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+    // CÓDIGO NOVO E DEFINITIVO
+if (apiRoute === 'positive-message') {
+  const { AI } = context.env;
+  
+  // PROMPT DEFINITIVO: Com persona, exemplos e restrições fortes.
+  const prompt = "Você é um especialista em criar aforismos exclusivamente em português do Brasil. Sua tarefa é gerar uma única frase inspiradora e original. A frase deve ser curta, com 10 palavras no máximo. NÃO GERE NADA EM INGLÊS. Siga o estilo dos exemplos a seguir. Exemplos: 'O único passo entre o sonho e a realidade é a atitude.', 'A persistência realiza o impossível.'. Responda apenas com a nova frase gerada.";
+
+  const aiResponse = await AI.run('@cf/meta/llama-2-7b-chat-int8', { prompt });
+  
+  return new Response(JSON.stringify({ message: aiResponse.response.trim() }), {
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
 
     // Rota para interagir com a IA do modal
     if (apiRoute === 'ai' && request.method === 'POST') {
