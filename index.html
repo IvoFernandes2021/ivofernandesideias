@@ -8,17 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
-    .perspective { perspective: 1000px; }
-    .preserve-3d { transform-style: preserve-3d; position: relative; transition: transform 0.8s ease; }
-    .backface-hidden { backface-visibility: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    .rotate-y-180 { transform: rotateY(180deg); }
-    .sub-btn { border-radius: 16px; }
   </style>
 </head>
 <body class="scroll-smooth">
 
 <header class="bg-[#0b1120] py-4 shadow-md relative z-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
     <div>
       <a href="#topo" class="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition block">Ivo Fernandes</a>
       <p class="text-sm text-gray-400">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
@@ -27,22 +22,13 @@
       <a href="#engenharia" class="hover:text-cyan-400 transition">Engenharia</a>
       <a href="#crypto" class="hover:text-cyan-400 transition">Crypto</a>
       <a href="#motivacao" class="hover:text-cyan-400 transition">Motivação</a>
+      <a href="#videos-recompensa" class="hover:text-yellow-400 transition">Ganhar Satoshis</a>
     </nav>
   </div>
 </header>
 
-<section id="topo" class="text-center max-w-2xl mx-auto px-4 sm:px-6 mt-20 mb-12">
-  <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
-  <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
-  <button onclick="gerarMensagem()" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
-    Gerar Mensagem Positiva
-  </button>
-  <div id="mensagem-container" class="mt-6 transition-opacity duration-500 opacity-0">
-    <p id="mensagem" class="text-lg font-medium text-cyan-400"></p>
-  </div>
-</section>
-
-<section class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 sm:px-6 max-w-6xl mx-auto mt-10 mb-24">
+<!-- INÍCIO DOS QUADROS -->
+<section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
   <!-- Engenharia e Designer -->
   <div class="cursor-default perspective">
     <div class="w-full h-auto preserve-3d group relative">
@@ -97,157 +83,64 @@
     </div>
   </div>
 </section>
-
 <div class="h-64"></div>
 
-<section class="bg-gray-900 rounded-2xl p-6 text-center max-w-6xl mx-auto mb-12 shadow-xl px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-2">Nosso Ativo Digital</h2>
-  <p class="text-gray-400 mb-6 max-w-3xl mx-auto">Esse valor é construído com base em transações reais feitas por Ivo Fernandes. Parte do lucro é convertido para alimentar esse ativo comunitário.</p>
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-white text-sm">
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Valor Atual</p>
-      <p class="text-xl font-bold">R$ 0.000,00</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Lucro Acumulado</p>
-      <p class="text-xl font-bold">R$ 0.000,00</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Transações Positivas</p>
-      <p class="text-xl font-bold">0</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-400">Perdas</p>
-      <p class="text-xl font-bold">0</p>
-    </div>
-  </div>
-  <div class="flex flex-wrap justify-center gap-4 mt-8">
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Comprar Participação</button>
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Vender Participação</button>
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">Ver Histórico</button>
+<!-- SEÇÃO DE VÍDEO RECOMPENSADO -->
+<section id="videos-recompensa" class="bg-gray-900 rounded-2xl p-6 max-w-5xl mx-auto my-24 shadow-xl px-4 sm:px-6">
+  <h2 class="text-2xl font-bold text-white mb-6 text-center">🎥 Assista e Ganhe Satoshis</h2>
+  <div class="bg-gray-800 rounded-xl p-4">
+    <video id="video1" width="100%" controls class="rounded-md shadow-md">
+      <source src="video01.mp4" type="video/mp4">
+      Seu navegador não suporta o vídeo.
+    </video>
+    <p class="text-gray-300 mt-4 text-sm">
+      Assista pelo menos 10 segundos deste vídeo para ganhar 1 satoshi do nosso Ativo Digital. Limitado a 1 recompensa por IP a cada 24 horas.
+    </p>
   </div>
 </section>
 
-<section class="bg-gray-800 rounded-2xl p-6 text-center max-w-5xl mx-auto mb-24 shadow-lg px-4 sm:px-6">
-  <h3 class="text-xl font-bold text-white mb-4">Tokens Disponíveis para Compra</h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-white text-sm">
-    <div class="bg-gray-900 p-4 rounded-xl">
-      <p class="text-gray-400">Token #1</p>
-      <p class="text-xl font-bold">R$ 0,00</p>
-    </div>
-    <div class="bg-gray-900 p-4 rounded-xl">
-      <p class="text-gray-400">Token #2</p>
-      <p class="text-xl font-bold">R$ 0,00</p>
-    </div>
-    <div class="bg-gray-900 p-4 rounded-xl">
-      <p class="text-gray-400">Token #3</p>
-      <p class="text-xl font-bold">R$ 0,00</p>
-    </div>
-  </div>
-</section>
+<!-- SCRIPT: Firebase + Rastreio -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-<section class="bg-gray-900 rounded-2xl p-6 text-center max-w-4xl mx-auto mb-12 shadow-xl px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-6">O que as pessoas estão dizendo</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p>
-      <p class="text-sm text-gray-500 mt-2">— Mariana L.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p>
-      <p class="text-sm text-gray-500 mt-2">— João V.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p>
-      <p class="text-sm text-gray-500 mt-2">— Camila F.</p>
-    </div>
-    <div class="bg-gray-800 p-4 rounded-xl">
-      <p class="text-gray-300 italic">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p>
-      <p class="text-sm text-gray-500 mt-2">— Ricardo T.</p>
-    </div>
-  </div>
-</section>
+const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_PROJETO.firebaseapp.com",
+  projectId: "SEU_PROJECT_ID",
+  storageBucket: "SEU_BUCKET",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
 
-<section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2>
-  <p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p>
-</section>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-<section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2>
-  <ul class="text-gray-300 space-y-2">
-    <li>🚀 Lançamento oficial do site e início da fase beta!</li>
-    <li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li>
-    <li>📊 Monitoramento de Ativo Digital agora disponível.</li>
-    <li>📦 Mais recursos chegando em breve, fique ligado!</li>
-  </ul>
-</section>
+async function registrarVisualizacao(videoId) {
+  const ip = await fetch("https://api.ipify.org?format=json").then(r => r.json()).then(d => d.ip);
+  const key = `${videoId}_${ip}`;
+  const ref = doc(db, "visualizacoes", key);
+  const docSnap = await getDoc(ref);
 
-<section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2>
-  <div class="space-y-6 text-left text-gray-300">
-    <div>
-      <h3 class="font-bold">🔎 O que é o Ativo Digital?</h3>
-      <p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p>
-    </div>
-    <div>
-      <h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3>
-      <p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p>
-    </div>
-    <div>
-      <h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3>
-      <p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p>
-    </div>
-  </div>
-</section>
-
-<section class="bg-gray-950 rounded-2xl p-8 text-center max-w-4xl mx-auto mb-24 shadow-2xl px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-4">Fale Conosco</h2>
-  <p class="text-gray-400 mb-6">Tem dúvidas, sugestões ou quer participar do projeto? Entre em contato conosco.</p>
-  <form class="flex flex-col space-y-4">
-    <input type="text" placeholder="Seu nome" class="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500">
-    <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500">
-    <textarea placeholder="Sua mensagem" rows="4" class="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500"></textarea>
-    <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-6 py-2 rounded-xl">Enviar Mensagem</button>
-  </form>
-</section>
-
-<script>
-function voltarTopo() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function gerarMensagem() {
-  const mensagens = [
-    "Você é capaz de conquistar o que quiser!",
-    "Acredite no seu potencial todos os dias.",
-    "O futuro pertence a quem se prepara hoje.",
-    "Nunca é tarde para recomeçar com força total."
-  ];
-  const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
-  const container = document.getElementById("mensagem-container");
-  const texto = document.getElementById("mensagem");
-  texto.innerText = msg;
-  container.style.opacity = 1;
-  setTimeout(() => { container.style.opacity = 0; }, 5000);
-}
-function abrirPopup() {
-  alert("Essa função ainda está em desenvolvimento.");
-}
-function abrirPerguntaCrypto() {
-  const pergunta = prompt("Pergunte algo sobre criptomoedas:");
-  if (pergunta) {
-    alert("Resposta da IA: (simulada)\n\n" + pergunta);
+  if (!docSnap.exists()) {
+    await setDoc(ref, {
+      video: videoId,
+      ip,
+      timestamp: serverTimestamp()
+    });
+    alert("✅ Visualização registrada! Você ganhou 1 satoshi.");
+  } else {
+    alert("⚠️ Você já recebeu recompensa por este vídeo hoje.");
   }
 }
-function abrirConselhoIA() {
-  const conselhos = [
-    "A mudança começa quando você decide tentar.",
-    "Não espere o momento ideal. Crie ele.",
-    "Você é mais forte do que imagina.",
-    "Use a tecnologia como aliada do seu crescimento."
-  ];
-  alert(conselhos[Math.floor(Math.random() * conselhos.length)]);
-}
+
+const video = document.getElementById("video1");
+video.addEventListener("timeupdate", () => {
+  if (video.currentTime > 10 && !video.dataset.creditado) {
+    video.dataset.creditado = true;
+    registrarVisualizacao("video1");
+  }
+});
 </script>
 
 </body>
