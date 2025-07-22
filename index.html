@@ -209,20 +209,16 @@
 <section id="videos-recompensa" class="bg-gray-900 rounded-2xl p-6 max-w-5xl mx-auto my-24 shadow-xl px-4 sm:px-6">
   <h2 class="text-2xl font-bold text-white mb-6 text-center">🎥 Assista e Ganhe Satoshis</h2>
   <div class="bg-gray-800 rounded-xl p-4">
-    <video id="video1" width="100%" controls class="rounded-md shadow-md">
-      <source src="video01.mp4" type="video/mp4">
-      Seu navegador não suporta o vídeo.
-    </video>
-    <p class="text-gray-300 mt-4 text-sm">
-      Assista pelo menos 10 segundos deste vídeo para ganhar 1 satoshi do nosso Ativo Digital. Limitado a 1 recompensa por IP a cada 24 horas.
-    </p>
+    <iframe id="video1" width="100%" height="315" class="rounded-md shadow-md" src="https://www.youtube.com/embed/SEU_VIDEO_ID_AQUI" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>$1</p>
+    <button onclick="confirmarVisualizacao()" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">✅ Já Assisti e Quero Ganhar 1 Satoshi</button>
+    <p id="respostaRecompensa" class="mt-3 text-sm text-green-400"></p>
   </div>
 </section>
 
 <!-- SCRIPT: Firebase + Rastreio -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "SUA_API_KEY",
@@ -236,31 +232,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function registrarVisualizacao(videoId) {
+async function confirmarVisualizacao() {
+  const resposta = document.getElementById("respostaRecompensa");
   const ip = await fetch("https://api.ipify.org?format=json").then(r => r.json()).then(d => d.ip);
-  const key = `${videoId}_${ip}`;
+  const key = `youtube_video1_${ip}`;
   const ref = doc(db, "visualizacoes", key);
   const docSnap = await getDoc(ref);
 
   if (!docSnap.exists()) {
     await setDoc(ref, {
-      video: videoId,
+      video: "video1",
       ip,
       timestamp: serverTimestamp()
     });
-    alert("✅ Visualização registrada! Você ganhou 1 satoshi.");
+    resposta.innerText = "✅ Visualização registrada! Você ganhou 1 satoshi.";
   } else {
-    alert("⚠️ Você já recebeu recompensa por este vídeo hoje.");
+    resposta.innerText = "⚠️ Você já recebeu recompensa por este vídeo hoje.";
   }
 }
-
-const video = document.getElementById("video1");
-video.addEventListener("timeupdate", () => {
-  if (video.currentTime > 10 && !video.dataset.creditado) {
-    video.dataset.creditado = true;
-    registrarVisualizacao("video1");
-  }
-});
 </script>
 
 </body>
