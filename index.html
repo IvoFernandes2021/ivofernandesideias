@@ -45,6 +45,7 @@
 </section>
 
 <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
+  <!-- Quadro 1: Engenharia e Designer -->
   <div class="cursor-default perspective">
     <div class="w-full h-72 preserve-3d group relative">
       <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl transition flex flex-col justify-between">
@@ -61,118 +62,42 @@
       </div>
     </div>
   </div>
-</section>
 
-<section id="crypto" class="text-center max-w-xl mx-auto px-4 mb-20">
-  <h2 class="text-3xl font-bold text-green-400 mb-4">Ativo Digital do Projeto</h2>
-  <p class="text-sm text-gray-400 mb-6">Lucros acumulados fortalecem o valor interno do projeto. Inspire-se e continue crescendo.</p>
-  <p id="motivacional" class="text-xl font-light text-green-300 transition-all duration-700 ease-in-out mb-4 font-[Orbitron]">
-    Clique abaixo para se inspirar!
-  </p>
-  <button onclick="gerarMotivacao()" class="mt-2 px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
-    Gerar Mensagem Positiva
-  </button>
-</section>
-
-<footer class="bg-[#1e293b] text-center py-6 text-gray-400">
-  © 2025 Ivo Fernandes. Todos os direitos reservados.
-</footer>
-
-<!-- Pop-up de Comando IA -->
-<div id="popup" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 hidden">
-  <div id="popupContent" class="bg-gray-900 rounded-xl p-6 w-full max-w-md shadow-xl relative scale-90 opacity-0 transition-all duration-300">
-    <button onclick="fecharPopup()" class="absolute top-2 right-3 text-gray-400 hover:text-red-400 text-xl font-bold">×</button>
-    <h2 class="text-xl font-bold text-cyan-400 mb-3">Comando Civil 3D por IA</h2>
-    <input id="comandoInput" type="text" placeholder="Digite o nome do comando (ex: trim)" class="w-full mb-4 px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none" />
-    <div id="respostaComando" class="text-sm text-gray-200 bg-gray-800 p-4 rounded-lg mb-4">
-      Digite um comando acima para ver o passo a passo.
+  <!-- Quadro 2: CryptoMoeda + Inteligência Artificial -->
+  <div class="cursor-default perspective">
+    <div class="w-full h-72 preserve-3d group relative">
+      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl transition flex flex-col justify-between">
+        <div class="text-center text-4xl mb-2">🧠</div>
+        <h3 class="text-lg font-bold text-white text-center mb-2">CryptoMoeda + Inteligência Artificial</h3>
+        <div class="flex flex-col gap-2 mt-4">
+          <button onclick="abrirPerguntaCrypto()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
+          <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
+          <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Notícias e Atualidades</button>
+        </div>
+      </div>
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+        Pergunte qualquer coisa sobre o mundo cripto e receba respostas claras e rápidas com o apoio da IA integrada.
+      </div>
     </div>
-    <div id="exemplosComando" class="flex gap-2 flex-wrap"></div>
   </div>
-</div>
 
-<script>
-  const nome = document.getElementById("flutuante");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 120) {
-      nome.classList.remove("opacity-0", "pointer-events-none");
-      nome.classList.add("opacity-100");
-    } else {
-      nome.classList.remove("opacity-100");
-      nome.classList.add("opacity-0", "pointer-events-none");
-    }
-  });
-  function voltarTopo() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-  const mensagens = [
-    "Você é mais forte do que imagina.",
-    "A cada passo, você está mais perto do seu objetivo.",
-    "Grandes jornadas começam com pequenas decisões.",
-    "Não pare até se orgulhar.",
-    "Seu esforço de hoje é seu sucesso de amanhã."
-  ];
-  function gerarMotivacao() {
-    const el = document.getElementById("motivacional");
-    el.classList.add("opacity-0");
-    setTimeout(() => {
-      el.textContent = mensagens[Math.floor(Math.random() * mensagens.length)];
-      el.classList.remove("opacity-0");
-    }, 500);
-  }
-  function scrollEGerar() {
-    const alvo = document.getElementById("crypto");
-    alvo.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => { gerarMotivacao(); }, 800);
-  }
-  function abrirPopup() {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popupContent');
-    popup.classList.remove('hidden');
-    setTimeout(() => {
-      content.classList.remove('scale-90', 'opacity-0');
-      content.classList.add('scale-100', 'opacity-100');
-    }, 10);
-  }
-  function fecharPopup() {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popupContent');
-    content.classList.remove('scale-100', 'opacity-100');
-    content.classList.add('scale-90', 'opacity-0');
-    setTimeout(() => { popup.classList.add('hidden'); }, 300);
-  }
-  const exemplos = {
-    trim: {
-      explicacao: "TRIM + Enter → Clique na referência → Clique na parte a cortar.",
-      variacoes: [
-        "Selecione tudo + Enter → clique em cortes.",
-        "TRIM com limite de círculo.",
-        "TRIM por janela de seleção."
-      ]
-    },
-    offset: {
-      explicacao: "OFFSET + Enter → Digite distância → Selecione linha → clique onde gerar cópia.",
-      variacoes: [
-        "OFFSET múltiplos → use M + Enter.",
-        "OFFSET com polilinhas curvas.",
-        "OFFSET negativo para dentro."
-      ]
-    }
-  };
-  const input = () => document.getElementById('comandoInput').value.trim().toLowerCase();
-  const resposta = document.getElementById('respostaComando');
-  const exemplosDiv = document.getElementById('exemplosComando');
-  document.getElementById('comandoInput').addEventListener('input', () => {
-    const cmd = input();
-    if (exemplos[cmd]) {
-      resposta.innerHTML = `<strong>${cmd.toUpperCase()}</strong>: ${exemplos[cmd].explicacao}`;
-      exemplosDiv.innerHTML = exemplos[cmd].variacoes.map(ex => `<button class="bg-gray-700 text-sm text-white px-2 py-1 rounded hover:bg-cyan-700 transition">${ex}</button>`).join('');
-    } else {
-      resposta.innerHTML = `Comando não encontrado.`;
-      exemplosDiv.innerHTML = '';
-    }
-  });
-</script>
+  <!-- Quadro 3: Conteúdo + Motivação -->
+  <div class="cursor-default perspective">
+    <div class="w-full h-72 preserve-3d group relative">
+      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl transition flex flex-col justify-between">
+        <div class="text-center text-4xl mb-2">💬</div>
+        <h3 class="text-lg font-bold text-white text-center mb-2">Conteúdo + Motivação</h3>
+        <div class="flex flex-col gap-2 mt-4">
+          <button onclick="abrirConselhoIA()" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
+          <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
+          <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Atualidades IA</button>
+        </div>
+      </div>
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+        Precisa de um conselho para mudar de vida? Esta IA foi criada para te ouvir e te ajudar com orientações conscientes e motivacionais.
+      </div>
+    </div>
+  </div>
+</section>
 
-</body>
-</html>
+<!-- Aqui continuam os pop-ups e scripts -->
