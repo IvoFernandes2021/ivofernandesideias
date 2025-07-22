@@ -1,5 +1,3 @@
-// Código para functions/api/[[path]].js
-
 // Dados falsos que simulam nosso banco de dados
 const mockAtivo = {
   valorAtual: 1850.55,
@@ -21,26 +19,37 @@ async function handleRequest(context) {
   const apiRoute = url.pathname.replace('/api/', '');
 
   try {
+    // Rota para buscar os dados do ativo (usando dados falsos)
     if (apiRoute === 'ativo') {
       return new Response(JSON.stringify(mockAtivo), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
+    // Rota para buscar o histórico (usando dados falsos)
     if (apiRoute === 'historico') {
       return new Response(JSON.stringify(mockHistorico), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
+    // Rota para gerar uma mensagem positiva com IA
+    if (apiRoute === 'positive-message') {
+      const { AI } = context.env;
+      const prompt = "Gere uma única frase motivacional curta, poderosa e original, com no máximo 20 palavras. A frase deve ser inspiradora e adequada para alguém que busca crescimento pessoal ou profissional. Seja criativo e evite clichês comuns.";
+      const aiResponse = await AI.run('@cf/meta/llama-2-7b-chat-int8', { prompt });
+      return new Response(JSON.stringify({ message: aiResponse.response.trim() }), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Rota para interagir com a IA do modal
     if (apiRoute === 'ai' && request.method === 'POST') {
       const { prompt } = await request.json();
       const { AI } = context.env;
-
       const aiResponse = await AI.run('@cf/meta/llama-2-7b-chat-int8', {
         prompt: `Você é um assistente prestativo. Responda à seguinte pergunta de forma concisa e direta: ${prompt}`,
       });
-
       return new Response(JSON.stringify(aiResponse), {
         headers: { 'Content-Type': 'application/json' },
       });
