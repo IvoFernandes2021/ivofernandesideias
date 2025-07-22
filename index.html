@@ -38,41 +38,48 @@
     </div>
   </section>
 
-  <section class="grid md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-24">
-    <div id="engenharia" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-      <div class="text-center">
-        <div class="text-5xl mb-4">🏗️</div>
-        <h3 class="text-xl font-bold text-white mb-2">Engenharia e Designer</h3>
-        <p class="text-sm text-gray-400 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
-      </div>
-      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
-        <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
-        <a href="engenharia.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
-      </div>
+<section class="grid md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-24">
+
+  <div id="engenharia" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+    <div class="text-center">
+      <a href="engenharia.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Engenharia">🏗️</a>
+      <h3 class="text-xl font-bold text-white mb-2">Engenharia e Designer</h3>
+      <p class="text-sm text-gray-400 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
     </div>
-    <div id="crypto" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-      <div class="text-center">
-        <div class="text-5xl mb-4">🧠</div>
-        <h3 class="text-xl font-bold text-white mb-2">CryptoMoeda + IA</h3>
-        <p class="text-sm text-gray-400 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
-      </div>
-      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
-        <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
-        <a href="crypto.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
-      </div>
+    <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+      <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
+      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
+      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Projetos de Engenharia Civil</button>
     </div>
-    <div id="motivacao" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-      <div class="text-center">
-        <div class="text-5xl mb-4">💬</div>
-        <h3 class="text-xl font-bold text-white mb-2">Conteúdo + Motivação</h3>
-        <p class="text-sm text-gray-400 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
-      </div>
-      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
-        <button onclick="abrirModalMotivacao()" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Receber Conselho Rápido</button>
-        <a href="motivacao.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
-      </div>
+  </div>
+
+  <div id="crypto" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+    <div class="text-center">
+      <a href="crypto.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Crypto">🧠</a>
+      <h3 class="text-xl font-bold text-white mb-2">CryptoMoeda + IA</h3>
+      <p class="text-sm text-gray-400 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
     </div>
-  </section>
+    <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+      <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
+      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
+      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Notícias e Atualidades</button>
+    </div>
+  </div>
+
+  <div id="motivacao" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+    <div class="text-center">
+      <a href="motivacao.html" class="inline-block text-5xl mb-4 hover:scale-110 transition-transform duration-300" aria-label="Página de Motivação">💬</a>
+      <h3 class="text-xl font-bold text-white mb-2">Conteúdo + Motivação</h3>
+      <p class="text-sm text-gray-400 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
+    </div>
+    <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+      <button onclick="abrirModalMotivacao()" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Receber Conselho Rápido</button>
+      <a href="motivacao.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
+      <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
+    </div>
+  </div>
+
+</section>
 
   <section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-10 max-w-6xl mx-auto my-24 shadow-2xl">
     <h2 class="text-3xl font-bold text-center text-white mb-8">📈 Nosso Ativo Digital</h2>
