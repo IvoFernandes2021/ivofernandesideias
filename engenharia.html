@@ -9,9 +9,8 @@
   <style>
     /* Estilos globais do seu site */
     body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
-    /* Adicione quaisquer outros estilos de styles.css aqui se necessário para consistência */
-
-    /* Estilo para o container do vídeo responsivo */
+    
+    /* Estilos para o container do vídeo responsivo */
     .video-container {
       position: relative;
       width: 100%;
@@ -27,10 +26,7 @@
       width: 100%;
       height: 100%;
     }
-    /* Classe para expandir o vídeo (usada para transição) */
-    .video-expanded {
-      max-width: 100%; /* Permite que o vídeo ocupe toda a largura disponível */
-    }
+    
     /* Estilo para os tooltips personalizados */
     .tooltip-container {
       position: relative;
@@ -45,35 +41,73 @@
       border-radius: 6px;
       padding: 5px 10px;
       position: absolute;
-      z-index: 50; /* Aumentado para garantir que fique por cima */
-      bottom: 125%; /* Posição acima do botão */
+      z-index: 50;
+      bottom: 125%; 
       left: 50%;
       transform: translateX(-50%);
       opacity: 0;
       transition: opacity 0.3s;
-      font-size: 0.75rem; /* text-xs */
-      pointer-events: none; /* Garante que o tooltip não bloqueie cliques */
+      font-size: 0.75rem;
+      pointer-events: none;
     }
     .tooltip-container:hover .tooltip-text {
       visibility: visible;
       opacity: 1;
     }
-    /* Seta do tooltip */
     .tooltip-text::after {
       content: " ";
       position: absolute;
-      top: 100%; /* Na parte inferior */
+      top: 100%;
       left: 50%;
       margin-left: -5px;
       border-width: 5px;
       border-style: solid;
       border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
     }
+
+    /* --- Estilos para o Efeito de Virar o Card --- */
+    .flip-card {
+      background-color: transparent;
+      perspective: 1000px; /* Efeito de profundidade 3D */
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flip-card.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 0.75rem; /* rounded-xl */
+      padding: 1.5rem; /* p-6 */
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    }
+    .flip-card-front {
+      background-color: #1e293b; /* bg-gray-800 */
+    }
+    .flip-card-back {
+      background-color: #334155; /* bg-gray-700 */
+      transform: rotateY(180deg);
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
 <body class="scroll-smooth">
 
-  <!-- Cabeçalho (mantido igual ao index.html para consistência) -->
+  <!-- Cabeçalho -->
   <header class="bg-[#0b1120] py-4 shadow-md sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
       <div>
@@ -104,7 +138,7 @@
         Vídeos Tutoriais IA
       </button>
       <button onclick="scrollToSection('manuals-tutorials-section')" class="px-6 py-3 bg-cyan-700 text-white font-bold rounded-xl shadow-lg hover:bg-cyan-600 transition-all text-base">
-        Manuais e Tutoriais
+        Playlists de Vídeos
       </button>
       <button onclick="scrollToSection('civil-projects-section')" class="px-6 py-3 bg-cyan-700 text-white font-bold rounded-xl shadow-lg hover:bg-cyan-600 transition-all text-base">
         Projetos de Engenharia Civil
@@ -121,7 +155,6 @@
           Gerar Comando
         </button>
         <div id="ia-command-response" class="mt-8 w-full max-w-xl bg-gray-800 p-6 rounded-lg text-gray-300 whitespace-pre-wrap min-h-[100px] border border-gray-700 hidden">
-          <!-- Resposta da IA será exibida aqui -->
           <p class="text-center text-gray-500">Aguardando seu comando...</p>
         </div>
         <button id="copy-command-btn" class="mt-4 px-6 py-2 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition hidden">
@@ -130,30 +163,22 @@
       </div>
     </section>
 
-    <!-- Nova Seção: Vídeos Tutoriais com Auxílio de IA -->
+    <!-- Seção de Vídeos Tutoriais -->
     <section id="video-tutorials-section" class="max-w-4xl mx-auto my-24 p-8 bg-gray-900 rounded-2xl shadow-xl">
       <h2 class="text-3xl font-bold text-center text-white mb-8">Vídeos Tutoriais com Auxílio de IA</h2>
       <p class="text-gray-400 text-center mb-8">Desvende os segredos da engenharia com a clareza da inteligência artificial. Nossos vídeos tutoriais, criados com o auxílio de IA, oferecem insights precisos e explicações detalhadas para você dominar as ferramentas e conceitos mais complexos. Aprenda de forma eficiente e acelere seu desenvolvimento profissional.</p>
-
       <div class="flex flex-col items-center">
         <h3 class="text-xl font-bold text-white mb-4">Último Vídeo Postado</h3>
-        
-        <!-- Wrapper do Vídeo -->
         <div id="video-wrapper" class="w-full max-w-md md:max-w-2xl bg-black rounded-xl overflow-hidden shadow-lg transition-all duration-300">
           <div class="video-container">
             <div id="youtube-video-iframe"></div>
           </div>
         </div>
-
-        <!-- Container para Título, Estatísticas e Controles (FORA do video-wrapper) -->
         <div class="w-full max-w-md md:max-w-2xl mt-4 flex flex-col">
-            <!-- Título do Vídeo (Centralizado) -->
             <div class="text-center text-lg font-bold text-white mb-4">
               <span id="video-title">Título do Vídeo</span>
             </div>
-
             <div class="flex justify-between items-end w-full">
-              <!-- Estatísticas do vídeo (Alinhado à esquerda) -->
               <div class="text-xs text-gray-300 text-left flex-grow mr-2">
                 <p>Visualizações Total: <span id="total-views" class="font-bold text-white">0</span></p>
                 <p>Visualizações Diárias: <span id="daily-views" class="font-bold text-white">0</span></p>
@@ -161,37 +186,25 @@
                 <p>Visualizações Mensais: <span id="monthly-views" class="font-bold text-white">0</span></p>
                 <p>Minutos Total: <span id="total-minutes" class="font-bold text-white">0</span></p>
               </div>
-
-              <!-- Controles de vídeo (Alinhado à direita) -->
               <div class="flex items-center gap-2">
                 <div class="tooltip-container">
-                  <button id="prev-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
-                    ⏮️
-                  </button>
+                  <button id="prev-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">⏮️</button>
                   <span class="tooltip-text">Vídeo Anterior</span>
                 </div>
                 <div class="tooltip-container">
-                  <button id="play-pause-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-10 h-10 flex items-center justify-center text-2xl">
-                    ▶️
-                  </button>
+                  <button id="play-pause-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-10 h-10 flex items-center justify-center text-2xl">▶️</button>
                   <span class="tooltip-text">Reproduzir / Pausar</span>
                 </div>
                 <div class="tooltip-container">
-                  <button id="next-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
-                    ⏭️
-                  </button>
+                  <button id="next-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">⏭️</button>
                   <span class="tooltip-text">Próximo Vídeo</span>
                 </div>
                 <div class="tooltip-container">
-                  <button id="captions-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
-                    🔠
-                  </button>
+                  <button id="captions-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">🔠</button>
                   <span class="tooltip-text">Legendas</span>
                 </div>
                 <div class="tooltip-container hidden md:block">
-                  <button id="expand-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
-                    ↔️
-                  </button>
+                  <button id="expand-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">↔️</button>
                   <span class="tooltip-text">Expandir Vídeo</span>
                 </div>
               </div>
@@ -200,24 +213,114 @@
       </div>
     </section>
 
-    <!-- Seção de Manuais e Tutoriais -->
-    <section id="manuals-tutorials-section" class="max-w-5xl mx-auto my-24">
-      <h2 class="text-3xl font-bold text-center text-white mb-12">Manuais e Tutoriais</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-          <h3 class="text-xl font-bold text-white mb-2">Guia Essencial AutoCAD/Civil 3D</h3>
-          <p class="text-sm text-gray-400 mb-4 min-h-[60px]">Aprenda os fundamentos e truques avançados para dominar o AutoCAD e o Civil 3D.</p>
-          <button disabled class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Em Breve</button>
+    <!-- Seção de Playlists e Ranking -->
+    <section id="manuals-tutorials-section" class="max-w-7xl mx-auto my-24">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">Playlists e Ranking de Vídeos</h2>
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- Coluna da Esquerda: Cards que viram -->
+        <div class="grid md:grid-cols-2 gap-8">
+          
+          <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3 class="text-xl font-bold text-white">AutoCAD & Civil 3D com IA</h3>
+                <button disabled onclick="event.stopPropagation()" class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Ver Playlist</button>
+              </div>
+              <div class="flip-card-back">
+                <p class="text-sm text-gray-200">Assista nossa série de vídeos sobre como usar IA para automatizar rotinas e otimizar projetos no AutoCAD e Civil 3D.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3 class="text-xl font-bold text-white">Fotogrametria com Agisoft</h3>
+                <button disabled onclick="event.stopPropagation()" class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Ver Playlist</button>
+              </div>
+              <div class="flip-card-back">
+                <p class="text-sm text-gray-200">Do voo à nuvem de pontos. Acompanhe nossos tutoriais sobre processamento de imagens de drone no Agisoft Metashape.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3 class="text-xl font-bold text-white">Nuvem de Pontos com Carlson</h3>
+                <button disabled onclick="event.stopPropagation()" class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Ver Playlist</button>
+              </div>
+              <div class="flip-card-back">
+                <p class="text-sm text-gray-200">Explore vídeos práticos sobre como manipular, analisar e extrair dados de nuvens de pontos usando a Carlson Civil Suite.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card h-48 cursor-pointer" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3 class="text-xl font-bold text-white">Modelagem BIM com Infraworks</h3>
+                <button disabled onclick="event.stopPropagation()" class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Ver Playlist</button>
+              </div>
+              <div class="flip-card-back">
+                <p class="text-sm text-gray-200">Aprenda a criar modelos conceituais e propostas de projetos de infraestrutura de forma ágil e integrada no Infraworks.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-          <h3 class="text-xl font-bold text-white mb-2">Introdução ao BIM com Infraworks</h3>
-          <p class="text-sm text-gray-400 mb-4 min-h-[60px]">Entenda os conceitos BIM e comece seus projetos de infraestrutura no Infraworks.</p>
-          <button disabled class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Em Breve</button>
-        </div>
-        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-          <h3 class="text-xl font-bold text-white mb-2">Engenharia + Tecnologia</h3>
-          <p class="text-sm text-gray-400 mb-4 min-h-[60px]">Explore a interseção da engenharia com as mais recentes tecnologias e inovações.</p>
-          <button disabled class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Em Breve</button>
+
+        <!-- Coluna da Direita: Card de Ranking -->
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+          <h3 class="text-2xl font-bold text-white mb-6 text-center">Top 10 Vídeos</h3>
+          <ol class="space-y-4">
+            <!-- Item 1 -->
+            <li class="flex items-center gap-4">
+              <span class="text-xl font-bold text-cyan-400 w-6 text-center">1</span>
+              <a href="#" class="flex-shrink-0">
+                <img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+1" alt="Miniatura do Vídeo 1" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all">
+              </a>
+              <a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Introdução à Automação de Projetos com IA</a>
+            </li>
+            <!-- Item 2 -->
+            <li class="flex items-center gap-4">
+              <span class="text-xl font-bold text-cyan-400 w-6 text-center">2</span>
+              <a href="#" class="flex-shrink-0">
+                <img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+2" alt="Miniatura do Vídeo 2" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all">
+              </a>
+              <a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">5 Dicas Essenciais para Fotogrametria Aérea</a>
+            </li>
+            <!-- Item 3 -->
+            <li class="flex items-center gap-4">
+              <span class="text-xl font-bold text-cyan-400 w-6 text-center">3</span>
+              <a href="#" class="flex-shrink-0">
+                <img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+3" alt="Miniatura do Vídeo 3" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all">
+              </a>
+              <a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Modelando um Loteamento no Civil 3D</a>
+            </li>
+            <!-- Item 4 -->
+            <li class="flex items-center gap-4">
+              <span class="text-xl font-bold text-cyan-400 w-6 text-center">4</span>
+              <a href="#" class="flex-shrink-0">
+                <img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+4" alt="Miniatura do Vídeo 4" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all">
+              </a>
+              <a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Análise de Nuvem de Pontos: Do Básico ao Avançado</a>
+            </li>
+            <!-- Item 5 -->
+            <li class="flex items-center gap-4">
+              <span class="text-xl font-bold text-cyan-400 w-6 text-center">5</span>
+              <a href="#" class="flex-shrink-0">
+                <img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+5" alt="Miniatura do Vídeo 5" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all">
+              </a>
+              <a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Infraworks: Apresentação de Projetos de Alto Impacto</a>
+            </li>
+            <!-- Itens 6 a 10 -->
+            <li class="flex items-center gap-4"><span class="text-xl font-bold text-cyan-400 w-6 text-center">6</span><a href="#" class="flex-shrink-0"><img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+6" alt="Miniatura do Vídeo 6" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all"></a><a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Script Python para Gerar Pranchas no AutoCAD</a></li>
+            <li class="flex items-center gap-4"><span class="text-xl font-bold text-cyan-400 w-6 text-center">7</span><a href="#" class="flex-shrink-0"><img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+7" alt="Miniatura do Vídeo 7" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all"></a><a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Comparando Agisoft Metashape e RealityCapture</a></li>
+            <li class="flex items-center gap-4"><span class="text-xl font-bold text-cyan-400 w-6 text-center">8</span><a href="#" class="flex-shrink-0"><img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+8" alt="Miniatura do Vídeo 8" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all"></a><a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Integração BIM: Civil 3D, Infraworks e Revit</a></li>
+            <li class="flex items-center gap-4"><span class="text-xl font-bold text-cyan-400 w-6 text-center">9</span><a href="#" class="flex-shrink-0"><img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+9" alt="Miniatura do Vídeo 9" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all"></a><a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">Cálculo de Volumes no Carlson Civil Suite</a></li>
+            <li class="flex items-center gap-4"><span class="text-xl font-bold text-cyan-400 w-6 text-center">10</span><a href="#" class="flex-shrink-0"><img src="https://placehold.co/100x60/0e7490/ffffff?text=Video+10" alt="Miniatura do Vídeo 10" class="w-24 h-14 object-cover rounded-md border-2 border-gray-700 hover:border-cyan-400 hover:scale-105 transition-all"></a><a href="#" class="text-sm text-gray-200 hover:text-cyan-400 transition-colors">O Futuro da Engenharia: IA Generativa em Projetos</a></li>
+          </ol>
         </div>
       </div>
     </section>
@@ -245,82 +348,43 @@
 
   </main>
 
-  <!-- Rodapé (mantido igual ao index.html para consistência) -->
+  <!-- Rodapé -->
   <footer class="text-center p-10 text-gray-500 text-sm">
     <p>&copy; 2025 Ivo Fernandes. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Script da API do YouTube -->
+  <!-- Scripts -->
   <script src="https://www.youtube.com/iframe_api"></script>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Referências aos elementos da seção de Geração de Comandos
+        // --- LÓGICA DA GERAÇÃO DE COMANDOS IA ---
         const iaCommandInput = document.getElementById('ia-command-input');
         const generateCommandBtn = document.getElementById('generate-command-btn');
         const iaCommandResponse = document.getElementById('ia-command-response');
         const copyCommandBtn = document.getElementById('copy-command-btn');
 
-        // Referências aos elementos da seção de Vídeos Tutoriais
-        const videoWrapper = document.getElementById('video-wrapper');
-        const youtubeIframeContainer = document.getElementById('youtube-video-iframe');
-        const expandVideoBtn = document.getElementById('expand-video-btn');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const prevVideoBtn = document.getElementById('prev-video-btn');
-        const nextVideoBtn = document.getElementById('next-video-btn');
-        const captionsBtn = document.getElementById('captions-btn');
-        const videoTitleSpan = document.getElementById('video-title');
-        const totalViewsSpan = document.getElementById('total-views');
-        const dailyViewsSpan = document.getElementById('daily-views');
-        const weeklyViewsSpan = document.getElementById('weekly-views');
-        const monthlyViewsSpan = document.getElementById('monthly-views');
-        const totalMinutesSpan = document.getElementById('total-minutes');
-
-        // --- LÓGICA DA IA ---
-
-        // Função genérica para chamar a API do Gemini
         async function callGeminiAPI(prompt) {
-            const apiKey = ""; // A chave será injetada pelo ambiente. Não preencha.
+            const apiKey = ""; // A chave será injetada pelo ambiente.
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
             const payload = {
                 contents: [{ role: "user", parts: [{ text: prompt }] }],
                 generationConfig: {
-                    temperature: 0.4,
-                    topP: 1,
-                    topK: 32,
-                    maxOutputTokens: 1024,
+                    temperature: 0.4, topP: 1, topK: 32, maxOutputTokens: 1024,
                 }
             };
-
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-
-            if (!response.ok) {
-                const errorBody = await response.text();
-                console.error("API Error Response:", errorBody);
-                throw new Error(`A IA não conseguiu responder. Status: ${response.status}`);
-            }
-
+            if (!response.ok) throw new Error(`A IA não conseguiu responder. Status: ${response.status}`);
             const result = await response.json();
-            
-            if (result.candidates && result.candidates.length > 0 &&
-                result.candidates[0].content && result.candidates[0].content.parts &&
-                result.candidates[0].content.parts.length > 0) {
+            if (result.candidates && result.candidates[0]?.content?.parts[0]?.text) {
                 return result.candidates[0].content.parts[0].text.trim();
-            } else {
-                console.error("Unexpected API response structure:", result);
-                if (result.promptFeedback && result.promptFeedback.blockReason) {
-                     throw new Error(`Requisição bloqueada: ${result.promptFeedback.blockReason}`);
-                }
-                throw new Error('Resposta inválida ou vazia da IA.');
             }
+            throw new Error('Resposta inválida ou vazia da IA.');
         }
 
-        // Event listener para o botão "Gerar Comando" na seção principal
         generateCommandBtn.addEventListener('click', async () => {
             const userInput = iaCommandInput.value;
             if (!userInput) {
@@ -329,15 +393,13 @@
                 copyCommandBtn.classList.add('hidden');
                 return;
             }
-
             iaCommandResponse.innerHTML = '<p class="text-center text-gray-500">Gerando comando...</p>';
             iaCommandResponse.classList.remove('hidden');
             generateCommandBtn.disabled = true;
             generateCommandBtn.innerText = "Gerando...";
             copyCommandBtn.classList.add('hidden');
-
             try {
-                const prompt = `Você é um assistente especialista em engenharia e design. Gere um comando ou script para a seguinte tarefa de forma concisa e direta. Responda APENAS com o código ou comando, sem nenhuma introdução, explicação ou formatação extra (como \`\`\` a menos que seja parte do código). Tarefa: "${userInput}"`;
+                const prompt = `Você é um assistente especialista em engenharia e design. Gere um comando ou script para a seguinte tarefa de forma concisa e direta. Responda APENAS com o código ou comando, sem nenhuma introdução, explicação ou formatação extra. Tarefa: "${userInput}"`;
                 const generatedCommand = await callGeminiAPI(prompt);
                 iaCommandResponse.innerText = generatedCommand;
                 copyCommandBtn.classList.remove('hidden');
@@ -351,7 +413,6 @@
             }
         });
 
-        // Event listener para o botão "Copiar Comando"
         copyCommandBtn.addEventListener('click', () => {
             const textToCopy = iaCommandResponse.innerText;
             const textarea = document.createElement('textarea');
@@ -369,8 +430,19 @@
             document.body.removeChild(textarea);
         });
 
-
         // --- LÓGICA DO PLAYER DE VÍDEO ---
+        const videoWrapper = document.getElementById('video-wrapper');
+        const expandVideoBtn = document.getElementById('expand-video-btn');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const prevVideoBtn = document.getElementById('prev-video-btn');
+        const nextVideoBtn = document.getElementById('next-video-btn');
+        const captionsBtn = document.getElementById('captions-btn');
+        const videoTitleSpan = document.getElementById('video-title');
+        const totalViewsSpan = document.getElementById('total-views');
+        const dailyViewsSpan = document.getElementById('daily-views');
+        const weeklyViewsSpan = document.getElementById('weekly-views');
+        const monthlyViewsSpan = document.getElementById('monthly-views');
+        const totalMinutesSpan = document.getElementById('total-minutes');
 
         const videoData = [
             { id: 'eQ9h3A5k1PA', title: 'Autodesk Civil 3D: Getting Started', views: { total: '250K', daily: '1K', weekly: '7K', monthly: '30K' }, minutes: '15' },
@@ -379,9 +451,8 @@
             { id: 'LXb3EKWsInQ', title: 'Automação em Engenharia com Python', views: { total: '210K', daily: '800', weekly: '5.6K', monthly: '24K' }, minutes: '32' }
         ];
         let currentVideoIndex = 0;
-        let player; // Variável global para o objeto do player do YouTube
+        let player;
 
-        // Função para rolar suavemente para uma seção
         window.scrollToSection = function(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
@@ -401,60 +472,28 @@
 
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-video-iframe', {
-                height: '100%',
-                width: '100%',
-                videoId: videoData[currentVideoIndex].id,
+                height: '100%', width: '100%', videoId: videoData[currentVideoIndex].id,
                 playerVars: {
-                    'playsinline': 1,
-                    'controls': 0,
-                    'rel': 0,
-                    'modestbranding': 1,
-                    'iv_load_policy': 3,
-                    'showinfo': 0,
-                    'disablekb': 1
+                    'playsinline': 1, 'controls': 0, 'rel': 0, 'modestbranding': 1, 'iv_load_policy': 3, 'showinfo': 0, 'disablekb': 1
                 },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
+                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
             });
         }
 
-        function onPlayerReady(event) {
-            updateVideoInfo();
-        }
-
+        function onPlayerReady(event) { updateVideoInfo(); }
         function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING) {
-                playPauseBtn.innerHTML = '⏸️';
-                playPauseBtn.closest('.tooltip-container').querySelector('.tooltip-text').innerText = 'Pausar Vídeo';
-            } else {
-                playPauseBtn.innerHTML = '▶️';
-                playPauseBtn.closest('.tooltip-container').querySelector('.tooltip-text').innerText = 'Reproduzir Vídeo';
-            }
+            playPauseBtn.innerHTML = event.data == YT.PlayerState.PLAYING ? '⏸️' : '▶️';
         }
 
         expandVideoBtn.addEventListener('click', () => {
-            const section = document.getElementById('video-tutorials-section');
             videoWrapper.classList.toggle('md:max-w-2xl');
             videoWrapper.classList.toggle('md:max-w-full');
-            const expandTooltip = expandVideoBtn.closest('.tooltip-container').querySelector('.tooltip-text');
-            if (videoWrapper.classList.contains('md:max-w-full')) {
-                expandVideoBtn.innerHTML = '↙️';
-                expandTooltip.innerText = 'Recolher Vídeo';
-            } else {
-                expandVideoBtn.innerHTML = '↔️';
-                expandTooltip.innerText = 'Expandir Vídeo';
-            }
+            expandVideoBtn.innerHTML = videoWrapper.classList.contains('md:max-w-full') ? '↙️' : '↔️';
         });
 
         playPauseBtn.addEventListener('click', () => {
             if (player && typeof player.getPlayerState === 'function') {
-                if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                }
+                player.getPlayerState() == YT.PlayerState.PLAYING ? player.pauseVideo() : player.playVideo();
             }
         });
 
@@ -466,32 +505,17 @@
             }
         }
 
-        prevVideoBtn.addEventListener('click', () => {
-            const newIndex = (currentVideoIndex - 1 + videoData.length) % videoData.length;
-            loadVideoByIndex(newIndex);
-        });
-
-        nextVideoBtn.addEventListener('click', () => {
-            const newIndex = (currentVideoIndex + 1) % videoData.length;
-            loadVideoByIndex(newIndex);
-        });
-
+        prevVideoBtn.addEventListener('click', () => loadVideoByIndex((currentVideoIndex - 1 + videoData.length) % videoData.length));
+        nextVideoBtn.addEventListener('click', () => loadVideoByIndex((currentVideoIndex + 1) % videoData.length));
+        
         captionsBtn.addEventListener('click', () => {
             if (!player || typeof player.getOptions !== 'function') return;
-            
-            const captionOptions = player.getOptions('captions');
-            const module = player.getOptions().namespaces.find(ns => ns.captions);
-
+            const module = player.getOptions().namespaces?.find(ns => ns.captions);
             if (module) {
-                if (module.track.languageCode) { // If captions are on
-                    player.setOption('captions', 'track', {}); // Turn off
-                } else { // If captions are off
-                    player.setOption('captions', 'track', {'languageCode': 'pt'}); // Turn on (Portuguese)
-                }
+                player.setOption('captions', 'track', module.track.languageCode ? {} : {'languageCode': 'pt'});
             }
         });
 
-        // Initial call to set up the info
         updateVideoInfo();
     });
   </script>
