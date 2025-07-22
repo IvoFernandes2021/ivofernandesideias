@@ -6,16 +6,495 @@
   <title>Engenharia & Design | Ivo Fernandes</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style> body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; } </style>
+  <style>
+    /* Estilos globais do seu site */
+    body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
+    /* Adicione quaisquer outros estilos de styles.css aqui se necessário para consistência */
+
+    /* Estilo para o container do vídeo responsivo */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.75rem; /* rounded-xl */
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* Classe para expandir o vídeo (usada para transição) */
+    .video-expanded {
+      max-width: 100%; /* Permite que o vídeo ocupe toda a largura disponível */
+    }
+    /* Estilo para os tooltips personalizados */
+    .tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+    .tooltip-text {
+      visibility: hidden;
+      width: max-content;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 10px;
+      position: absolute;
+      z-index: 50; /* Aumentado para garantir que fique por cima */
+      bottom: 125%; /* Posição acima do botão */
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.75rem; /* text-xs */
+      pointer-events: none; /* Garante que o tooltip não bloqueie cliques */
+    }
+    .tooltip-container:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* Seta do tooltip */
+    .tooltip-text::after {
+      content: " ";
+      position: absolute;
+      top: 100%; /* Na parte inferior */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    }
+  </style>
 </head>
-<body>
-  <header class="bg-[#0b1120] py-4 shadow-md"><div class="max-w-7xl mx-auto px-6 flex justify-between items-center"><div><a href="index.html" class="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition block">Ivo Fernandes</a><p class="text-sm text-gray-400">Engenharia • IA • Conteúdo • Cripto</p></div><nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-300"><a href="engenharia.html" class="text-cyan-400 font-bold transition">Engenharia</a><a href="crypto.html" class="hover:text-purple-400 transition">Crypto</a><a href="motivacao.html" class="hover:text-pink-400 transition">Motivação</a></nav></div></header>
-  
-  <main class="px-6 text-center">
-    <section class="max-w-3xl mx-auto pt-20 pb-16">
-      <h1 class="text-5xl font-bold mb-4 text-cyan-400">Página de Engenharia & Design</h1>
-      <p class="text-lg text-gray-300">Conteúdo em desenvolvimento. Volte em breve!</p>
+<body class="scroll-smooth">
+
+  <!-- Cabeçalho (mantido igual ao index.html para consistência) -->
+  <header class="bg-[#0b1120] py-4 shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div>
+        <a href="index.html" class="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition block">Ivo Fernandes</a>
+        <p class="text-sm text-gray-400">Engenharia • IA • Conteúdo • Cripto</p>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+        <a href="engenharia.html" class="text-cyan-400 font-bold transition">Engenharia</a>
+        <a href="crypto.html" class="hover:text-purple-400 transition">Crypto</a>
+        <a href="motivacao.html" class="hover:text-pink-400 transition">Motivação</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="px-6">
+    <!-- Seção de Destaque/Hero -->
+    <section id="hero" class="text-center max-w-3xl mx-auto pt-20 pb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-cyan-400">Engenharia & Design com o Poder da IA</h1>
+      <p class="text-lg text-gray-300">Explore ferramentas e recursos inovadores para otimizar seus projetos, gerar comandos e aprimorar suas habilidades em engenharia e design.</p>
     </section>
+
+    <!-- Botões de Navegação das Seções -->
+    <section class="max-w-4xl mx-auto mb-12 flex flex-wrap justify-center gap-4">
+      <button onclick="scrollToSection('ia-commands-section')" class="px-6 py-3 bg-cyan-700 text-white font-bold rounded-xl shadow-lg hover:bg-cyan-600 transition-all text-base">
+        Geração de Comandos IA
+      </button>
+      <button onclick="scrollToSection('video-tutorials-section')" class="px-6 py-3 bg-cyan-700 text-white font-bold rounded-xl shadow-lg hover:bg-cyan-600 transition-all text-base">
+        Vídeos Tutoriais IA
+      </button>
+      <button onclick="scrollToSection('manuals-tutorials-section')" class="px-6 py-3 bg-cyan-700 text-white font-bold rounded-xl shadow-lg hover:bg-cyan-600 transition-all text-base">
+        Manuais e Tutoriais
+      </button>
+      <button onclick="scrollToSection('civil-projects-section')" class="px-6 py-3 bg-cyan-700 text-white font-bold rounded-xl shadow-lg hover:bg-cyan-600 transition-all text-base">
+        Projetos de Engenharia Civil
+      </button>
+    </section>
+
+    <!-- Seção de Geração de Comandos por IA -->
+    <section id="ia-commands-section" class="max-w-4xl mx-auto my-24 p-8 bg-gray-900 rounded-2xl shadow-xl">
+      <h2 class="text-3xl font-bold text-center text-white mb-8">Geração de Comandos por IA</h2>
+      <p class="text-gray-400 text-center mb-8">Descreva a tarefa ou o comando que você precisa, e nossa IA irá gerar o script ou a instrução para diversas ferramentas de engenharia.</p>
+      <div class="flex flex-col items-center">
+        <textarea id="ia-command-input" class="w-full max-w-xl bg-gray-800 rounded-lg p-4 text-white focus:ring-2 focus:ring-cyan-500 border border-gray-700" rows="6" placeholder="Ex: 'Gerar um script Python para automatizar a criação de camadas no AutoCAD', 'Comando para criar uma parede de 20cm no Revit', 'Instruções para modelar uma viga em concreto armado no SAP2000'"></textarea>
+        <button id="generate-command-btn" class="mt-6 px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all text-lg">
+          Gerar Comando
+        </button>
+        <div id="ia-command-response" class="mt-8 w-full max-w-xl bg-gray-800 p-6 rounded-lg text-gray-300 whitespace-pre-wrap min-h-[100px] border border-gray-700 hidden">
+          <!-- Resposta da IA será exibida aqui -->
+          <p class="text-center text-gray-500">Aguardando seu comando...</p>
+        </div>
+        <button id="copy-command-btn" class="mt-4 px-6 py-2 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition hidden">
+          Copiar Comando
+        </button>
+      </div>
+    </section>
+
+    <!-- Nova Seção: Vídeos Tutoriais com Auxílio de IA -->
+    <section id="video-tutorials-section" class="max-w-4xl mx-auto my-24 p-8 bg-gray-900 rounded-2xl shadow-xl">
+      <h2 class="text-3xl font-bold text-center text-white mb-8">Vídeos Tutoriais com Auxílio de IA</h2>
+      <p class="text-gray-400 text-center mb-8">Desvende os segredos da engenharia com a clareza da inteligência artificial. Nossos vídeos tutoriais, criados com o auxílio de IA, oferecem insights precisos e explicações detalhadas para você dominar as ferramentas e conceitos mais complexos. Aprenda de forma eficiente e acelere seu desenvolvimento profissional.</p>
+
+      <div class="flex flex-col items-center">
+        <h3 class="text-xl font-bold text-white mb-4">Último Vídeo Postado</h3>
+        
+        <!-- Wrapper do Vídeo -->
+        <div id="video-wrapper" class="w-full max-w-md md:max-w-2xl bg-black rounded-xl overflow-hidden shadow-lg transition-all duration-300">
+          <div class="video-container">
+            <div id="youtube-video-iframe"></div>
+          </div>
+        </div>
+
+        <!-- Container para Título, Estatísticas e Controles (FORA do video-wrapper) -->
+        <div class="w-full max-w-md md:max-w-2xl mt-4 flex flex-col">
+            <!-- Título do Vídeo (Centralizado) -->
+            <div class="text-center text-lg font-bold text-white mb-4">
+              <span id="video-title">Título do Vídeo</span>
+            </div>
+
+            <div class="flex justify-between items-end w-full">
+              <!-- Estatísticas do vídeo (Alinhado à esquerda) -->
+              <div class="text-xs text-gray-300 text-left flex-grow mr-2">
+                <p>Visualizações Total: <span id="total-views" class="font-bold text-white">0</span></p>
+                <p>Visualizações Diárias: <span id="daily-views" class="font-bold text-white">0</span></p>
+                <p>Visualizações Semanais: <span id="weekly-views" class="font-bold text-white">0</span></p>
+                <p>Visualizações Mensais: <span id="monthly-views" class="font-bold text-white">0</span></p>
+                <p>Minutos Total: <span id="total-minutes" class="font-bold text-white">0</span></p>
+              </div>
+
+              <!-- Controles de vídeo (Alinhado à direita) -->
+              <div class="flex items-center gap-2">
+                <div class="tooltip-container">
+                  <button id="prev-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
+                    ⏮️
+                  </button>
+                  <span class="tooltip-text">Vídeo Anterior</span>
+                </div>
+                <div class="tooltip-container">
+                  <button id="play-pause-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-10 h-10 flex items-center justify-center text-2xl">
+                    ▶️
+                  </button>
+                  <span class="tooltip-text">Reproduzir / Pausar</span>
+                </div>
+                <div class="tooltip-container">
+                  <button id="next-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
+                    ⏭️
+                  </button>
+                  <span class="tooltip-text">Próximo Vídeo</span>
+                </div>
+                <div class="tooltip-container">
+                  <button id="captions-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
+                    🔠
+                  </button>
+                  <span class="tooltip-text">Legendas</span>
+                </div>
+                <div class="tooltip-container hidden md:block">
+                  <button id="expand-video-btn" class="bg-transparent text-white transition-opacity hover:opacity-75 w-8 h-8 flex items-center justify-center text-lg">
+                    ↔️
+                  </button>
+                  <span class="tooltip-text">Expandir Vídeo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Seção de Manuais e Tutoriais -->
+    <section id="manuals-tutorials-section" class="max-w-5xl mx-auto my-24">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">Manuais e Tutoriais</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+          <h3 class="text-xl font-bold text-white mb-2">Guia Essencial AutoCAD/Civil 3D</h3>
+          <p class="text-sm text-gray-400 mb-4 min-h-[60px]">Aprenda os fundamentos e truques avançados para dominar o AutoCAD e o Civil 3D.</p>
+          <button disabled class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Em Breve</button>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+          <h3 class="text-xl font-bold text-white mb-2">Introdução ao BIM com Infraworks</h3>
+          <p class="text-sm text-gray-400 mb-4 min-h-[60px]">Entenda os conceitos BIM e comece seus projetos de infraestrutura no Infraworks.</p>
+          <button disabled class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Em Breve</button>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+          <h3 class="text-xl font-bold text-white mb-2">Engenharia + Tecnologia</h3>
+          <p class="text-sm text-gray-400 mb-4 min-h-[60px]">Explore a interseção da engenharia com as mais recentes tecnologias e inovações.</p>
+          <button disabled class="w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Em Breve</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Projetos de Engenharia Civil -->
+    <section id="civil-projects-section" class="max-w-5xl mx-auto my-24 p-8 bg-gray-900 rounded-2xl shadow-xl">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">Projetos de Engenharia Civil</h2>
+      <p class="text-gray-400 text-center mb-8">Navegue por uma galeria de projetos e estudos de caso em diversas áreas da engenharia civil.</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300">
+          <img src="https://placehold.co/600x400/0e7490/ffffff?text=Projeto+Estrutural" alt="Projeto Estrutural" class="rounded-lg mb-4 w-full h-auto">
+          <h3 class="text-xl font-bold text-white mb-2">Análise e Projeto de Edifícios</h3>
+          <p class="text-sm text-gray-400">Estudo de caso de um edifício residencial de múltiplos andares, focando na otimização estrutural.</p>
+          <button disabled class="mt-4 w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Ver Detalhes</button>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300">
+          <img src="https://placehold.co/600x400/0e7490/ffffff?text=Infraestrutura+Urbana" alt="Infraestrutura Urbana" class="rounded-lg mb-4 w-full h-auto">
+          <h3 class="text-xl font-bold text-white mb-2">Planejamento de Infraestrutura Urbana</h3>
+          <p class="text-sm text-gray-400">Um olhar sobre o desenvolvimento de sistemas de saneamento e transporte em áreas urbanas.</p>
+          <button disabled class="mt-4 w-full bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Ver Detalhes</button>
+        </div>
+      </div>
+      <p class="text-center text-gray-500 mt-12 text-sm">Mais projetos serão adicionados em breve.</p>
+    </section>
+
   </main>
+
+  <!-- Rodapé (mantido igual ao index.html para consistência) -->
+  <footer class="text-center p-10 text-gray-500 text-sm">
+    <p>&copy; 2025 Ivo Fernandes. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script da API do YouTube -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Referências aos elementos da seção de Geração de Comandos
+        const iaCommandInput = document.getElementById('ia-command-input');
+        const generateCommandBtn = document.getElementById('generate-command-btn');
+        const iaCommandResponse = document.getElementById('ia-command-response');
+        const copyCommandBtn = document.getElementById('copy-command-btn');
+
+        // Referências aos elementos da seção de Vídeos Tutoriais
+        const videoWrapper = document.getElementById('video-wrapper');
+        const youtubeIframeContainer = document.getElementById('youtube-video-iframe');
+        const expandVideoBtn = document.getElementById('expand-video-btn');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const prevVideoBtn = document.getElementById('prev-video-btn');
+        const nextVideoBtn = document.getElementById('next-video-btn');
+        const captionsBtn = document.getElementById('captions-btn');
+        const videoTitleSpan = document.getElementById('video-title');
+        const totalViewsSpan = document.getElementById('total-views');
+        const dailyViewsSpan = document.getElementById('daily-views');
+        const weeklyViewsSpan = document.getElementById('weekly-views');
+        const monthlyViewsSpan = document.getElementById('monthly-views');
+        const totalMinutesSpan = document.getElementById('total-minutes');
+
+        // --- LÓGICA DA IA ---
+
+        // Função genérica para chamar a API do Gemini
+        async function callGeminiAPI(prompt) {
+            const apiKey = ""; // A chave será injetada pelo ambiente. Não preencha.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                generationConfig: {
+                    temperature: 0.4,
+                    topP: 1,
+                    topK: 32,
+                    maxOutputTokens: 1024,
+                }
+            };
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.text();
+                console.error("API Error Response:", errorBody);
+                throw new Error(`A IA não conseguiu responder. Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                return result.candidates[0].content.parts[0].text.trim();
+            } else {
+                console.error("Unexpected API response structure:", result);
+                if (result.promptFeedback && result.promptFeedback.blockReason) {
+                     throw new Error(`Requisição bloqueada: ${result.promptFeedback.blockReason}`);
+                }
+                throw new Error('Resposta inválida ou vazia da IA.');
+            }
+        }
+
+        // Event listener para o botão "Gerar Comando" na seção principal
+        generateCommandBtn.addEventListener('click', async () => {
+            const userInput = iaCommandInput.value;
+            if (!userInput) {
+                iaCommandResponse.innerHTML = '<p class="text-center text-red-400">Por favor, digite um comando.</p>';
+                iaCommandResponse.classList.remove('hidden');
+                copyCommandBtn.classList.add('hidden');
+                return;
+            }
+
+            iaCommandResponse.innerHTML = '<p class="text-center text-gray-500">Gerando comando...</p>';
+            iaCommandResponse.classList.remove('hidden');
+            generateCommandBtn.disabled = true;
+            generateCommandBtn.innerText = "Gerando...";
+            copyCommandBtn.classList.add('hidden');
+
+            try {
+                const prompt = `Você é um assistente especialista em engenharia e design. Gere um comando ou script para a seguinte tarefa de forma concisa e direta. Responda APENAS com o código ou comando, sem nenhuma introdução, explicação ou formatação extra (como \`\`\` a menos que seja parte do código). Tarefa: "${userInput}"`;
+                const generatedCommand = await callGeminiAPI(prompt);
+                iaCommandResponse.innerText = generatedCommand;
+                copyCommandBtn.classList.remove('hidden');
+            } catch (error) {
+                console.error("Erro ao gerar comando:", error);
+                iaCommandResponse.innerHTML = `<p class="text-center text-red-400">Ocorreu um erro ao gerar o comando. ${error.message}</p>`;
+                copyCommandBtn.classList.add('hidden');
+            } finally {
+                generateCommandBtn.disabled = false;
+                generateCommandBtn.innerText = "Gerar Comando";
+            }
+        });
+
+        // Event listener para o botão "Copiar Comando"
+        copyCommandBtn.addEventListener('click', () => {
+            const textToCopy = iaCommandResponse.innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                copyCommandBtn.innerText = 'Copiado!';
+                setTimeout(() => { copyCommandBtn.innerText = 'Copiar Comando'; }, 2000);
+            } catch (err) {
+                console.error('Falha ao copiar texto: ', err);
+                copyCommandBtn.innerText = 'Falha ao copiar';
+            }
+            document.body.removeChild(textarea);
+        });
+
+
+        // --- LÓGICA DO PLAYER DE VÍDEO ---
+
+        const videoData = [
+            { id: 'eQ9h3A5k1PA', title: 'Autodesk Civil 3D: Getting Started', views: { total: '250K', daily: '1K', weekly: '7K', monthly: '30K' }, minutes: '15' },
+            { id: 'M7lc1UVf-VE', title: 'Introdução ao AutoCAD Civil 3D', views: { total: '120K', daily: '500', weekly: '3.5K', monthly: '15K' }, minutes: '25' },
+            { id: 'Y2VF8zMMTv4', title: 'Modelagem BIM com Infraworks', views: { total: '85K', daily: '300', weekly: '2.1K', monthly: '9K' }, minutes: '18' },
+            { id: 'LXb3EKWsInQ', title: 'Automação em Engenharia com Python', views: { total: '210K', daily: '800', weekly: '5.6K', monthly: '24K' }, minutes: '32' }
+        ];
+        let currentVideoIndex = 0;
+        let player; // Variável global para o objeto do player do YouTube
+
+        // Função para rolar suavemente para uma seção
+        window.scrollToSection = function(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function updateVideoInfo() {
+            const currentVideo = videoData[currentVideoIndex];
+            videoTitleSpan.innerText = currentVideo.title;
+            totalViewsSpan.innerText = currentVideo.views.total;
+            dailyViewsSpan.innerText = currentVideo.views.daily;
+            weeklyViewsSpan.innerText = currentVideo.views.weekly;
+            monthlyViewsSpan.innerText = currentVideo.views.monthly;
+            totalMinutesSpan.innerText = currentVideo.minutes;
+        }
+
+        window.onYouTubeIframeAPIReady = function() {
+            player = new YT.Player('youtube-video-iframe', {
+                height: '100%',
+                width: '100%',
+                videoId: videoData[currentVideoIndex].id,
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 0,
+                    'rel': 0,
+                    'modestbranding': 1,
+                    'iv_load_policy': 3,
+                    'showinfo': 0,
+                    'disablekb': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            updateVideoInfo();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                playPauseBtn.innerHTML = '⏸️';
+                playPauseBtn.closest('.tooltip-container').querySelector('.tooltip-text').innerText = 'Pausar Vídeo';
+            } else {
+                playPauseBtn.innerHTML = '▶️';
+                playPauseBtn.closest('.tooltip-container').querySelector('.tooltip-text').innerText = 'Reproduzir Vídeo';
+            }
+        }
+
+        expandVideoBtn.addEventListener('click', () => {
+            const section = document.getElementById('video-tutorials-section');
+            videoWrapper.classList.toggle('md:max-w-2xl');
+            videoWrapper.classList.toggle('md:max-w-full');
+            const expandTooltip = expandVideoBtn.closest('.tooltip-container').querySelector('.tooltip-text');
+            if (videoWrapper.classList.contains('md:max-w-full')) {
+                expandVideoBtn.innerHTML = '↙️';
+                expandTooltip.innerText = 'Recolher Vídeo';
+            } else {
+                expandVideoBtn.innerHTML = '↔️';
+                expandTooltip.innerText = 'Expandir Vídeo';
+            }
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (player && typeof player.getPlayerState === 'function') {
+                if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            }
+        });
+
+        function loadVideoByIndex(index) {
+            currentVideoIndex = index;
+            if (player && typeof player.loadVideoById === 'function') {
+                player.loadVideoById(videoData[currentVideoIndex].id);
+                updateVideoInfo();
+            }
+        }
+
+        prevVideoBtn.addEventListener('click', () => {
+            const newIndex = (currentVideoIndex - 1 + videoData.length) % videoData.length;
+            loadVideoByIndex(newIndex);
+        });
+
+        nextVideoBtn.addEventListener('click', () => {
+            const newIndex = (currentVideoIndex + 1) % videoData.length;
+            loadVideoByIndex(newIndex);
+        });
+
+        captionsBtn.addEventListener('click', () => {
+            if (!player || typeof player.getOptions !== 'function') return;
+            
+            const captionOptions = player.getOptions('captions');
+            const module = player.getOptions().namespaces.find(ns => ns.captions);
+
+            if (module) {
+                if (module.track.languageCode) { // If captions are on
+                    player.setOption('captions', 'track', {}); // Turn off
+                } else { // If captions are off
+                    player.setOption('captions', 'track', {'languageCode': 'pt'}); // Turn on (Portuguese)
+                }
+            }
+        });
+
+        // Initial call to set up the info
+        updateVideoInfo();
+    });
+  </script>
+
 </body>
 </html>
