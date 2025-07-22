@@ -1,15 +1,15 @@
 // Dados falsos que simulam nosso banco de dados
 const mockAtivo = {
-  valorAtual: 1850.55,
-  lucroAcumulado: 600.55,
-  transacoesPositivas: 12,
-  perdas: 2,
+  valorAtual: 00.00,
+  lucroAcumulado: 00.00,
+  transacoesPositivas: 00,
+  perdas: 0,
 };
 
 const mockHistorico = [
-  { id: 3, data: '2025-07-22', tipo: 'Lucro Trade', valor: 100.25 },
-  { id: 2, data: '2025-07-21', tipo: 'Lucro Trade', valor: 150.00 },
-  { id: 1, data: '2025-07-20', tipo: 'Aporte Inicial', valor: 1250.50 },
+  { id: 3, data: '2025-07-22', tipo: 'Lucro Trade', valor: 00.00 },
+  { id: 2, data: '2025-07-21', tipo: 'Lucro Trade', valor: 00.00 },
+  { id: 1, data: '2025-07-20', tipo: 'Aporte Inicial', valor: 00.00 },
 ];
 
 // Função principal da API
