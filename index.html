@@ -1,103 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ivo Fernandes | Engenharia, IA e Cripto</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Orbitron:wght@600&display=swap" rel="stylesheet" />
-  <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #0f172a; }
-    .perspective { perspective: 1000px; }
-    .preserve-3d { transform-style: preserve-3d; position: relative; transition: transform 0.8s ease; }
-    .backface-hidden { backface-visibility: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    .rotate-y-180 { transform: rotateY(180deg); }
-  </style>
-</head>
-<body class="text-white scroll-smooth">
-
-<span id="topo"></span>
-
-<header class="bg-[#0b1120] py-4 shadow-md relative z-20">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    <div>
-      <h1 class="text-xl font-bold text-cyan-400">Ivo Fernandes</h1>
-      <p class="text-sm text-gray-400">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
-    </div>
-    <nav class="space-x-6 text-sm font-medium text-gray-300">
-      <a href="autocad.html" class="hover:text-cyan-400 transition">AutoCAD</a>
-      <a href="ia.html" class="hover:text-cyan-400 transition">IA</a>
-      <a href="#crypto" class="hover:text-cyan-400 transition">Cripto</a>
-    </nav>
-  </div>
-</header>
-
-<a onclick="voltarTopo()" id="flutuante" class="fixed top-4 left-6 text-cyan-400 text-lg font-bold z-50 cursor-pointer transition-opacity duration-300 opacity-0 pointer-events-none">
-  Ivo Fernandes
-</a>
-
-<section class="text-center max-w-2xl mx-auto px-6 mt-20 mb-12">
-  <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
-  <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
-  <button onclick="scrollEGerar()" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
-    Gerar Mensagem Positiva
-  </button>
-</section>
-
+<!-- Atualização aplicada aos quadros: alinhamento e bordas mais arredondadas -->
 <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
-  <!-- Quadro 1: Engenharia e Designer -->
+  <!-- Quadro atualizado 1 -->
   <div class="cursor-default perspective">
-    <div class="w-full h-72 preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl transition flex flex-col justify-between">
+    <div class="w-full h-auto preserve-3d group relative">
+      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
         <div class="text-center text-4xl mb-2">🏗️</div>
-        <h3 class="text-lg font-bold text-white text-center mb-2">Engenharia e Designer</h3>
-        <div class="flex flex-col gap-2 mt-4">
+        <h3 class="text-xl font-bold text-white text-center mb-4">Engenharia e Designer</h3>
+        <div class="flex flex-col gap-3">
           <button onclick="abrirPopup()" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA/Civil3D</button>
           <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
           <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Projetos de Engenharia Civil</button>
         </div>
       </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
         Central dedicada à engenharia prática e visual: comandos automatizados por IA, tutoriais ilustrados e projetos reais desenvolvidos com ferramentas profissionais.
       </div>
     </div>
   </div>
 
-  <!-- Quadro 2: CryptoMoeda + Inteligência Artificial -->
+  <!-- Quadro atualizado 2 -->
   <div class="cursor-default perspective">
-    <div class="w-full h-72 preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl transition flex flex-col justify-between">
+    <div class="w-full h-auto preserve-3d group relative">
+      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
         <div class="text-center text-4xl mb-2">🧠</div>
-        <h3 class="text-lg font-bold text-white text-center mb-2">CryptoMoeda + Inteligência Artificial</h3>
-        <div class="flex flex-col gap-2 mt-4">
+        <h3 class="text-xl font-bold text-white text-center mb-4">CryptoMoeda + Inteligência Artificial</h3>
+        <div class="flex flex-col gap-3">
           <button onclick="abrirPerguntaCrypto()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
           <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Análise de Gráficos</button>
           <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Notícias e Atualidades</button>
         </div>
       </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
         Pergunte qualquer coisa sobre o mundo cripto e receba respostas claras e rápidas com o apoio da IA integrada.
       </div>
     </div>
   </div>
 
-  <!-- Quadro 3: Conteúdo + Motivação -->
+  <!-- Quadro atualizado 3 -->
   <div class="cursor-default perspective">
-    <div class="w-full h-72 preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-xl p-6 hover:shadow-xl transition flex flex-col justify-between">
+    <div class="w-full h-auto preserve-3d group relative">
+      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
         <div class="text-center text-4xl mb-2">💬</div>
-        <h3 class="text-lg font-bold text-white text-center mb-2">Conteúdo + Motivação</h3>
-        <div class="flex flex-col gap-2 mt-4">
+        <h3 class="text-xl font-bold text-white text-center mb-4">Conteúdo + Motivação</h3>
+        <div class="flex flex-col gap-3">
           <button onclick="abrirConselhoIA()" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
           <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Conteúdo Vlog</button>
           <button disabled class="bg-gray-600 text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60">Atualidades IA</button>
         </div>
       </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-xl p-6 text-sm text-gray-300">
+      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
         Precisa de um conselho para mudar de vida? Esta IA foi criada para te ouvir e te ajudar com orientações conscientes e motivacionais.
       </div>
     </div>
   </div>
 </section>
-
-<!-- Aqui continuam os pop-ups e scripts -->
