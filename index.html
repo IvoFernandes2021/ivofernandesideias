@@ -27,6 +27,17 @@
   </div>
 </header>
 
+<section id="topo" class="text-center max-w-2xl mx-auto px-6 mt-20 mb-12">
+  <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
+  <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
+  <button onclick="gerarMensagem()" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
+    Gerar Mensagem Positiva
+  </button>
+  <div id="mensagem-container" class="mt-6 transition-opacity duration-500 opacity-0">
+    <p id="mensagem" class="text-lg font-medium text-cyan-400"></p>
+  </div>
+</section>
+
 <!-- INÍCIO DOS QUADROS -->
 <section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
   <!-- Engenharia e Designer -->
@@ -243,6 +254,23 @@ async function confirmarVisualizacao() {
   } else {
     resposta.innerText = "⚠️ Você já recebeu recompensa por este vídeo hoje.";
   }
+}
+</script>
+
+<script>
+function gerarMensagem() {
+  const mensagens = [
+    "Você é capaz de conquistar o que quiser!",
+    "Acredite no seu potencial todos os dias.",
+    "O futuro pertence a quem se prepara hoje.",
+    "Nunca é tarde para recomeçar com força total."
+  ];
+  const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+  const container = document.getElementById("mensagem-container");
+  const texto = document.getElementById("mensagem");
+  texto.innerText = msg;
+  container.style.opacity = 1;
+  setTimeout(() => { container.style.opacity = 0; }, 5000);
 }
 </script>
 
