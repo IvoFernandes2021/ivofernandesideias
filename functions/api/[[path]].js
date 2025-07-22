@@ -36,7 +36,8 @@ async function handleRequest(context) {
     // Rota para gerar uma mensagem positiva com IA
     if (apiRoute === 'positive-message') {
       const { AI } = context.env;
-      const prompt = "Gere uma única frase motivacional curta, poderosa e original, com no máximo 20 palavras. A frase deve ser inspiradora e adequada para alguém que busca crescimento pessoal ou profissional. Seja criativo e evite clichês comuns.";
+      // PROMPT CORRIGIDO E APRIMORADO
+const prompt = "Gere uma única frase motivacional, em português do Brasil, que seja curta e impactante, ideal para uma única linha. A frase deve ser original e inspiradora.";
       const aiResponse = await AI.run('@cf/meta/llama-2-7b-chat-int8', { prompt });
       return new Response(JSON.stringify({ message: aiResponse.response.trim() }), {
         headers: { 'Content-Type': 'application/json' },
