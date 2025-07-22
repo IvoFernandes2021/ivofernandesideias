@@ -1,274 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ivo Fernandes | Engenharia, IA & Inovação</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Ivo Fernandes | Futurista VR & IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="scroll-smooth">
+<canvas id="fundoVR" class="fixed top-0 left-0 w-full h-full z-[-1]"></canvas>
 
-<header class="bg-[#0b1120] py-4 shadow-md relative z-20">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    <div>
-      <a href="#topo" class="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition block">Ivo Fernandes</a>
-      <p class="text-sm text-gray-400">Engenharia • Inteligência Artificial • Conteúdo • Cripto</p>
-    </div>
-    <nav class="space-x-6 text-sm font-medium text-gray-300">
-      <a href="#engenharia" class="hover:text-cyan-400 transition">Engenharia</a>
-      <a href="#crypto" class="hover:text-cyan-400 transition">Crypto</a>
-      <a href="#motivacao" class="hover:text-cyan-400 transition">Motivação</a>
-      <a href="#videos-recompensa" class="hover:text-yellow-400 transition">Ganhar Satoshis</a>
-    </nav>
-  </div>
-</header>
+<header>…{/* Seu header existente com novas classes neon */}</header>
 
-<section id="topo" class="text-center max-w-2xl mx-auto px-6 mt-20 mb-12">
-  <h2 class="text-2xl font-bold mb-4">Explore o Futuro com Tecnologia e Conhecimento</h2>
-  <p class="text-gray-300 mb-6">Aprenda, evolua e acompanhe o crescimento do nosso ativo digital.</p>
-  <button onclick="gerarMensagem()" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
-    Gerar Mensagem Positiva
-  </button>
-  <div id="mensagem-container" class="mt-6 transition-opacity duration-500 opacity-0">
-    <p id="mensagem" class="text-lg font-medium text-cyan-400"></p>
-  </div>
-</section>
+<section id="chat-ia">…</section>
+<section id="topo">…</section>
+{/* Todas as seções: cards, ativo digital, gráfico, simulador, gamificação, comentários, FAQ */}
+<section id="admin">…</section>
+<section id="videos-recompensa">…</section>
 
-<!-- INÍCIO DOS QUADROS -->
-<section class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-24">
-  <!-- Engenharia e Designer -->
-  <div class="cursor-default perspective">
-    <div class="w-full h-auto preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-        <div class="text-center text-4xl mb-2">🏗️</div>
-        <h3 class="text-xl font-bold text-white text-center mb-4">Engenharia e Designer</h3>
-        <div class="flex flex-col gap-3">
-          <button onclick="abrirPopup()" class="bg-cyan-600 text-white px-4 py-2 sub-btn hover:bg-cyan-700 transition">Geração de Comandos por IA/Civil3D</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Manuais e Tutoriais</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Projetos de Engenharia Civil</button>
-        </div>
-      </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
-        Central dedicada à engenharia prática e visual: comandos automatizados por IA, tutoriais ilustrados e projetos reais desenvolvidos com ferramentas profissionais.
-      </div>
-    </div>
-  </div>
-
-  <!-- CryptoMoeda + Inteligência Artificial -->
-  <div class="cursor-default perspective">
-    <div class="w-full h-auto preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-        <div class="text-center text-4xl mb-2">🧠</div>
-        <h3 class="text-xl font-bold text-white text-center mb-4">CryptoMoeda + Inteligência Artificial</h3>
-        <div class="flex flex-col gap-3">
-          <button onclick="abrirPerguntaCrypto()" class="bg-purple-600 text-white px-4 py-2 sub-btn hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Análise de Gráficos</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Notícias e Atualidades</button>
-        </div>
-      </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
-        Pergunte qualquer coisa sobre o mundo cripto e receba respostas claras e rápidas com o apoio da IA integrada.
-      </div>
-    </div>
-  </div>
-
-  <!-- Conteúdo + Motivação -->
-  <div class="cursor-default perspective">
-    <div class="w-full h-auto preserve-3d group relative">
-      <div class="backface-hidden bg-gray-800 rounded-2xl p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-        <div class="text-center text-4xl mb-2">💬</div>
-        <h3 class="text-xl font-bold text-white text-center mb-4">Conteúdo + Motivação</h3>
-        <div class="flex flex-col gap-3">
-          <button onclick="abrirConselhoIA()" class="bg-pink-600 text-white px-4 py-2 sub-btn hover:bg-pink-700 transition">Crescimento Pessoal IA</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Conteúdo Vlog</button>
-          <button disabled class="bg-gray-600 text-white px-4 py-2 sub-btn cursor-not-allowed opacity-60">Atualidades IA</button>
-        </div>
-      </div>
-      <div class="backface-hidden rotate-y-180 bg-gray-900 rounded-2xl p-6 text-sm text-gray-300">
-        Precisa de um conselho para mudar de vida? Esta IA foi criada para te ouvir e te ajudar com orientações conscientes e motivacionais.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SEÇÃO: NOSSO ATIVO DIGITAL -->
-<section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-10 max-w-6xl mx-auto my-24 shadow-2xl">
-  <h2 class="text-3xl font-bold text-center text-white mb-8">📈 Nosso Ativo Digital</h2>
-  <p class="text-center text-gray-400 mb-10 max-w-3xl mx-auto">
-    Construído com base em transações reais feitas por <strong>Ivo Fernandes</strong>. Parte do lucro é convertida para alimentar esse ativo comunitário.
-  </p>
-
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-    <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg hover:scale-105 transition transform">
-      <div class="text-4xl mb-2">💰</div>
-      <p class="text-gray-400 text-sm mb-1">Valor Atual</p>
-      <p class="text-2xl font-bold text-white">R$ 0.000,00</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg hover:scale-105 transition transform">
-      <div class="text-4xl mb-2">📊</div>
-      <p class="text-gray-400 text-sm mb-1">Lucro Acumulado</p>
-      <p class="text-2xl font-bold text-green-400">R$ 0.000,00</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg hover:scale-105 transition transform">
-      <div class="text-4xl mb-2">✅</div>
-      <p class="text-gray-400 text-sm mb-1">Transações Positivas</p>
-      <p class="text-2xl font-bold text-white">0</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg hover:scale-105 transition transform">
-      <div class="text-4xl mb-2">⚠️</div>
-      <p class="text-gray-400 text-sm mb-1">Perdas</p>
-      <p class="text-2xl font-bold text-red-400">0</p>
-    </div>
-  </div>
-
-  <div class="flex flex-wrap justify-center gap-4 mt-10">
-    <button class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-2 font-bold rounded-xl shadow-lg transition">
-      💼 Comprar Participação
-    </button>
-    <button class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-xl font-medium transition">
-      🔄 Vender Participação
-    </button>
-    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium transition">
-      📜 Ver Histórico
-    </button>
-  </div>
-</section>
-
-
-<!-- SEÇÃO DE COMENTÁRIOS -->
-<section class="bg-gray-900 rounded-2xl p-6 max-w-6xl mx-auto mb-24 shadow-xl">
-  <h2 class="text-2xl font-bold text-white mb-6 text-center">O que as pessoas estão dizendo</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana" class="w-16 h-16 rounded-full mx-auto mb-4">
-      <p class="text-sm italic text-gray-300 mb-2">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p>
-      <p class="text-xs text-gray-400">— Mariana L.</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João" class="w-16 h-16 rounded-full mx-auto mb-4">
-      <p class="text-sm italic text-gray-300 mb-2">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p>
-      <p class="text-xs text-gray-400">— João V.</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Camila" class="w-16 h-16 rounded-full mx-auto mb-4">
-      <p class="text-sm italic text-gray-300 mb-2">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p>
-      <p class="text-xs text-gray-400">— Camila F.</p>
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Ricardo" class="w-16 h-16 rounded-full mx-auto mb-4">
-      <p class="text-sm italic text-gray-300 mb-2">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p>
-      <p class="text-xs text-gray-400">— Ricardo T.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SEÇÃO SOBRE NÓS -->
-<section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl">
-  <h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2>
-  <p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p>
-</section>
-
-<!-- SEÇÃO DE NOVIDADES -->
-<section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg">
-  <h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2>
-  <ul class="text-gray-300 space-y-2">
-    <li>🚀 Lançamento oficial do site e início da fase beta!</li>
-    <li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li>
-    <li>📊 Monitoramento de Ativo Digital agora disponível.</li>
-    <li>📦 Mais recursos chegando em breve, fique ligado!</li>
-  </ul>
-</section>
-
-<!-- SEÇÃO FAQ -->
-<section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl">
-  <h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2>
-  <div class="space-y-6 text-left text-gray-300">
-    <div>
-      <h3 class="font-bold">🔎 O que é o Ativo Digital?</h3>
-      <p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p>
-    </div>
-    <div>
-      <h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3>
-      <p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p>
-    </div>
-    <div>
-      <h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3>
-      <p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p>
-    </div>
-  </div>
-</section>
-
-
-
-<div class="h-32"></div>
-
-<!-- SEÇÃO DE VÍDEO RECOMPENSADO -->
-<section id="videos-recompensa" class="bg-gray-900 rounded-2xl p-6 max-w-5xl mx-auto my-24 shadow-xl px-4 sm:px-6">
-  <h2 class="text-2xl font-bold text-white mb-6 text-center">🎥 Assista e Ganhe Satoshis</h2>
-  <div class="bg-gray-800 rounded-xl p-4">
-    <iframe id="video1" width="100%" height="315" class="rounded-md shadow-md" src="https://www.youtube.com/embed/SEU_VIDEO_ID_AQUI" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>$1</p>
-    <button onclick="confirmarVisualizacao()" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">✅ Já Assisti e Quero Ganhar 1 Satoshi</button>
-    <p id="respostaRecompensa" class="mt-3 text-sm text-green-400"></p>
-  </div>
-</section>
-
-<!-- SCRIPT: Firebase + Rastreio -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_BUCKET",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
-};
+  const firebaseConfig = { /* .env ou substitua aqui */ };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  /* Fundo VR Partículas */
+  const canvas = document.getElementById('fundoVR');
+  const ctx2 = canvas.getContext('2d');
+  canvas.width = innerWidth; canvas.height = innerHeight;
+  const nodes = Array.from({ length: 100 }, () => ({ x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5 }));
+  (function draw(){ /* loop de partículas */ })();
 
-async function confirmarVisualizacao() {
-  const resposta = document.getElementById("respostaRecompensa");
-  const ip = await fetch("https://api.ipify.org?format=json").then(r => r.json()).then(d => d.ip);
-  const key = `youtube_video1_${ip}`;
-  const ref = doc(db, "visualizacoes", key);
-  const docSnap = await getDoc(ref);
+  /* Chat IA */
+  async function enviarMensagem() { /* fetch OpenAI + inserir mensagem no Firestore + adicionar pontos */ }
 
-  if (!docSnap.exists()) {
-    await setDoc(ref, {
-      video: "video1",
-      ip,
-      timestamp: serverTimestamp()
-    });
-    resposta.innerText = "✅ Visualização registrada! Você ganhou 1 satoshi.";
-  } else {
-    resposta.innerText = "⚠️ Você já recebeu recompensa por este vídeo hoje.";
-  }
-}
+  /* Chart.js */
+  const ctx = document.getElementById('graficoAtivoDigital').getContext('2d');
+  new Chart(ctx, { /* dados simulados */ });
+
+  /* Simulador CoinGecko */
+  async function fetchPrecoAtual(cripto) { /* fetch */ }
+  async function fetchPrecoHistorico(cripto,date) { /* fetch histórico */ }
+  async function simularInvestimento() { /* lógica + adicionar pontos */ }
+
+  /* Gamificação */
+  let pontos=0, cfg={ptsVideo:10,ptsChat:15,ptsSimulacao:20};
+  function adicionarPontos(valor){ /* atualizar DOM */ }
+  function adicionarPontosAcao(tipo){ adicionarPontos(cfg[`pts${tipo.charAt(0).toUpperCase()+tipo.slice(1)}`]); }
+  onAuthStateChanged(auth, user => user && carregarConfig());
+
+  /* Admin Auth e painel */
+  async function loginAdmin(email,senha){ try{ await signInWithEmailAndPassword(auth,email,senha) }catch(e){alert(e.message)} }
+  function logoutAdmin(){ signOut(auth); }
+
+  async function carregarConfig(){ /* carregar e preencher cfg */ }
+  async function salvarConfig(){ /* setDoc config */ }
+  async function verVisualizacoes(){ /* getDocs visualizacoes + inserir no DOM */ }
+  async function verConversas(){ /* getDocs conversas + inserir no DOM */ }
 </script>
-
-<script>
-function gerarMensagem() {
-  const mensagens = [
-    "Você é capaz de conquistar o que quiser!",
-    "Acredite no seu potencial todos os dias.",
-    "O futuro pertence a quem se prepara hoje.",
-    "Nunca é tarde para recomeçar com força total."
-  ];
-  const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
-  const container = document.getElementById("mensagem-container");
-  const texto = document.getElementById("mensagem");
-  texto.innerText = msg;
-  container.style.opacity = 1;
-  setTimeout(() => { container.style.opacity = 0; }, 5000);
-}
-</script>
-
 </body>
 </html>
