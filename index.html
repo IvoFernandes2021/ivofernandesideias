@@ -8,44 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
-    
-    /* Efeito 3D para os cards */
-    .perspective { perspective: 1000px; }
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-    .group:hover .card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden; /* Safari */
-      backface-visibility: hidden;
-    }
-    .card-back {
-      transform: rotateY(180deg);
-    }
-
-    /* Estilo para o ícone de 'virar' no canto do card */
-    .flip-icon {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 24px;
-      height: 24px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="%239ca3af"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.69v4.992h-4.992m0 0l-3.181-3.183a8.25 8.25 0 0111.667 0l3.181 3.183" /></svg>');
-      opacity: 0.5;
-      transition: opacity 0.3s;
-    }
-    .group:hover .flip-icon {
-      opacity: 1;
-    }
   </style>
 </head>
 <body class="scroll-smooth">
@@ -77,55 +39,37 @@
   </section>
 
   <section class="grid md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-24">
-    <div class="group perspective bg-gray-800 rounded-2xl p-6 shadow-lg transition-all duration-300 hover:shadow-cyan-500/20 hover:-translate-y-2 h-64">
-      <div class="card-inner">
-        <div class="card-face flex flex-col items-center justify-center text-center">
-          <div class="flip-icon"></div>
-          <a href="engenharia.html" class="block text-6xl mb-4 hover:scale-110 transition-transform" aria-label="Página de Engenharia">🏗️</a>
-          <h3 class="text-2xl font-bold text-white">Engenharia e Designer</h3>
-        </div>
-        
-        <div class="card-back flex flex-col justify-between text-center bg-gray-800 rounded-2xl p-6">
-          <p class="text-sm text-gray-300">Gere scripts e comandos para softwares de engenharia, acesse manuais e explore projetos práticos com o poder da IA.</p>
-          <div class="flex flex-col gap-3 mt-4">
-            <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Gerar Comandos por IA</button>
-          </div>
-        </div>
+    <div id="engenharia" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      <div class="text-center">
+        <div class="text-5xl mb-4">🏗️</div>
+        <h3 class="text-xl font-bold text-white mb-2">Engenharia e Designer</h3>
+        <p class="text-sm text-gray-400 min-h-[40px]">Gere scripts e comandos para softwares de engenharia usando IA.</p>
+      </div>
+      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+        <button onclick="abrirModal('Geração de Comandos por IA/Civil3D', 'Descreva a rotina que você precisa...')" class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">Geração de Comandos por IA</button>
+        <a href="engenharia.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
       </div>
     </div>
-
-    <div class="group perspective bg-gray-800 rounded-2xl p-6 shadow-lg transition-all duration-300 hover:shadow-purple-500/20 hover:-translate-y-2 h-64">
-      <div class="card-inner">
-        <div class="card-face flex flex-col items-center justify-center text-center">
-          <div class="flip-icon"></div>
-          <a href="crypto.html" class="block text-6xl mb-4 hover:scale-110 transition-transform" aria-label="Página de Crypto">🧠</a>
-          <h3 class="text-2xl font-bold text-white">CryptoMoeda + IA</h3>
-        </div>
-        
-        <div class="card-back flex flex-col justify-between text-center bg-gray-800 rounded-2xl p-6">
-          <p class="text-sm text-gray-300">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente ou veja análises de mercado.</p>
-          <div class="flex flex-col gap-3 mt-4">
-            <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
-          </div>
-        </div>
+    <div id="crypto" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      <div class="text-center">
+        <div class="text-5xl mb-4">🧠</div>
+        <h3 class="text-xl font-bold text-white mb-2">CryptoMoeda + IA</h3>
+        <p class="text-sm text-gray-400 min-h-[40px]">Tire suas dúvidas sobre criptomoedas e blockchain com nosso assistente.</p>
+      </div>
+      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+        <button onclick="abrirModal('Crypto IA / Pergunte', 'Faça qualquer pergunta sobre o mundo cripto...')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Crypto IA / Pergunte</button>
+        <a href="crypto.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
       </div>
     </div>
-
-    <div class="group perspective bg-gray-800 rounded-2xl p-6 shadow-lg transition-all duration-300 hover:shadow-pink-500/20 hover:-translate-y-2 h-64">
-      <div class="card-inner">
-        <div class="card-face flex flex-col items-center justify-center text-center">
-          <div class="flip-icon"></div>
-          <a href="motivacao.html" class="block text-6xl mb-4 hover:scale-110 transition-transform" aria-label="Página de Motivação">💬</a>
-          <h3 class="text-2xl font-bold text-white">Conteúdo + Motivação</h3>
-        </div>
-        
-        <div class="card-back flex flex-col justify-between text-center bg-gray-800 rounded-2xl p-6">
-          <p class="text-sm text-gray-300">Uma página dedicada com artigos, conselhos de IA e ferramentas para seu desenvolvimento pessoal e profissional.</p>
-          <div class="flex flex-col gap-3 mt-4">
-            <a href="motivacao.html" class="text-center bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Explorar Seção</a>
-            <button onclick="abrirModalMotivacao()" class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">Receber Conselho Rápido</button>
-          </div>
-        </div>
+    <div id="motivacao" class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      <div class="text-center">
+        <div class="text-5xl mb-4">💬</div>
+        <h3 class="text-xl font-bold text-white mb-2">Conteúdo + Motivação</h3>
+        <p class="text-sm text-gray-400 min-h-[40px]">Receba conselhos e insights para seu desenvolvimento pessoal e carreira.</p>
+      </div>
+      <div class="flex-grow flex flex-col justify-end mt-4 gap-3">
+        <button onclick="abrirModalMotivacao()" class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Receber Conselho Rápido</button>
+        <a href="motivacao.html" class="text-center bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">Ver Página da Seção</a>
       </div>
     </div>
   </section>
@@ -140,6 +84,40 @@
     </div>
     <div class="flex flex-wrap justify-center gap-4 mt-10">
       <button onclick="mostrarHistorico()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium transition">📜 Ver Histórico</button>
+    </div>
+  </section>
+
+  <section class="bg-gray-900 rounded-2xl p-6 max-w-6xl mx-auto mb-24 shadow-xl">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">O que as pessoas estão dizendo</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p><p class="text-xs text-gray-400">— Mariana L.</p></div>
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p><p class="text-xs text-gray-400">— João V.</p></div>
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Camila" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p><p class="text-xs text-gray-400">— Camila F.</p></div>
+      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Ricardo" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p><p class="text-xs text-gray-400">— Ricardo T.</p></div>
+    </div>
+  </section>
+
+  <section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl">
+    <h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2>
+    <p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p>
+  </section>
+
+  <section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg">
+    <h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2>
+    <ul class="text-gray-300 space-y-2">
+      <li>🚀 Lançamento oficial do site e início da fase beta!</li>
+      <li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li>
+      <li>📊 Monitoramento de Ativo Digital agora disponível.</li>
+      <li>📦 Mais recursos chegando em breve, fique ligado!</li>
+    </ul>
+  </section>
+
+  <section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl">
+    <h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2>
+    <div class="space-y-6 text-left text-gray-300">
+      <div><h3 class="font-bold">🔎 O que é o Ativo Digital?</h3><p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p></div>
+      <div><h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3><p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p></div>
+      <div><h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3><p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p></div>
     </div>
   </section>
   
