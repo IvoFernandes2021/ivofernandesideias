@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conteúdo & Motivação | Ivo Fernandes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
+  </style>
+</head>
+<body class="scroll-smooth">
+
+<header class="bg-[#0b1120] py-4 shadow-md sticky top-0 z-30">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <div>
+      <a href="index.html" class="text-lg font-bold text-cyan-400 hover:text-cyan-300 transition block">Ivo Fernandes</a>
+      <p class="text-sm text-gray-400">Engenharia • IA • Conteúdo • Cripto</p>
+    </div>
+    <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+      <a href="index.html#engenharia" class="hover:text-cyan-400 transition">Engenharia</a>
+      <a href="index.html#crypto" class="hover:text-cyan-400 transition">Crypto</a>
+      <a href="motivacao.html" class="text-pink-400 font-bold transition">Motivação</a>
+      <a href="index.html#videos-recompensa" class="hover:text-yellow-400 transition">Ganhar Satoshis</a>
+    </nav>
+  </div>
+</header>
+
+<main class="px-6">
+  <section id="topo" class="text-center max-w-3xl mx-auto pt-20 pb-16">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-pink-400">Espaço Motivação & Conteúdo</h1>
+    <p class="text-lg text-gray-300">Encontre inspiração, receba conselhos e descubra ferramentas para impulsionar seu crescimento pessoal e profissional.</p>
+  </section>
+
+  <section class="max-w-2xl mx-auto text-center p-8 bg-gray-900 rounded-2xl shadow-xl">
+    <h2 class="text-2xl font-bold mb-4">Precisa de um Impulso?</h2>
+    <p class="text-gray-400 mb-6">Clique no botão abaixo para receber uma dose de inspiração gerada por IA, exclusivamente para você.</p>
+    <button onclick="gerarMensagem()" class="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:brightness-110 transition-all text-lg">
+      Gerar Mensagem Inspiradora
+    </button>
+    <div id="mensagem-container" class="mt-8 transition-opacity duration-500 opacity-0">
+      <p id="mensagem" class="text-2xl font-medium text-cyan-300 p-4 border border-cyan-400 rounded-lg"></p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto my-24">
+    <h2 class="text-3xl font-bold text-center mb-12">Artigos em Destaque</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">Como a Disciplina Supera a Motivação</h3>
+        <p class="text-gray-400">Entenda por que construir hábitos é mais eficaz do que esperar pela inspiração.</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">5 Ferramentas de IA para Produtividade</h3>
+        <p class="text-gray-400">Descubra como a tecnologia pode ajudar você a organizar seu dia e alcançar seus objetivos.</p>
+      </div>
+      <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition cursor-pointer">
+        <h3 class="text-xl font-bold mb-2">O Mindset de Crescimento na Prática</h3>
+        <p class="text-gray-400">Vá além da teoria e aplique os princípios do mindset de crescimento em sua carreira.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="text-center p-10 text-gray-500 text-sm">
+  <p>&copy; 2025 Ivo Fernandes. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  async function gerarMensagem() {
+    const button = document.querySelector('#topo + section button');
+    const container = document.getElementById("mensagem-container");
+    const texto = document.getElementById("mensagem");
+
+    button.disabled = true;
+    button.innerText = "Gerando...";
+    texto.innerText = "";
+    container.style.opacity = 1;
+
+    try {
+      const response = await fetch('/api/positive-message');
+      if (!response.ok) {
+        throw new Error('A IA não conseguiu gerar uma mensagem.');
+      }
+      const data = await response.json();
+      texto.innerText = `"${data.message}"`;
+    } catch (error) {
+      console.error("Erro ao gerar mensagem:", error);
+      texto.innerText = "Não foi possível gerar uma mensagem. Tente novamente.";
+    } finally {
+      button.disabled = false;
+      button.innerText = "Gerar Outra Mensagem";
+    }
+  }
+</script>
+
+</body>
+</html>
