@@ -85,193 +85,42 @@
       <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg"><p class="text-gray-400 text-sm mb-1">Transações Positivas</p><p id="transacoes-positivas" class="text-2xl font-bold text-white">0</p></div>
       <div class="bg-gray-800 rounded-xl p-6 text-center shadow-lg"><p class="text-gray-400 text-sm mb-1">Perdas</p><p id="perdas" class="text-2xl font-bold text-red-400">0</p></div>
     </div>
-    <div class="flex flex-wrap justify-center gap-4 mt-10">
-      <button onclick="mostrarHistorico()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium transition">📜 Ver Histórico</button>
+    <div class="flex flex-wrap justify-center items-center gap-4 mt-10">
+      <button onclick="abrirModalConfirm('Confirmar Compra', 'Você confirma a compra de uma participação no valor de mercado atual?', simularCompra, 'bg-green-500 hover:bg-green-600')" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 font-bold rounded-xl shadow-lg transition-transform hover:scale-105">💼 Comprar</button>
+      <button onclick="abrirModalConfirm('Confirmar Venda', 'Você confirma a venda de uma participação no valor de mercado atual?', simularVenda, 'bg-red-500 hover:bg-red-600')" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-xl font-medium transition-transform hover:scale-105">🔄 Vender</button>
+      <button onclick="mostrarHistorico()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium transition-transform hover:scale-105">📜 Histórico</button>
+      <button onclick="abrirModalConfig()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full shadow-lg transition-transform hover:scale-110" aria-label="Configurações">⚙️</button>
     </div>
   </section>
 
   <section class="bg-gray-900 rounded-2xl p-6 max-w-6xl mx-auto mb-24 shadow-xl">
     <h2 class="text-2xl font-bold text-white mb-6 text-center">O que as pessoas estão dizendo</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p><p class="text-xs text-gray-400">— Mariana L.</p></div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p><p class="text-xs text-gray-400">— João V.</p></div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Camila" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p><p class="text-xs text-gray-400">— Camila F.</p></div>
-      <div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Ricardo" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p><p class="text-xs text-gray-400">— Ricardo T.</p></div>
-    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"><div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mariana" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Esse projeto me inspira todos os dias a buscar mais conhecimento. Parabéns pela iniciativa!”</p><p class="text-xs text-gray-400">— Mariana L.</p></div><div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Muito além de um site comum. É uma experiência completa com conteúdo útil de verdade.”</p><p class="text-xs text-gray-400">— João V.</p></div><div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Camila" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“Gostei da parte da IA motivacional. Às vezes, é exatamente o que a gente precisa.”</p><p class="text-xs text-gray-400">— Camila F.</p></div><div class="bg-gray-800 rounded-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl"><img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Ricardo" class="w-16 h-16 rounded-full mx-auto mb-4"><p class="text-sm italic text-gray-300 mb-2">“A proposta de ativos digitais é bem original. Estou curioso para ver como isso vai evoluir.”</p><p class="text-xs text-gray-400">— Ricardo T.</p></div></div>
   </section>
-
-  <section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl">
-    <h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2>
-    <p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p>
-  </section>
-
-  <section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg">
-    <h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2>
-    <ul class="text-gray-300 space-y-2">
-      <li>🚀 Lançamento oficial do site e início da fase beta!</li>
-      <li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li>
-      <li>📊 Monitoramento de Ativo Digital agora disponível.</li>
-      <li>📦 Mais recursos chegando em breve, fique ligado!</li>
-    </ul>
-  </section>
-
-  <section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl">
-    <h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2>
-    <div class="space-y-6 text-left text-gray-300">
-      <div><h3 class="font-bold">🔎 O que é o Ativo Digital?</h3><p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p></div>
-      <div><h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3><p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p></div>
-      <div><h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3><p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p></div>
-    </div>
-  </section>
-  
+  <section class="bg-gray-950 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-2xl"><h2 class="text-2xl font-bold text-white mb-4">Sobre Nós</h2><p class="text-gray-400 max-w-3xl mx-auto">Somos movidos pela vontade de transformar ideias em realidade. Nosso projeto une engenharia, inteligência artificial, criação de conteúdo e ativos digitais em um só lugar. Aqui você aprende, investe, se motiva e evolui — sempre com apoio de tecnologia de ponta e inteligência coletiva.</p></section>
+  <section class="bg-gray-800 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-lg"><h2 class="text-2xl font-bold text-white mb-4">Novidades & Atualizações</h2><ul class="text-gray-300 space-y-2"><li>🚀 Lançamento oficial do site e início da fase beta!</li><li>💡 Nova IA para conselhos motivacionais já em funcionamento.</li><li>📊 Monitoramento de Ativo Digital agora disponível.</li><li>📦 Mais recursos chegando em breve, fique ligado!</li></ul></section>
+  <section class="bg-gray-900 rounded-2xl p-8 text-center max-w-5xl mx-auto mb-24 shadow-xl"><h2 class="text-2xl font-bold text-white mb-6">Perguntas Frequentes</h2><div class="space-y-6 text-left text-gray-300"><div><h3 class="font-bold">🔎 O que é o Ativo Digital?</h3><p>É um valor construído com base nas transações positivas de Ivo Fernandes, disponível para consulta e participação.</p></div><div><h3 class="font-bold">📈 Como posso acompanhar os lucros?</h3><p>Os lucros são exibidos na seção “Nosso Ativo Digital”. Em breve, teremos gráficos dinâmicos!</p></div><div><h3 class="font-bold">🧠 Como funciona a IA Motivacional?</h3><p>Ao clicar no botão, você recebe uma mensagem gerada automaticamente com foco em bem-estar e motivação.</p></div></div></section>
 </main>
 
 <footer class="text-center p-10 text-gray-500 text-sm">
   <p>&copy; 2025 Ivo Fernandes. Todos os direitos reservados.</p>
 </footer>
 
-<div id="modal-ia" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
-  <div class="bg-gray-800 rounded-2xl shadow-xl w-full max-w-2xl p-6 relative transform transition-all scale-95 opacity-0" id="modal-content">
-    <button onclick="fecharModal()" class="absolute top-3 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-    <h3 id="modal-titulo" class="text-xl font-bold text-cyan-400 mb-4">Título do Modal</h3>
-    <div id="modal-body">
-      <p class="text-gray-300 text-sm mb-4">Use a IA para obter respostas. Digite sua pergunta abaixo.</p>
-      <div class="text-center my-4 border-y border-gray-700 py-3">
-        <a id="modal-link" href="#" class="font-semibold hover:text-pink-300 transition text-sm">Link de exploração</a>
-      </div>
-      <textarea id="modal-input" class="w-full bg-gray-900 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" rows="4" placeholder="Digite aqui..."></textarea>
-      <button id="modal-submit" class="mt-4 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 rounded-lg transition">Gerar Resposta</button>
-    </div>
-    <div id="modal-resposta" class="mt-4 bg-gray-900 p-4 rounded-lg text-gray-300 whitespace-pre-wrap min-h-[100px]"></div>
-  </div>
-</div>
+<div id="modal-ia" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden"><div class="bg-gray-800 rounded-2xl shadow-xl w-full max-w-2xl p-6 relative transform transition-all scale-95 opacity-0" id="modal-content"><button onclick="fecharModal()" class="absolute top-3 right-4 text-gray-400 hover:text-white text-2xl">&times;</button><h3 id="modal-titulo" class="text-xl font-bold text-cyan-400 mb-4">Título do Modal</h3><div id="modal-body"><p class="text-gray-300 text-sm mb-4">Use a IA para obter respostas. Digite sua pergunta abaixo.</p><div class="text-center my-4 border-y border-gray-700 py-3"><a id="modal-link" href="#" class="font-semibold hover:text-pink-300 transition text-sm">Link de exploração</a></div><textarea id="modal-input" class="w-full bg-gray-900 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" rows="4" placeholder="Digite aqui..."></textarea><button id="modal-submit" class="mt-4 w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 rounded-lg transition">Gerar Resposta</button></div><div id="modal-resposta" class="mt-4 bg-gray-900 p-4 rounded-lg text-gray-300 whitespace-pre-wrap min-h-[100px]"></div></div></div>
+<div id="modal-config" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden"><div class="bg-gray-800 rounded-2xl shadow-xl w-full max-w-md p-6 relative transform transition-all scale-95 opacity-0" id="modal-config-content"><h3 class="text-xl font-bold text-yellow-400 mb-6 text-center">Configurações de Operação</h3><div class="space-y-4"><div><label for="aporte" class="block text-sm font-medium text-gray-400 mb-1">Valor do Aporte (R$)</label><input type="number" id="aporte" name="aporte" placeholder="ex: 100.00" class="w-full bg-gray-900 rounded-lg p-3 text-white focus:ring-2 focus:ring-yellow-500 border-gray-700 opacity-50 cursor-not-allowed" disabled></div><div><label for="stop-loss" class="block text-sm font-medium text-gray-400 mb-1">Stop Loss (%)</label><input type="number" id="stop-loss" name="stop-loss" placeholder="ex: 5" class="w-full bg-gray-900 rounded-lg p-3 text-white focus:ring-2 focus:ring-yellow-500 border-gray-700 opacity-50 cursor-not-allowed" disabled></div><div><label for="take-profit" class="block text-sm font-medium text-gray-400 mb-1">Take Profit (%)</label><input type="number" id="take-profit" name="take-profit" placeholder="ex: 15" class="w-full bg-gray-900 rounded-lg p-3 text-white focus:ring-2 focus:ring-yellow-500 border-gray-700 opacity-50 cursor-not-allowed" disabled></div></div><div class="flex items-center gap-4 mt-8"><button onclick="fecharModalConfig()" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 rounded-lg transition">Fechar</button><button class="w-full bg-yellow-500 text-black font-bold py-3 rounded-lg transition opacity-50 cursor-not-allowed" disabled>Salvar Configurações</button></div><p class="text-center text-xs text-gray-500 mt-4">Funcionalidade em desenvolvimento.</p></div></div>
+<div id="modal-confirm" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden"><div class="bg-gray-800 rounded-2xl shadow-xl w-full max-w-md p-8 relative transform transition-all scale-95 opacity-0" id="modal-confirm-content"><h3 id="confirm-title" class="text-2xl font-bold text-white mb-4 text-center">Título da Confirmação</h3><p id="confirm-text" class="text-gray-300 mb-8 text-center">Texto da confirmação vai aqui.</p><div class="flex items-center gap-4"><button onclick="fecharModalConfirm()" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 rounded-lg transition">Cancelar</button><button id="confirm-button" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition">Confirmar</button></div></div></div>
 
 <script>
-  // --- Funções de UI e Lógica do Frontend ---
-  const modal = document.getElementById('modal-ia');
-  const modalContent = document.getElementById('modal-content');
-  const modalTitulo = document.getElementById('modal-titulo');
-  const modalBody = document.getElementById('modal-body');
-  const modalInput = document.getElementById('modal-input');
-  const modalResposta = document.getElementById('modal-resposta');
-  const modalSubmit = document.getElementById('modal-submit');
-
-  function abrirModal(titulo, placeholder, linkUrl, linkTexto) {
-    const modalLink = document.getElementById('modal-link');
-    modalTitulo.innerText = titulo;
-    modalInput.placeholder = placeholder;
-    modalLink.href = linkUrl;
-    modalLink.innerText = linkTexto;
-    if (linkUrl.includes('engenharia')) modalLink.className = 'text-cyan-400 font-semibold hover:text-cyan-300 transition text-sm';
-    if (linkUrl.includes('crypto')) modalLink.className = 'text-purple-400 font-semibold hover:text-purple-300 transition text-sm';
-    if (linkUrl.includes('motivacao')) modalLink.className = 'text-pink-400 font-semibold hover:text-pink-300 transition text-sm';
-    modalResposta.innerHTML = '';
-    modalInput.value = '';
-    modalBody.style.display = 'block';
-    modal.classList.remove('hidden');
-    setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
-  }
-
-  function fecharModal() {
-    modalContent.classList.add('scale-95', 'opacity-0');
-    setTimeout(() => { modal.classList.add('hidden'); }, 200);
-  }
-  
-  async function abrirModalMotivacao() {
-    abrirModal('Conselho do Dia', '');
-    modalBody.style.display = 'none';
-    modalResposta.innerHTML = '<p>Buscando inspiração para você...</p>';
-    try {
-      const response = await fetch('/api/motivation-summary');
-      if (!response.ok) { throw new Error('Falha ao buscar o conselho.'); }
-      const data = await response.json();
-      modalResposta.innerHTML = `<p class="text-gray-300 mb-6">${data.summary}</p><a href="motivacao.html" class="inline-block w-full text-center bg-pink-600 text-white font-bold py-3 rounded-lg hover:bg-pink-700 transition">Ver mais na Página de Motivação</a>`;
-    } catch (e) {
-      modalResposta.innerHTML = '<p>Não foi possível buscar um conselho agora. Tente novamente.</p>';
-    }
-  }
-
-  async function gerarMensagem() {
-    const button = document.querySelector('#topo button');
-    const container = document.getElementById("mensagem-container");
-    const texto = document.getElementById("mensagem");
-    button.disabled = true;
-    button.innerText = "Gerando...";
-    texto.innerText = "";
-    container.style.opacity = 1;
-    try {
-      const response = await fetch('/api/positive-message');
-      if (!response.ok) { throw new Error('A IA não conseguiu gerar uma mensagem.'); }
-      const data = await response.json();
-      texto.innerText = `"${data.message}"`;
-    } catch (error) {
-      texto.innerText = "Não foi possível gerar uma mensagem. Tente novamente.";
-    } finally {
-      button.disabled = false;
-      button.innerText = "Gerar Outra Mensagem";
-      setTimeout(() => { if(container.style.opacity === "1") { container.style.opacity = 0; } }, 8000);
-    }
-  }
-
-  async function carregarDadosDoAtivo() {
-    try {
-      const response = await fetch('/api/ativo');
-      if (!response.ok) throw new Error('Falha ao buscar dados.');
-      const dados = await response.json();
-      const formatarMoeda = (valor) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor || 0);
-      document.getElementById('valor-atual').innerText = formatarMoeda(dados.valorAtual);
-      document.getElementById('lucro-acumulado').innerText = formatarMoeda(dados.lucroAcumulado);
-      document.getElementById('transacoes-positivas').innerText = dados.transacoesPositivas || 0;
-      document.getElementById('perdas').innerText = dados.perdas || 0;
-    } catch (e) {
-      document.getElementById('valor-atual').innerText = "Erro";
-    }
-  }
-
-  window.mostrarHistorico = async function() {
-    abrirModal('Histórico de Transações', '');
-    modalBody.style.display = 'none';
-    modalResposta.innerHTML = '<p>Buscando histórico...</p>';
-    try {
-      const response = await fetch('/api/historico');
-      if (!response.ok) throw new Error('Falha ao buscar histórico.');
-      const transacoes = await response.json();
-      if (transacoes.length === 0) { modalResposta.innerHTML = '<p>Nenhuma transação encontrada.</p>'; return; }
-      let htmlHistorico = '<ul class="space-y-3 text-left">';
-      transacoes.forEach((transacao) => {
-        const data = new Date(transacao.data + 'T00:00:00').toLocaleDateString('pt-BR');
-        const valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(transacao.valor || 0);
-        const tipoClasse = transacao.tipo.toLowerCase().includes('lucro') || transacao.tipo.toLowerCase().includes('aporte') ? 'text-green-400' : 'text-red-400';
-        htmlHistorico += `<li class="border-b border-gray-700 pb-2 flex justify-between"><span>${data} - ${transacao.tipo}</span><span class="${tipoClasse} font-bold">${valor}</span></li>`;
-      });
-      htmlHistorico += '</ul>';
-      modalResposta.innerHTML = htmlHistorico;
-    } catch (e) {
-      modalResposta.innerHTML = '<p>Erro ao buscar o histórico.</p>';
-    }
-  }
-
-  modalSubmit.addEventListener('click', async () => {
-    const pergunta = modalInput.value;
-    if (!pergunta) return;
-    modalResposta.innerText = "Pensando...";
-    modalSubmit.disabled = true;
-    try {
-      const response = await fetch('/api/ai', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: pergunta })
-      });
-      if (!response.ok) throw new Error('A IA não conseguiu responder.');
-      const data = await response.json();
-      modalResposta.innerText = data.response.trim();
-    } catch (error) {
-      modalResposta.innerText = "Ocorreu um erro ao conectar com a IA.";
-    } finally {
-      modalSubmit.disabled = false;
-    }
-  });
-  
+  const modal = document.getElementById('modal-ia'), modalContent = document.getElementById('modal-content'), modalTitulo = document.getElementById('modal-titulo'), modalBody = document.getElementById('modal-body'), modalInput = document.getElementById('modal-input'), modalResposta = document.getElementById('modal-resposta'), modalSubmit = document.getElementById('modal-submit');
+  function abrirModal(t, p, l, x) { const n = document.getElementById('modal-link'); modalTitulo.innerText = t; modalInput.placeholder = p; n.href = l; n.innerText = x; l.includes('engenharia') && (n.className = 'text-cyan-400 font-semibold hover:text-cyan-300 transition text-sm'); l.includes('crypto') && (n.className = 'text-purple-400 font-semibold hover:text-purple-300 transition text-sm'); l.includes('motivacao') && (n.className = 'text-pink-400 font-semibold hover:text-pink-300 transition text-sm'); modalResposta.innerHTML = ''; modalInput.value = ''; modalBody.style.display = 'block'; modal.classList.remove('hidden'); setTimeout(() => { modalContent.classList.remove('scale-95', 'opacity-0') }, 10) }
+  function fecharModal() { modalContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modal.classList.add('hidden') }, 200) }
+  async function abrirModalMotivacao() { abrirModal('Conselho do Dia', ''); modalBody.style.display = 'none'; modalResposta.innerHTML = '<p>Buscando inspiração para você...</p>'; try { const e = await fetch('/api/motivation-summary'); if (!e.ok) throw new Error('Falha ao buscar o conselho.'); const o = await e.json(); modalResposta.innerHTML = `<p class="text-gray-300 mb-6">${o.summary}</p><a href="motivacao.html" class="inline-block w-full text-center bg-pink-600 text-white font-bold py-3 rounded-lg hover:bg-pink-700 transition">Ver mais na Página de Motivação</a>` } catch (e) { modalResposta.innerHTML = '<p>Não foi possível buscar um conselho agora. Tente novamente.</p>' } }
+  async function gerarMensagem() { const e = document.querySelector('#topo button'), o = document.getElementById("mensagem-container"), t = document.getElementById("mensagem"); e.disabled = !0; e.innerText = "Gerando..."; t.innerText = ""; o.style.opacity = 1; try { const n = await fetch('/api/positive-message'); if (!n.ok) throw new Error('A IA não conseguiu gerar uma mensagem.'); const s = await n.json(); t.innerText = `"${s.message}"` } catch (n) { t.innerText = "Não foi possível gerar uma mensagem. Tente novamente." } finally { e.disabled = !1; e.innerText = "Gerar Outra Mensagem"; setTimeout(() => { "1" === o.style.opacity && (o.style.opacity = 0) }, 8e3) } }
+  async function carregarDadosDoAtivo() { try { const e = await fetch('/api/ativo'); if (!e.ok) throw new Error('Falha ao buscar dados.'); const o = await e.json(); const t = e => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(e || 0); document.getElementById('valor-atual').innerText = t(o.valorAtual); document.getElementById('lucro-acumulado').innerText = t(o.lucroAcumulado); document.getElementById('transacoes-positivas').innerText = o.transacoesPositivas || 0; document.getElementById('perdas').innerText = o.perdas || 0 } catch (e) { document.getElementById('valor-atual').innerText = "Erro" } }
+  window.mostrarHistorico = async function () { abrirModal('Histórico de Transações', ''); modalBody.style.display = 'none'; modalResposta.innerHTML = '<p>Buscando histórico...</p>'; try { const e = await fetch('/api/historico'); if (!e.ok) throw new Error('Falha ao buscar histórico.'); const o = await e.json(); if (0 === o.length) { modalResposta.innerHTML = '<p>Nenhuma transação encontrada.</p>'; return } let t = '<ul class="space-y-3 text-left">'; o.forEach(e => { const o = new Date(e.data + "T00:00:00").toLocaleDateString('pt-BR'), n = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(e.valor || 0), s = e.tipo.toLowerCase().includes('lucro') || e.tipo.toLowerCase().includes('aporte') ? 'text-green-400' : 'text-red-400'; t += `<li class="border-b border-gray-700 pb-2 flex justify-between"><span>${o} - ${e.tipo}</span><span class="${s} font-bold">${n}</span></li>` }); t += '</ul>'; modalResposta.innerHTML = t } catch (e) { modalResposta.innerHTML = '<p>Erro ao buscar o histórico.</p>' } };
+  modalSubmit.addEventListener('click', async () => { const e = modalInput.value; if (!e) return; modalResposta.innerText = "Pensando..."; modalSubmit.disabled = !0; try { const o = await fetch('/api/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt: e }) }); if (!o.ok) throw new Error('A IA não conseguiu responder.'); const t = await o.json(); modalResposta.innerText = t.response.trim() } catch (e) { modalResposta.innerText = "Ocorreu um erro ao conectar com a IA." } finally { modalSubmit.disabled = !1 } });
+  const modalConfig = document.getElementById('modal-config'), modalConfigContent = document.getElementById('modal-config-content'); function abrirModalConfig() { modalConfig.classList.remove('hidden'); setTimeout(() => { modalConfigContent.classList.remove('scale-95', 'opacity-0') }, 10) } function fecharModalConfig() { modalConfigContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modalConfig.classList.add('hidden') }, 200) }
+  const modalConfirm = document.getElementById('modal-confirm'), modalConfirmContent = document.getElementById('modal-confirm-content'), confirmTitle = document.getElementById('confirm-title'), confirmText = document.getElementById('confirm-text'), confirmButton = document.getElementById('confirm-button'); function simularCompra() { alert('Ação de compra confirmada! (Simulação)') } function simularVenda() { alert('Ação de venda confirmada! (Simulação)') } function abrirModalConfirm(e, o, t, n) { confirmTitle.innerText = e; confirmText.innerText = o; const s = confirmButton.cloneNode(!0); confirmButton.parentNode.replaceChild(s, confirmButton); s.className = `w-full ${n} text-white font-bold py-3 rounded-lg transition`; s.addEventListener('click', () => { t(); fecharModalConfirm() }); modalConfirm.classList.remove('hidden'); setTimeout(() => { modalConfirmContent.classList.remove('scale-95', 'opacity-0') }, 10) } function fecharModalConfirm() { modalConfirmContent.classList.add('scale-95', 'opacity-0'); setTimeout(() => { modalConfirm.classList.add('hidden') }, 200) }
   window.addEventListener('DOMContentLoaded', carregarDadosDoAtivo);
 </script>
 
