@@ -1,23 +1,25 @@
 # Futurista VR + IA
 
-Plataforma web com:
+Projeto web completo com:
 
-- Chat IA com OpenAI + Firestore
+- Chat IA com OpenAI
 - Gráfico de ativo digital
-- Simulador com dados da CoinGecko
-- Gamificação: pontos, badges, níveis
+- Simulador com preços reais da CoinGecko
+- Gamificação com pontos e badges
 - Painel Admin com Firebase Auth
-- Estilo futurista VR e partículas neon
+- Configuração dinâmica via Firestore
+- Estilo futurista com partículas e neon
 
-## 🔧 Como usar
+## 🚀 Como usar
 
-1. Clone o repositório
-2. Crie um projeto no Firebase com Auth e Firestore
-3. Substitua `firebaseConfig` e credenciais no `index.html`
-4. Adicione sua API Key do OpenAI
-5. Comite, publique, e pronto 🚀
+1. Clone este repositório
+2. Configure um projeto no Firebase (Firestore + Auth)
+3. Substitua `firebaseConfig` em `index.html`
+4. Configure seu usuário admin via Firebase Console
+5. Adicione sua chave OpenAI em `enviarMensagem()`
+6. Publique num host estático (GitHub Pages, Vercel, Netlify)
 
-## 📦 Deploy
+## 🧠 Deploy
 
-Funciona em hosts estáticos (GitHub Pages, Netlify, Vercel). Só publique os arquivos conforme estrutura.
+Este projeto pode ir direto para hospedagem estática. Se quiser PWA, CI/CD ou addons, posso ajudar!
 
